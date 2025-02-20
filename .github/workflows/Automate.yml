@@ -32,7 +32,7 @@ jobs:
         run: |
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} <<EOF
           docker pull ashutoshqsofte/asikhfarm:latest
-          docker stop modest_lalande || true
-          docker rm modest_lalande || true
-          docker run -d --name modest_lalande -p 5000:5000 ashutoshqsofte/asikhfarm:latest
+          docker stop asikhfarm || true
+          docker rm asikhfarm || true
+          docker run -d --name asikhfarm -p 5000:5000 ashutoshqsofte/asikhfarm:latest
           EOF
