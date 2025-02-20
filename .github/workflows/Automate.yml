@@ -21,18 +21,18 @@ jobs:
  
       # Step 3: Build Docker Image
       - name: Build Docker Image
-        run: docker build -t ashutoshqsofte/qsofte:latest .
+        run: docker build -t ashutoshqsofte/asikhfarm:latest .
  
       # Step 4: Push Docker Image to Docker Hub
       - name: Push Docker Image
-        run: docker push ashutoshqsofte/qsofte:latest
+        run: docker push ashutoshqsofte/asikhfarm:latest
  
       # Step 5: Deploy to Remote Server
       - name: Deploy to Server
         run: |
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} <<EOF
-          docker pull ashutoshqsofte/qsofte:latest
+          docker pull ashutoshqsofte/asikhfarm:latest
           docker stop modest_lalande || true
           docker rm modest_lalande || true
-          docker run -d --name modest_lalande -p 8443:5000 ashutoshqsofte/qsofte:latest
+          docker run -d --name modest_lalande -p 5000:5000 ashutoshqsofte/asikhfarm:latest
           EOF
