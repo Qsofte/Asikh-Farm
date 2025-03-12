@@ -64,5 +64,87 @@
 }
 
 .nav-item.scrolled-text {
-  color: darkgreen; /* Deep green after scroll */
+  color: rgb(3, 55, 3); /* Deep green after scroll */
+}
+
+@media screen and (max-width: 768px) {
+  /* Hide burger icon when menu is open */
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other elements */
+  transition: all 0.3s ease;
+  margin-right: 10%;
+}
+
+/* Ensure lines are visible */
+.burger .line {
+  width: 100%;
+  height: 3px;
+  align-items: center;
+  background-color: white; /* Make sure it's visible */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header.scrolled .burger .line {
+  background-color: darkgreen;
+}
+/* When menu is open, hide the burger icon */
+.burger.open {
+  display: none;
+}
+
+/* Navbar default styles */
+.navbar {
+  display: none; /* Hide navbar initially */
+  position: absolute;
+  top: 80px; /* Adjust as per header height */
+  left: 0;
+  width: 100%;
+  background-color: rgba(246, 247, 246, 0.479); /* Dark background */
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* When Menu is Open */
+.navbar.active {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  align-items: center;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.nav-links li {
+  padding: 15px 0; /* Space between links */
+}
+
+/* Default link styles */
+.nav-item {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(245, 245, 247); /* White text color */
+  transition: color 0.3s ease;
+}
+
+/* Change link color on hover */
+.nav-item:hover {
+  color: lightgreen;
+}
+
 }
