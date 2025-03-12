@@ -58,7 +58,7 @@ const Home = () => {
           <div className="img2-dsc">
             <h1>Jardalu &
                 Safed Maldah 
-                mango</h1>
+                mangos</h1>
           </div>
           <div className="img3-dsc">
             <h1>Organic Carrots</h1>
