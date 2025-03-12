@@ -4,6 +4,11 @@
 
 
 /* AboutUs.css */
+
+.bg-white{
+  margin-top: 7.5%;
+}
+
 .about-container {
   background-color: white;
 }
