@@ -72,7 +72,7 @@ const Home = () => {
       <div className="Home-thrd-img">
         <div className="Home-thrd-img-sub">
           <div className="img-sub-home"></div>
-          <p>Sananda (Sandy) Chatterjee, Auckland, New Zealand</p>
+          <p className="txt-thdL">Sananda (Sandy) Chatterjee, Auckland, New Zealand</p>
         </div>
       </div>
     </div>
