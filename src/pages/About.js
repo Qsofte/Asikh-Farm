@@ -1,8 +1,9 @@
 import React from "react";
+// import './About.css';
 
 const About = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white" style={{marginTop: "20%"}}>
       {/* Hero Section */}
       <div className="relative h-80 bg-cover bg-center" style={{ backgroundImage: "url('/hero-image.jpg')" }}>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">

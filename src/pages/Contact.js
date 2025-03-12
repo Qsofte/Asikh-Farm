@@ -3,7 +3,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white" style={{marginTop: "20%"}}>
       {/* Hero Section */}
       <div
         className="relative h-80 bg-cover bg-center"
