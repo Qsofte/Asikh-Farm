@@ -1,21 +1,45 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  padding: 5px 20px; /* Reduce padding */
+  background-color: transparent;
+  height: 80px; /* Default height */
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.header.scrolled {
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  height: 70px; /* Adjust header height when scrolled */
 }
 
 .container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Keep logo inside the header */
+}
+
 .logo-image {
-  width: 100px;
+  max-height: 60px; /* Ensure logo fits inside header */
+  width: auto;
+  transition: max-height 0.3s ease;
+}
+
+.header.scrolled .logo-image {
+  max-height: 50px; /* Reduce logo size on scroll */
 }
 
 .navbar {
@@ -35,55 +59,10 @@
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: white; /* Default color */
   transition: color 0.3s ease;
 }
 
-.nav-item:hover {
-  color: #878e95;
-}
-
-/* Burger Icon */
-.burger {
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.burger .line {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  transition: all 0.3s ease;
-}
-
-.burger .line.open:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-
-.burger .line.open:nth-child(2) {
-  opacity: 0;
-}
-
-.burger .line.open:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* Mobile Navbar */
-.navbar.active {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 70px;
-  right: 20px;
-  background-color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
-  z-index: 100;
-}
-
-.navbar.active .nav-links {
-  flex-direction: column;
-  gap: 10px;
+.nav-item.scrolled-text {
+  color: darkgreen; /* Deep green after scroll */
 }
