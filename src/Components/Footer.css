@@ -1,61 +1,112 @@
 .footer {
-  background-color: #29C389; 
-  color: #fff; 
-  padding: 20px 0;
-  text-align: center;
+  background-color: #121212; /* Dark theme background */
+  color: #dfdfdf; /* Light text */
+  padding: 40px 20px;
   font-family: Arial, sans-serif;
 }
 
-.footer-content {
+.footer-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-.footer-logo h2 {
-  font-size: 24px;
+.footer-about {
+  flex: 1;
+  max-width: 400px;
+}
+
+.footer-logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.footer-about h2 {
+  font-size: 22px;
   font-weight: bold;
-  margin: 0;
 }
 
-.footer-links {
-  display: flex;
-  gap: 15px;
-}
-
-.footer-links a {
-  text-decoration: none;
-  color: #fff;
+.footer-about p {
   font-size: 14px;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #00bcd4; 
+  margin: 10px 0;
+  color: #bdbdbd;
 }
 
 .footer-socials {
   display: flex;
   gap: 10px;
+  margin-top: 15px;
 }
 
-.footer-socials a {
-  color: #fff;
+.social-icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #262626;
+  border-radius: 5px;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.fa-instagram{
+  background-image: url('../icons/insta-remove.png');
+  background-size: cover;
+}
+
+.fa-linkedin-in{
+  background-image: url('../icons/Linkedin-remove.png');
+  background-size: cover;
+}
+
+.fa-facebook-f{
+  background-image: url('../icons/Facebook-remove.png');
+  background-size: cover;
+}
+
+.fa-youtube{
+  background-image: url('../icons/Youtube-remove.png');
+  background-size: cover;
+}
+
+.social-icon:hover {
+  background: #f1f2f244;
+}
+
+.footer-links,
+.footer-help {
+  flex: 1;
+}
+
+.footer-links h3,
+.footer-help h3 {
   font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-help a {
+  display: block;
+  text-decoration: none;
+  color: #bdbdbd;
+  font-size: 14px;
+  margin: 5px 0;
   transition: color 0.3s ease;
 }
 
-.footer-socials a:hover {
-  color: #00bcd4; 
+.footer-links a:hover,
+.footer-help a:hover {
+  color: #29c38812;
 }
 
 .footer-bottom {
-  margin-top: 20px;
+  text-align: center;
+  margin-top: 30px;
   font-size: 14px;
-  color: #dfdcdc; 
-}
-
-.footer-bottom p {
-  margin: 0;
+  color: #bdbdbd;
 }
