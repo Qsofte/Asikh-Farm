@@ -1,3 +1,123 @@
+@font-face {
+  font-family: "GilroyExtraBold";
+  src: url("../fonts/Gilroy-ExtraBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyExtraBoldItalic";
+  src: url("../fonts/Gilroy-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyHeavy";
+  src: url("../fonts/Gilroy-Heavy.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyHeavyItalic";
+  src: url("../fonts/Gilroy-HeavyItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyLight";
+  src: url("../fonts/Gilroy-Light.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyLightItalic";
+  src: url("../fonts/Gilroy-LightItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyMedium";
+  src: url("../fonts/Gilroy-Medium.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyMediumItalic";
+  src: url("../fonts/Gilroy-MediumItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyRegular";
+  src: url("../fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyRegularItalic";
+  src: url("../fonts/Gilroy-RegularItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroySemiBold";
+  src: url("../fonts/Gilroy-SemiBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroySemiBoldItalic";
+  src: url("../fonts/Gilroy-SemiBoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroySemiBoldItalic2";
+  src: url("../fonts/Gilroy-SemiBoldItalic\ \(1\).ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyThin";
+  src: url("../fonts/Gilroy-Thin.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyThinItalic";
+  src: url("../fonts/Gilroy-ThinItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyUltraLight";
+  src: url("../fonts/Gilroy-UltraLight.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyUltraLightItalic";
+  src: url("../fonts/Gilroy-UltraLightItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -30,7 +150,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
   z-index: 0;
 }
 
@@ -42,13 +162,15 @@
 }
 
 .hero-heading {
-  font-size: 3rem;
-  margin-bottom: 3em;
+  font-size: 48px;
+  margin-bottom: 1em;
+  font-family: 'GilroySemiBold';
 }
 
 .hero-text {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 1em;
+  font-family: 'GilroyMedium'
 }
 
 .hero-btn {
@@ -59,10 +181,9 @@
   border-radius: 15px;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-family: 'GilroyRegular';
+  font-size: 24px;
 }
-
-/* Mobile Responsive */
 
 .Home-para {
   background-image: linear-gradient(rgba(0, 0, 0, 0.296), rgba(0, 0, 0, 0.263)), url("../images/3rd-Home-main.png");
@@ -98,105 +219,77 @@
   border: none;
 }
 
-/* Second Section (Home-scd) */
+/* Second Section */
 
-.sc-hm-dsk{
-  height: 100vh;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
+.txt-dsc{
+  font-family: 'GilroySemiBold';
+  font-size: 48px;
+}
+.txt-dscpara{
+  font-family:'GilroyLight';
+  font-size: 24px;
 }
 
 .txt-dsc-hm{
-  margin-top: 10px;
-  line-height: 12px;
-}
-
-.img-bx-dsc{
-  height: 50em;
-  display: flex;
-  justify-content: space-evenly;
-  cursor: pointer;
-}
-
-.img1-dsc{
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.377), rgba(0, 0, 0, 0.41)), url("../images/Beetroot.png");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: aliceblue;
-}
-
-.img2-dsc{
-  height: 100%;
-  width: 100%;
   text-align: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.377), rgba(0, 0, 0, 0.41)), url("../images/mangogreen.jpeg");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: aliceblue;
-}
-
-.img3-dsc{
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.377), rgba(0, 0, 0, 0.41)), url("../images/Carrot.png");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: aliceblue;
+  margin: 77px;
+  line-height: 4px;
 }
 
 /* Third Section: */
 
+.txt-thrd{
+  margin: 77px;
+}
+
 .txt-hding-home{
   text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: 4px;
+  font-family: 'GilroySemiBold';
+  font-size: 48px;
 }
 
-.Home-thrd{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hm-para{
+  font-family:'GilroyLight';
+  font-size: 24px;
 }
 
-.Home-thrd-img{
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  height: 80%;
-  width: 80%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.296), rgba(0, 0, 0, 0.263)), url("../images/image (3).jpeg");
-  border: 2px solid black;
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat;
-}
-  
+/* Fourth Section */
 
-.Home-thrd-img-sub{
+.Count-heading{
+  padding: 7px;
+}
+
+.Countries-head{
+  text-align: center;
+  line-height: 4px;
+}
+
+.head-fourth{
+  font-family: 'GilroySemiBold';
+  font-size: 48px;
+}
+
+.para-fourth{
+  font-family:'GilroyLight';
+  font-size: 24px;
+  margin-bottom: 77px;
+}
+
+.Countries{
   display: flex;
   justify-content: space-around;
-  height: 15%;
-  width: 100%;
-  align-items: end;
-  background-color: #e3e1dc82;
+  text-align: center;
 }
 
-.img-sub-home{
-  background-image:url("../images/imgl.png");
-  background-size: cover;
-  height: 200%;
-  border: 2px solid red;
-  border-radius: 70%;
-  width: 14%;
+.count-name{
+  font-family:'GilroyLight';
+  font-size: 24px;
+}
+
+.count-img{
+  width: 329px;
+  height: 170px;
 }
 
 /* Mobile-specific image for the first section */
@@ -271,5 +364,55 @@
     background-position: center; 
     background-repeat: no-repeat;
   }
+
+  /* our products */
+
+  .txt-dsc{
+    font-size: 28px;
+  }
+
+  .txt-dscpara { 
+    font-size: 24px; /* Adjust font size for smaller screens */
+    width: 100%; /* Ensure it takes full width */
+    max-width: 90%; /* Keep some margin */
+    text-align: center; /* Center text */
+    word-wrap: break-word; /* Force text to break */
+    line-height: 1.5rem; /* Improve readability */
+    margin: auto; /* Center within its container */
+}
+
+.txt-dsc-hm{
+  margin: 40px;
+}
+
+  .count-img{
+    width: 95.91px;
+    height: 49.56px;
+    margin-bottom: 25px;
+  }
+
+  .count-name{
+    display: none;
+  }
+
+  .txt-thrd{
+    display: none;
+  }
+
+  .Count-heading{
+    margin-top: 40px;
+  }
+
+  .head-fourth{
+    font-family: 'GilroySemiBold';
+    font-size: 28px;
+  }
+  
+  .para-fourth{
+    font-family:'GilroyLight';
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
 
 }

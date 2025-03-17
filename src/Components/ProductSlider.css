@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "GilroySemiBold";
+  src: url("../fonts/Gilroy-SemiBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyMedium";
+  src: url("../fonts/Gilroy-Medium.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GilroyRegular";
+  src: url("../fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Ensure Full Height for Section */
+.product-slider {
+  width: 100%;
+  margin: auto;
+}
+
+/* Swiper Slide */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  height: 100% !important;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+/* Product Card */
+.product-card {
+  width: 100%;
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: center;
+  border-radius: 0 !important;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Product Image */
+.product-card img {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+/* Hover Effect */
+.product-card:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Product Info Overlay */
+.product-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Initially Show Only Product Name */
+.product-name {
+  font-family: 'GilroySemiBold';
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Hide Description & Button Initially */
+.product-description,
+.know-more {
+  font-family: 'GilroyMedium';
+  font-size: 16px;
+  max-width: 80%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show Only Description & Button on Hover */
+.product-card:hover .product-name {
+  opacity: 0;
+}
+
+.product-card:hover .product-description,
+.product-card:hover .know-more {
+  opacity: 1;
+}
+
+/* Know More Button */
+.know-more {
+  background-color: #FFDD8C;
+  color: #000000;
+  font-family: "GilroyRegular";
+  padding: 8px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.know-more:hover {
+  background-color: #fac956;
+}
+
+/* Expand Hovered Product */
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* ========== Responsive Design for Mobile ========== */
+@media screen and (max-width: 768px) {
+  .swiper-slide {
+    flex: 1 0 100%; /* Show only one product per slide */
+  }
+
+  /* Reduce font size for smaller screens */
+  .product-name {
+    font-size: 20px;
+  }
+
+  .product-description {
+    font-size: 14px;
+    max-width: 90%;
+  }
+
+  .know-more {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
