@@ -83,7 +83,10 @@
 /* Initially Show Only Product Name */
 .product-name {
   font-family: 'GilroySemiBold';
-  font-size: 24px;
+  font-size: 28px !important;
+  max-width: 400px;
+  flex-wrap: wrap;
+  text-align: center !important;
   font-weight: bold;
   margin-bottom: 10px;
   transition: opacity 0.3s ease-in-out;
@@ -93,7 +96,7 @@
 .product-description,
 .know-more {
   font-family: 'GilroyMedium';
-  font-size: 16px;
+  font-size: 24px;
   max-width: 80%;
   text-align: center;
   opacity: 0;
@@ -141,11 +144,11 @@
 
   /* Reduce font size for smaller screens */
   .product-name {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .product-description {
-    font-size: 14px;
+    font-size: 16px;
     max-width: 90%;
   }
 

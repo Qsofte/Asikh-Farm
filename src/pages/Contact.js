@@ -1,59 +1,101 @@
+import React, { useState } from "react";
 import "./Contact.css";
-import React from "react";
+import profile from '../images/imgl.png';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    surname: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // WhatsApp Number (Replace with actual number)
+    const phoneNumber = "919135870743";
+
+    // Format the message
+    const whatsappMessage = `First Name: ${formData.firstName}%0A
+Surname: ${formData.surname}%0A
+Email: ${formData.email}%0A
+Message: ${formData.message}`;
+
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+    // Open WhatsApp
+    window.open(whatsappURL, "_blank");
+
+    // Reset the form fields
+    setFormData({
+      firstName: "",
+      surname: "",
+      email: "",
+      message: "",
+    });
+  };
+
+  // Function to open email client
+  const handleEmailClick = () => {
+    const email = "xyz@example.com"; // Replace with your actual email
+    const subject = "Inquiry from Contact Form";
+    const body = `Hello XYZ,%0A%0AI have an inquiry about your services. Please get back to me at your earliest convenience.%0A%0AThank you!`;
+
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  };
+
   return (
-    <div className="bg-white" style={{marginTop: "20%"}}>
-      {/* Hero Section */}
-      <div
-        className="relative h-80 bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-contact.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <h1 className="text-white text-4xl font-bold">Contact Us</h1>
-        </div>
+    <div className="contact-container-abc">
+      <div className="header-image-abc">
+        <h1 className="contact-title-abc">Contact Us</h1>
       </div>
-
-      <div className="max-w-6xl mx-auto py-10 px-5">
-        {/* Breadcrumb */}
-        <p className="text-gray-500 mb-6">Home &gt; Contact Us</p>
-
-        {/* Contact Form Section */}
-        <div className="grid md:grid-cols-2 gap-10">
-          <div>
-            <h2 className="text-2xl font-bold mb-4">
-              Drop us a message to help you out with your queries
-            </h2>
-            <p className="text-gray-600 mb-4">
-              We're just one click away to help you with any details regarding our
-              product. Fill in the form to share more details about your query. Or your
-              favorite fruit/vegetable. Either way, we'd love to talk.
+      <div className="breadcrumb-abc">Home › Contact Us</div>
+      <div className="contact-content-abc">
+        <div className="info-section-abc">
+          <h2 className="info-title-abc">Drop us a message to help you out with your queries</h2>
+          <p className="info-text-abc">
+            We’re just one click away to help you with any details regarding our product. Fill in the form to share more details about your query. Or your favourite fruit/vegetable. Either way, we’d love to talk.
+          </p>
+          <div className="profile-abc">
+            <img src={profile} alt="Profile" className="profile-img-abc" />
+            <p className="profile-text-abc">
+              Hi, I’m XYZ! Let’s chat about your amazing requirements and projects.
             </p>
-            <div className="border p-4 rounded-lg flex items-center gap-3">
-              <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                🤖
-              </div>
-              <div>
-                <p className="font-semibold">Hi, I'm XYZ! Let's chat about your amazing requirements and projects.</p>
-                <p className="text-sm text-gray-500">*By submitting your thoughts, so our delivery is ideal from the best results.*</p>
-                <div className="flex items-center mt-2 gap-2">
-                  <span className="text-green-500">✅</span>
-                  <p className="text-green-600">Email Directly to XYZ</p>
-                </div>
-              </div>
-            </div>
+            <p className="quote-abc">
+              “I enjoy translating your thoughts to our diversely skilled team for the best results”
+            </p>
+            <p className="email-link-abc" onClick={handleEmailClick} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
+              ✅ Email Directly to XYZ
+            </p>
           </div>
-
-          {/* Form */}
-          <div className="bg-gray-100 p-6 rounded-lg">
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <input type="text" placeholder="Your first name" className="p-3 w-full bg-yellow-200 rounded-md" />
-              <input type="text" placeholder="Your Surname" className="p-3 w-full bg-yellow-200 rounded-md" />
+        </div>
+        <div className="form-section-abc">
+          <form onSubmit={handleSubmit} className="contact-form-abc">
+            <div className="form-group-abc">
+              <label>First Name:</label>
+              <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Your first name" required />
             </div>
-            <input type="email" placeholder="Your email address" className="p-3 w-full bg-yellow-200 rounded-md mb-4" />
-            <textarea placeholder="Your Message here" className="p-3 w-full bg-yellow-200 rounded-md mb-4 h-32"></textarea>
-            <button className="bg-blue-500 text-white px-6 py-2 rounded-md">Send</button>
-          </div>
+            <div className="form-group-abc">
+              <label>Surname:</label>
+              <input className="surname-abc" type="text" name="surname" value={formData.surname} onChange={handleChange} placeholder="Your Surname" required />
+            </div>
+            <div className="form-group-abc full-width-abc">
+              <label>Your email:</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your email address" required />
+            </div>
+            <div className="form-group-abc full-width-abc">
+              <label>Message:</label>
+              <textarea className="msg-abc" name="message" value={formData.message} onChange={handleChange} placeholder="Your Message here" required></textarea>
+            </div>
+            <button type="submit" className="submit-btn-abc">Send</button>
+          </form>
         </div>
       </div>
     </div>
