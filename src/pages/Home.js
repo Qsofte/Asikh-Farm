@@ -46,22 +46,24 @@ const Home = () => {
         <TestimonialSlider />
 
       {/* Fourth Section */}
-      <div className="Count-heading">
-        <h1 className="Countries-head head-fourth">Countries where we export</h1>
-        <p className="Countries-head para-fourth">From India With love</p>
-      </div>
-      <div className="Countries">
-        <div className="England">
-          <img className='count-img' src={England} alt="Girl in a jacket"/>
-          <p className="count-name">England</p>
-        </div>
-        <div className="Germany">
-          <img className='count-img' src={Germany} alt="Girl in a jacket"/>
-          <p className="count-name">Germany</p>
-        </div>
-        <div className="New-Zealand">
-        <img className='count-img' src={NewZealand} alt="Girl in a jacket"/>
-        <p className="count-name">New Zealand</p>
+      <div className="fourth-hm">
+            <div className="Count-heading">
+              <h1 className="Countries-head head-fourth">Countries where we export</h1>
+              <p className="Countries-head para-fourth">From India With love</p>
+            </div>
+            <div className="Countries">
+            <div className="England">
+              <img className='count-img' src={England} alt="Girl in a jacket"/>
+              <p className="count-name">England</p>
+            </div>
+            <div className="Germany">
+              <img className='count-img' src={Germany} alt="Girl in a jacket"/>
+              <p className="count-name">Germany</p>
+            </div>
+            <div className="New-Zealand">
+            <img className='count-img' src={NewZealand} alt="Girl in a jacket"/>
+            <p className="count-name">New Zealand</p>
+            </div>
         </div>
       </div>
     </>

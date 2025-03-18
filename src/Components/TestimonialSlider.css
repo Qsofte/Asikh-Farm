@@ -13,77 +13,100 @@
 }
 
 .testimonial-container {
-    position: relative;
-    width: 80%;
-    height: 100vh;
-    margin: auto;
-    margin-bottom: 80px;
+  position: relative;
+  width: 80%;
+  height: 609px;
+  margin: auto;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+
+.testimonial-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.testimonial-content {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+}
+
+.client-image {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, 50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.testimonial-message {
+  font-family: 'GilroyMedium';
+  font-size: 16px;
+  color: #333;
+}
+
+.testimonial-name {
+  font-family: 'GilroySemiBold';
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.354);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 55px;
+  border-radius: 50%;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .testimonial-container {
+    display: none !important;
   }
-  
-  .testimonial-card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  }
-  
-  .always-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .hidden {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  
-  .testimonial-content {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    position: relative;
-  }
-  
-  .client-image {
-    position: absolute;
-    left: 50%;
-    bottom: 100%;
-    transform: translate(-50%, 50%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid white;
-  }
-  
-  .testimonial-message {
-    font-family: 'GilroyMedium';
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .testimonial-name {
-    font-family: 'GilroySemiBold';
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
-  }
-  
+}
+
 
   /* ========== Responsive Design for Mobile ========== */
 @media screen and (max-width: 768px) {

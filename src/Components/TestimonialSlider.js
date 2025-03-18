@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TestimonialSlider.css";
 import mangocut from "../images/Mango_cut.jpeg";
 import ClientImage from "../images/imgl.png";
@@ -24,19 +24,31 @@ const testimonials = [
   }
 ];
 
-const TestimonialHover = () => {
-  const [hovered, setHovered] = useState(false);
+const TestimonialSlider = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
-    <div
-      className="testimonial-container"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className="testimonial-container">
       {testimonials.map((testimonial, index) => (
         <div
           key={testimonial.id}
-          className={`testimonial-card ${hovered && index === 1 ? "visible" : index === 0 ? "always-visible" : "hidden"}`}
+          className={`testimonial-card ${index === currentIndex ? "visible" : "hidden"}`}
           style={{ backgroundImage: `url(${testimonial.backgroundImage})` }}
         >
           <div className="testimonial-content">
@@ -46,8 +58,10 @@ const TestimonialHover = () => {
           </div>
         </div>
       ))}
+      <button className="prev-btn" onClick={prevSlide}>❮</button>
+      <button className="next-btn" onClick={nextSlide}>❯</button>
     </div>
   );
 };
 
-export default TestimonialHover;
+export default TestimonialSlider;
