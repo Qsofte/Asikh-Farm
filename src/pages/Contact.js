@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Contact.css";
-import profile from '../images/imgl.png';
+import profile from '../images/profileD.jpg';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -78,11 +78,11 @@ Message: ${formData.message}`;
         </div>
         <div className="form-section-abc">
           <form onSubmit={handleSubmit} className="contact-form-abc">
-            <div className="form-group-abc">
+            <div className="form-group-abc FirstN-abcd">
               <label>First Name:</label>
               <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Your first name" required />
             </div>
-            <div className="form-group-abc">
+            <div className="form-group-abc surname-abcd">
               <label>Surname:</label>
               <input className="surname-abc" type="text" name="surname" value={formData.surname} onChange={handleChange} placeholder="Your Surname" required />
             </div>

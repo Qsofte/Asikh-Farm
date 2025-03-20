@@ -121,7 +121,7 @@
   position: relative;
   width: 100%;
   background: url('../images/3rd-Home-main.png') center/cover no-repeat;
-  height: 100vh;
+  height: 424px;
   display: flex;
   align-items: center;
   justify-content: center; 
@@ -229,7 +229,8 @@
 
 .form-group-abc {
   font-family: "GilroySemiBold";
-  width: 48%;
+  width: 100%;
+  margin: 0 !important;
 }
 
 .form-group-abc.full-width-abc {
@@ -247,20 +248,29 @@
   width: 100%;
   padding: 8px;
   border: 1px solid #DEDEDE;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .msg-abc{
   height: 172px;
 }
 
-.surname-abc{
-  margin-left: 18px;
-  width: 12em !important;
+.FirstN-abcd{
+  width: 45%;
+  margin-right: 5% !important;
 }
 
+.surname-abcd{
+  width: 45%;
+}
+
+/* .surname-abc{
+  margin-left: 18px;
+  width: 12em !important;
+} */
+
 .submit-btn-abc {
-  background-color: #007bff;
+  background-color: #2E72A9;
   color: #f5f5f5;
   border: none;
   padding: 10px 20px;
