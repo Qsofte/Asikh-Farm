@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Left Section - Logo & Description */}
         <div className="footer-about">
           <img src={logo} alt="Asikh Farms Logo" className="footer-logo" />
-          <h2>Asikh Farms</h2>
+          <h2 className="help-ftr">Asikh Farms</h2>
           <p>
             Discover the essence of Asikh Farms, where we cultivate nature’s
             bounty with care and passion. Here, every seed is planted with
@@ -40,7 +40,7 @@ const Footer = () => {
 
         {/* Middle Section - Links */}
         <div className="footer-links">
-          <h3>Links</h3>
+          <h3 className="help-ftr">Links</h3>
           <a href="/about">About Us</a>
           <a href="/products">Products</a>
           <a href="/contact">Contact Us</a>
@@ -49,7 +49,7 @@ const Footer = () => {
 
         {/* Right Section - Help */}
         <div className="footer-help">
-          <h3>Help</h3>
+          <h3 className="help-ftr">Help</h3>
           <a href="/terms">Terms & Conditions</a>
           <a href="/privacy">Privacy Policy</a>
           <a href="/contact">Contact Us</a>

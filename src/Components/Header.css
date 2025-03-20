@@ -13,6 +13,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "GilroyRegular";
+  src: url("../fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -89,7 +96,7 @@
 }
 
 .nav-item.scrolled-text {
-  color: #37CD8E; /* Deep green after scroll */
+  color: #141A18; /* Deep green after scroll */
 }
 
 @media screen and (max-width: 768px) {

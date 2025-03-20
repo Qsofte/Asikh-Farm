@@ -72,18 +72,18 @@
   background: rgba(0, 0, 0, 0.4) !important;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  color: white;
+  color: #f5f5f5;
   padding: 20px;
   transition: opacity 0.3s ease-in-out;
 }
 
 /* Initially Show Only Product Name */
 .product-name {
-  font-family: 'GilroySemiBold';
-  font-size: 28px !important;
+  font-family: "GilroyRegular";
+  font-size: 48px !important;
   max-width: 400px;
   flex-wrap: wrap;
   text-align: center !important;
@@ -105,7 +105,7 @@
 
 /* Show Only Description & Button on Hover */
 .product-card:hover .product-name {
-  opacity: 0;
+  opacity: 1;
 }
 
 .product-card:hover .product-description,
