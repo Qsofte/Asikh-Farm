@@ -19,6 +19,15 @@
   font-style: normal;
 }
 
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+
 /* Ensure Full Height for Section */
 .product-slider {
   width: 100%;
@@ -39,22 +48,21 @@
 .product-card {
   width: 100%;
   height: 100% !important;
-  display: flex;
-  flex-direction: column;
   position: relative;
   overflow: hidden;
-  align-items: stretch;
-  justify-content: center;
-  border-radius: 0 !important;
-  transition: transform 0.4s ease-in-out;
 }
 
 /* Product Image */
 .product-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100% !important;
   object-fit: cover;
+  z-index: 0;
 }
+
 
 /* Hover Effect */
 .product-card:hover img {
@@ -72,24 +80,23 @@
   background: rgba(0, 0, 0, 0.4) !important;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  color: #f5f5f5;
-  padding: 20px;
-  transition: opacity 0.3s ease-in-out;
+  padding: 10px;
 }
+
+
 
 /* Initially Show Only Product Name */
 .product-name {
   font-family: "GilroyRegular";
   font-size: 48px !important;
-  max-width: 400px;
-  flex-wrap: wrap;
   text-align: center !important;
+  max-width: 400px;
+  word-wrap: break-word;
   font-weight: bold;
   margin-bottom: 10px;
-  transition: opacity 0.3s ease-in-out;
 }
 
 /* Hide Description & Button Initially */
@@ -139,21 +146,32 @@
 /* ========== Responsive Design for Mobile ========== */
 @media screen and (max-width: 768px) {
   .swiper-slide {
-    flex: 1 0 100%; /* Show only one product per slide */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Ensure text is centered */
   }
 
-  /* Reduce font size for smaller screens */
+  .product-text {
+    width: 80%; /* Restrict text width */
+    max-width: 300px; /* Avoid too wide text on larger mobile screens */
+    text-align: center;
+  }
+
   .product-name {
     font-size: 18px;
+    font-weight: bold;
+    margin-right: 6%;
   }
 
   .product-description {
     font-size: 16px;
-    max-width: 90%;
+    margin-right: 6%;
   }
 
   .know-more {
     font-size: 14px;
     padding: 6px 12px;
+    margin-right: 6%;
   }
 }
