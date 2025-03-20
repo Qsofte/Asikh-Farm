@@ -376,16 +376,17 @@ body{
   /* our products */
 
   .txt-dsc{
-    font-size: 28px;
+    font-size: 28px !important;
+    margin-bottom: 3.5%;
   }
 
   .txt-dscpara { 
-    font-size: 24px; /* Adjust font size for smaller screens */
+    font-size: 18px !important; /* Adjust font size for smaller screens */
     width: 100%; /* Ensure it takes full width */
     max-width: 90%; /* Keep some margin */
     text-align: center; /* Center text */
     word-wrap: break-word; /* Force text to break */
-    line-height: 1.5rem; /* Improve readability */
+    line-height: 1rem; /* Improve readability */
     margin: auto; /* Center within its container */
 }
 
@@ -418,7 +419,7 @@ body{
   
   .para-fourth{
     font-family:'GilroyLight';
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 40px;
   }
 
