@@ -39,20 +39,22 @@ const Footer = () => {
         </div>
 
         {/* Middle Section - Links */}
+        <div className="lnk-hlp">
         <div className="footer-links">
           <h3 className="help-ftr">Links</h3>
-          <a href="/about">About Us</a>
-          <a href="/products">Products</a>
+          {/* <a href="/about">About Us</a> */}
+          {/* <a href="/products">Products</a> */}
           <a href="/contact">Contact Us</a>
-          <a href="/careers">Careers</a>
+          {/* <a href="/careers">Careers</a> */}
         </div>
 
         {/* Right Section - Help */}
         <div className="footer-help">
           <h3 className="help-ftr">Help</h3>
-          <a href="/terms">Terms & Conditions</a>
-          <a href="/privacy">Privacy Policy</a>
+          {/* <a href="/terms">Terms & Conditions</a> */}
+          {/* <a href="/privacy">Privacy Policy</a> */}
           <a href="/contact">Contact Us</a>
+        </div>
         </div>
       </div>
 

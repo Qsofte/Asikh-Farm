@@ -52,7 +52,7 @@ footer {
 }
 
 .footer-socials {
-  display: flex;
+  display: none;
   gap: 10px;
   margin-top: 15px;
 }
@@ -132,4 +132,19 @@ footer {
   margin-top: 30px;
   font-size: 14px;
   color: #8C8C8C;
+}
+
+
+@media screen and (max-width: 768px) {
+  .footer-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lnk-hlp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+  }
 }

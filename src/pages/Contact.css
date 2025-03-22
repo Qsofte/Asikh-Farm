@@ -183,7 +183,7 @@
   font-family: "GilroyRegular";
   font-size: 18px;
   color: #000000;
-  margin-top: 10px;
+  margin-top: 28%;
 }
 
 .profile-abc {
@@ -278,7 +278,7 @@
   border-radius: 5px;
   font-size: 16px;
   margin-bottom: 80px;
-  margin-left: 85%;
+  margin-left: 82%;
 }
 
 .submit-btn-abc:hover {
@@ -287,8 +287,9 @@
 
 @media (max-width: 768px) {
   .contact-content-abc {
-    flex-direction: column;
+    flex-direction: column-reverse;
     width: fit-content;
+    gap: 10px;
   }
 
   .info-section-abc, .form-section-abc {
@@ -314,6 +315,11 @@
 
   .submit-btn-abc{
     margin-left: 38%;
+    margin-bottom: 0;
+  }
+
+  .info-text-abc{
+    margin-top: 0;
   }
 
 }

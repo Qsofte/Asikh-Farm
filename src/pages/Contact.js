@@ -57,9 +57,10 @@ Message: ${formData.message}`;
         <h1 className="contact-title-abc">Contact Us</h1>
       </div>
       <div className="breadcrumb-abc">Home › Contact Us</div>
+      <h2 className="info-title-abc">Drop us a message to help you out with your queries</h2>
       <div className="contact-content-abc">
         <div className="info-section-abc">
-          <h2 className="info-title-abc">Drop us a message to help you out with your queries</h2>
+        
           <p className="info-text-abc">
             We’re just one click away to help you with any details regarding our product. Fill in the form to share more details about your query. Or your favourite fruit/vegetable. Either way, we’d love to talk.
           </p>
@@ -96,6 +97,7 @@ Message: ${formData.message}`;
             </div>
             <button type="submit" className="submit-btn-abc">Send</button>
           </form>
+          
         </div>
       </div>
     </div>
