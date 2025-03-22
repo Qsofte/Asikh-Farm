@@ -51,10 +51,10 @@ const Header = () => {
               <a href="/" className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>HOME</a>
             </li>
             <li>
-              <a href="/products" className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>PRODUCTS</a>
+              <a href="/products" className={`nav-item nav-item-prd ${isScrolled ? "scrolled-text" : ""}`}>PRODUCTS</a>
             </li>
             <li>
-              <a href="/about" className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>ABOUT US</a>
+              <a href="/about" className={`nav-item nav-item-abt ${isScrolled ? "scrolled-text" : ""}`}>ABOUT US</a>
             </li>
             <li>
               <a href="/contact" className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>CONTACT US</a>
