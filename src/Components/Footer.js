@@ -1,4 +1,5 @@
 import React from "react";
+// import { Link } from "react-router-dom";
 import "./Footer.css";
 import logo from "../images/logo.png";
 
@@ -52,8 +53,10 @@ const Footer = () => {
         <div className="footer-help">
           <h3 className="help-ftr">Help</h3>
           {/* <a href="/terms">Terms & Conditions</a> */}
-          {/* <a href="/privacy">Privacy Policy</a> */}
+          <a href="/privacy">Privacy Policy</a>
+          {/* <Link to="/privacy">Privacy Policy</Link> */}
           <a href="/contact">Contact Us</a>
+          {/* <Link to="/contact">Contact Us</Link> */}
         </div>
         </div>
       </div>

@@ -17,38 +17,22 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    const recipientEmail = "support@asikhfarms.in"; // Change this to your email
+    const subject = "New Contact Form Submission";
+    const body = `First Name: ${formData.firstName}%0A
+    Surname: ${formData.surname}%0A
+    Email: ${formData.email}%0A
+    Message: ${formData.message}`;
 
-    // WhatsApp Number (Replace with actual number)
-    const phoneNumber = "919135870743";
-
-    // Format the message
-    const whatsappMessage = `First Name: ${formData.firstName}%0A
-Surname: ${formData.surname}%0A
-Email: ${formData.email}%0A
-Message: ${formData.message}`;
-
-    // Create WhatsApp URL
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-
-    // Open WhatsApp
-    window.open(whatsappURL, "_blank");
-
-    // Reset the form fields
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    
     setFormData({
       firstName: "",
       surname: "",
       email: "",
       message: "",
     });
-  };
-
-  // Function to open email client
-  const handleEmailClick = () => {
-    const email = "xyz@example.com"; // Replace with your actual email
-    const subject = "Inquiry from Contact Form";
-    const body = `Hello XYZ,%0A%0AI have an inquiry about your services. Please get back to me at your earliest convenience.%0A%0AThank you!`;
-
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -60,21 +44,13 @@ Message: ${formData.message}`;
       <h2 className="info-title-abc">Drop us a message to help you out with your queries</h2>
       <div className="contact-content-abc">
         <div className="info-section-abc">
-        
           <p className="info-text-abc">
-            We’re just one click away to help you with any details regarding our product. Fill in the form to share more details about your query. Or your favourite fruit/vegetable. Either way, we’d love to talk.
+            We’re just one click away to help you with any details regarding our product. Fill in the form to share more details about your query.
           </p>
           <div className="profile-abc">
             <img src={profile} alt="Profile" className="profile-img-abc" />
-            <p className="profile-text-abc">
-              Hi, I’m XYZ! Let’s chat about your amazing requirements and projects.
-            </p>
-            <p className="quote-abc">
-              “I enjoy translating your thoughts to our diversely skilled team for the best results”
-            </p>
-            <p className="email-link-abc" onClick={handleEmailClick} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
-              ✅ Email Directly to XYZ
-            </p>
+            <p className="profile-text-abc">Hi, I’m XYZ! Let’s chat about your amazing requirements and projects.</p>
+            <p className="quote-abc">“I enjoy translating your thoughts to our diversely skilled team for the best results”</p>
           </div>
         </div>
         <div className="form-section-abc">
@@ -97,7 +73,6 @@ Message: ${formData.message}`;
             </div>
             <button type="submit" className="submit-btn-abc">Send</button>
           </form>
-          
         </div>
       </div>
     </div>

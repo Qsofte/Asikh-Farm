@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "GilroyRegular";
+    src: url("../fonts/Gilroy-Regular.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "GilroySemiBold";
+    src: url("../fonts/Gilroy-SemiBold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+.txt-cntnt{
+    font-family: "GilroySemiBold";
+    height: 100%;
+    margin: 10%;
+}
