@@ -6,6 +6,7 @@ import Products from "./Pages/Products"; // Correct casing for Products
 import About from "./Pages/About";       // Correct casing for About
 import Contact from "./Pages/Contact";   // Correct casing for Contact
 import Footer from "./Components/Footer";
+import Privacy from "./Pages/Privacy";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/products" element={<Products />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Routes>
       <Footer/>
     </Router>
