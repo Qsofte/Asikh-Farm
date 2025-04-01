@@ -415,6 +415,7 @@ body{
   .head-fourth{
     font-family: 'GilroySemiBold';
     font-size: 28px;
+    line-height: 1;
   }
   
   .para-fourth{
