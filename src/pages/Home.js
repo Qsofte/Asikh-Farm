@@ -6,9 +6,17 @@ import TestimonialSlider from "../Components/TestimonialSlider";
 import England from "../images/EnglandFlag.jfif"
 import Germany from "../images/GermanyFlag.jfif"
 import NewZealand from "../images/New Zealand-Flag.jfif"
+import { useNavigate } from "react-router-dom";
+
 
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const navigateCont = () => {
+    navigate("/contact");
+  }
 
   return (
     <>
@@ -23,7 +31,7 @@ const Home = () => {
           <p className="hero-text">
             At Ashik Farm, we are dedicated to positioning Bihar as a global leader in mango and fresh produce exports, transforming its rich agricultural potential into economic growth and farmer prosperity.
           </p>
-          <button className="hero-btn">Explore More</button>
+          <button className="hero-btn" onClick={navigateCont}>Explore More</button>
         </div>
       </div>
 

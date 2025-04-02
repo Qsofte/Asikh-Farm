@@ -2,8 +2,32 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import "./Responsive.css";
 import logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const ButtonForHome = () => {
+
+  if(location.pathname === "/"){
+    window.scrollTo(0,0);
+  }
+
+  else{
+      navigate("/");
+  }
+
+}
+
+  const ButtonForContact = () => {
+    navigate("/contact");
+  }
+  
+      
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -32,7 +56,7 @@ const Header = () => {
       <div className="container">
         {/* Logo Section */}
         <div className="logo">
-          <a href="/">
+          <a onClick={ButtonForHome} style={{cursor: "pointer"}}>
             <img src={logo} alt="Logo" className="logo-image" />
           </a>
         </div>
@@ -48,7 +72,7 @@ const Header = () => {
         <nav className={`navbar ${isMenuOpen ? "active" : ""}`}>
           <ul className="nav-links">
             <li>
-              <a href="/" className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>HOME</a>
+              <a onClick={ButtonForHome} style={{cursor: "pointer"}} className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>HOME</a>
             </li>
             <li>
               <a href="/products" className={`nav-item nav-item-prd ${isScrolled ? "scrolled-text" : ""}`}>PRODUCTS</a>
@@ -57,7 +81,7 @@ const Header = () => {
               <a href="/about" className={`nav-item nav-item-abt ${isScrolled ? "scrolled-text" : ""}`}>ABOUT US</a>
             </li>
             <li>
-              <a href="/contact" className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>CONTACT US</a>
+              <a onClick={ButtonForContact} style={{cursor: "pointer"}} className={`nav-item ${isScrolled ? "scrolled-text" : ""}`}>CONTACT US</a>
             </li>
           </ul>
         </nav>
