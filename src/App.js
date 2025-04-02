@@ -7,10 +7,12 @@ import About from "./Pages/About";       // Correct casing for About
 import Contact from "./Pages/Contact";   // Correct casing for Contact
 import Footer from "./Components/Footer";
 import Privacy from "./Pages/Privacy";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -2,8 +2,23 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import "./Footer.css";
 import logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
+import Home from "../Pages/Home";
 
 const Footer = () => {
+
+    const navigateP = useNavigate();
+
+    const ButtonForPrivacy = () => {
+        navigateP("/privacy");
+    }
+
+    const navigate = useNavigate();
+
+    const ButtonForContact = () => {
+        navigate("/contact");
+    }
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -45,7 +60,7 @@ const Footer = () => {
             <h3 className="help-ftr">Links</h3>
             {/* <a href="/about">About Us</a> */}
             {/* <a href="/products">Products</a> */}
-            <a href="/contact">Contact Us</a>
+            <a onClick={ButtonForContact} style={{cursor: "pointer"}}>Contact Us</a>
             {/* <a href="/careers">Careers</a> */}
           </div>
 
@@ -53,9 +68,9 @@ const Footer = () => {
           <div className="footer-help">
             <h3 className="help-ftr">Help</h3>
             {/* <a href="/terms">Terms & Conditions</a> */}
-            <a href="/privacy">Privacy Policy</a>
+            <a onClick={ButtonForPrivacy} style={{cursor: "pointer"}}>Privacy Policy</a>
             {/* <Link to="/privacy">Privacy Policy</Link> */}
-            <a href="/contact">Contact Us</a>
+            <a onClick={ButtonForContact} style={{cursor: "pointer"}}>Contact Us</a>
             {/* <Link to="/contact">Contact Us</Link> */}
           </div>
         </div>
