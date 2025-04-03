@@ -22,6 +22,10 @@ const Header = () => {
 
 }
 
+useEffect(() => {
+  setIsMenuOpen(false);
+}, [location.pathname]);
+
   const ButtonForContact = () => {
     navigate("/contact");
   }
