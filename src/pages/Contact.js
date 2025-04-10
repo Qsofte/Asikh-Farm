@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Contact.css";
 import profile from '../images/profileD.jpg';
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -35,12 +36,18 @@ const Contact = () => {
     });
   };
 
+  const navigate = useNavigate();
+  
+    const navigateHm = () => {
+      navigate("/");
+    }
+
   return (
     <div className="contact-container-abc">
       <div className="header-image-abc">
         <h1 className="contact-title-abc">Contact Us</h1>
       </div>
-      <div className="breadcrumb-abc">Home › Contact Us</div>
+      <div onClick={navigateHm} style={{cursor: "pointer"}} className="breadcrumb-abc">Home › Contact Us</div>
       <h2 className="info-title-abc">Drop us a message to help you out with your queries</h2>
       <div className="contact-content-abc">
         <div className="info-section-abc">
@@ -49,7 +56,7 @@ const Contact = () => {
           </p>
           <div className="profile-abc">
             <img src={profile} alt="Profile" className="profile-img-abc" />
-            <p className="profile-text-abc">Hi, I’m XYZ! Let’s chat about your amazing requirements and projects.</p>
+            <p className="profile-text-abc">Hi, I’m support@asikhfarms.in! Let’s chat about your amazing requirements and projects.</p>
             <p className="quote-abc">“I enjoy translating your thoughts to our diversely skilled team for the best results”</p>
           </div>
         </div>
