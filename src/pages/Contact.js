@@ -56,7 +56,7 @@ const Contact = () => {
           </p>
           <div className="profile-abc">
             <img src={profile} alt="Profile" className="profile-img-abc" />
-            <p className="profile-text-abc">Hi, I’m support@asikhfarms.in! Let’s chat about your amazing requirements and projects.</p>
+            <p className="profile-text-abc">Hi, reach out to us at support@asikhfarms.in for any enquiries or questions that you may have.</p>
             <p className="quote-abc">“I enjoy translating your thoughts to our diversely skilled team for the best results”</p>
           </div>
         </div>
