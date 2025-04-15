@@ -1,8 +1,16 @@
 import React from "react";
 import "./Contact.css";
 import "./Privacy.css";
+// import { useNavigate } from "react-router-dom";
 
 const Privacy = () => {
+
+  // const navigate = useNavigate();
+  
+  //   const navigateHm = () => {
+  //     navigate("/");
+  //   }
+
     return(<>
         <div className="contact-container-abc">
               <div className="header-image-abc">
