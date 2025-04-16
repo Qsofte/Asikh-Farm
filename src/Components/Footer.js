@@ -3,7 +3,7 @@ import React from "react";
 import "./Footer.css";
 import logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
-import Home from "../Pages/Home";
+import Home from "../pages/Home";
 
 const Footer = () => {
 

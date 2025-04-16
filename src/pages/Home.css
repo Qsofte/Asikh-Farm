@@ -237,7 +237,7 @@ body{
 .txt-dsc-hm{
   text-align: center;
   margin: 77px;
-  line-height: 4px;
+  /* line-height: 4px; */
 }
 
 /* Third Section: */
@@ -248,7 +248,7 @@ body{
 
 .txt-hding-home{
   text-align: center;
-  line-height: 4px;
+  /* line-height: 4px; */
   font-family: 'GilroySemiBold';
   font-size: 48px;
 }
@@ -262,6 +262,7 @@ body{
 
 .fourth-hm{
   background-color: #f5f5f5;
+  margin-bottom: 18px;
 }
 
 .Count-heading{
@@ -270,7 +271,7 @@ body{
 
 .Countries-head{
   text-align: center;
-  line-height: 4px;
+  /* line-height: 4px; */
 }
 
 .head-fourth{
@@ -415,7 +416,7 @@ body{
   .head-fourth{
     font-family: 'GilroySemiBold';
     font-size: 28px;
-    line-height: 1;
+    /* line-height: 1; */
   }
   
   .para-fourth{
