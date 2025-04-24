@@ -1,87 +1,117 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "./ProductSlider.css";
-import beetrootImage from "../images/Beetroot.png";
-import mangoImage from "../images/mangogreen.jpeg";
-import carrotImage from "../images/Carrot.png";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+import beetrootImage from '../images/Beetroot.png';
+import mangoImage from '../images/mangogreen.jpeg';
+import carrotImage from '../images/Carrot.png';
 
 const products = [
   {
     id: 1,
-    name: "Organic Beetroot",
+    name: 'Organic Beetroot',
     image: beetrootImage,
-    description: "Fresh and organic beetroot sourced from our farms.",
+    description:
+      'Fresh and organic beetroot sourced from our farms with sustainable farming practices.',
   },
   {
     id: 2,
-    name: "Jardalu & Safed Maldah Mango",
+    name: 'Jardalu & Safed Maldah Mango',
     image: mangoImage,
-    description: "Sweet and juicy mangoes, perfect for every occasion.",
+    description:
+      "Sweet and juicy mangoes with a rich aroma, grown naturally in Bihar's fertile soil.",
   },
   {
     id: 3,
-    name: "Organic Carrots",
+    name: 'Organic Carrots',
     image: carrotImage,
-    description: "Crunchy and nutritious organic carrots for a healthy diet.",
+    description:
+      'Crunchy and nutritious organic carrots, packed with vitamins and antioxidants.',
   },
 ];
 
 const ProductSlider = () => {
-
-  const navigate = useNavigate(); // Initialize useNavigate()
-
-  const [activeIndex, setActiveIndex] = useState(null);
+  const navigate = useNavigate();
   const [slidesPerView, setSlidesPerView] = useState(3);
 
+  // Responsive setup based on window size
   useEffect(() => {
     const handleResize = () => {
-      setSlidesPerView(window.innerWidth < 768 ? 1 : 3);
+      const width = window.innerWidth;
+      if (width < 640) {
+        setSlidesPerView(1);
+      } else if (width < 1024) {
+        setSlidesPerView(2);
+      } else {
+        setSlidesPerView(3);
+      }
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-    // Function to navigate to Contact Us page
-    const handleKnowMore = () => {
-      navigate("/contact"); // Redirect to Contact Us page
-    };
+  // Function to navigate to Contact Us page
+  const handleKnowMore = () => {
+    navigate('/contact');
+    window.scrollTo(0, 0);
+  };
 
   return (
-    <div className="product-slider">
-      <Swiper
-        slidesPerView={slidesPerView}
-        spaceBetween={0}
-        loop={true}
-        pagination={{ clickable: true }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        autoplay={{ delay: 3000 }}
-        style={{ height: "498px" }}
-      >
-        {products.map((product, index) => (
-          <SwiperSlide key={product.id}>
-            <div
-              className={`product-card ${activeIndex === index ? "active" : ""}`}
-              onMouseEnter={() => setActiveIndex(index)}
-              onMouseLeave={() => setActiveIndex(null)}
-            >
-              <img src={product.image} alt={product.name} />
-              <div className="product-info">
-                <h2 className="product-name">{product.name}</h2>
-                <p className="product-description">{product.description}</p>
-                <button className="know-more" onClick={handleKnowMore}>Know More</button>
+    <div className="w-4/5 max-w-5xl mx-auto mb-8">
+      <div className="h-[300px] md:h-[280px] relative overflow-hidden rounded-xl shadow-xl mb-4">
+        <Swiper
+          slidesPerView={slidesPerView}
+          spaceBetween={20}
+          loop={true}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation, EffectFade]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          speed={800}
+          className="h-full py-5 px-4"
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product.id}>
+              <div className="relative h-full overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6 text-center">
+                  <h2 className="text-white text-lg md:text-xl font-gilroy-semibold text-center">
+                    {product.name}
+                  </h2>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      {/* Single CTA button */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handleKnowMore}
+          className="bg-accent-yellow text-primary-dark px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-amber-400"
+          aria-label="Learn more about our products"
+        >
+          Know More
+        </button>
+      </div>
     </div>
   );
 };

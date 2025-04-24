@@ -1,27 +1,53 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./Components/Header"; // Correct casing for Header
-import Home from "./Pages/Home";         // Correct casing for Home
-import Products from "./Pages/Products"; // Correct casing for Products
-import About from "./Pages/About";       // Correct casing for About
-import Contact from "./Pages/Contact";   // Correct casing for Contact
-import Footer from "./Components/Footer";
-import Privacy from "./Pages/Privacy";
-import ScrollToTop from "./Components/ScrollToTop";
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Privacy from './pages/Privacy';
+import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
+  const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
+  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
+
+  // Add preloading for key assets like fonts, logo, etc.
+  useEffect(() => {
+    // Function to preload images
+    const preloadImages = (srcArray) => {
+      srcArray.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    // Images to preload (can add more as needed)
+    const imagesToPreload = [
+      // Add path to logo and other critical images
+      '/logo.png',
+    ];
+
+    preloadImages(imagesToPreload);
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Privacy />} />
-      </Routes>
-      <Footer/>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {FEATURE_PRODUCTS && <Route path="/products" element={<Products />} />}
+            {FEATURE_ABOUT && <Route path="/about" element={<About />} />}
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 };
