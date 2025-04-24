@@ -1,14 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'GilroyMedium';
+  src: url('./fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GilroyExtraBold';
+  src: url('./fonts/Gilroy-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GilroyRegular';
+  src: url('./fonts/Gilroy-Regular.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GilroySemiBold';
+  src: url('./fonts/Gilroy-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GilroyLight';
+  src: url('./fonts/Gilroy-Light.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Poppins', sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@layer components {
+  .transition-default {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .hero-btn {
+    @apply bg-accent-gold text-primary-dark px-6 py-3 rounded-full text-lg font-bold uppercase cursor-pointer transition-default hover:bg-amber-400 hover:shadow-lg hover:-translate-y-1;
+  }
 }
