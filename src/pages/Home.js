@@ -44,10 +44,9 @@ const Home = () => {
             Asikh Farms
           </h1>
           <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-6">
-            Our Promise: We deliver premium fresh fruits and vegetables,
-            lovingly grown and carefully handled at every step. From seed to
-            harvest, from farm to fork — we care for your food as nature
-            intended.
+            Only the finest. Premium fruits and vegetables, grown with love and
+            harvested at their peak. Every bite tells a story of care,
+            freshness, and the pure goodness of nature.
           </p>
           <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-10 animate-[fadeInUp_1s_ease-out_0.5s] opacity-0 animation-fill-forwards">
             At Asikh Farm, we are dedicated to positioning Bihar as a global
