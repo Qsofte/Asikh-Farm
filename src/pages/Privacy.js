@@ -8,7 +8,7 @@ const Privacy = () => {
     <div className="bg-primary-light pt-20 min-h-screen">
       {/* Header Section */}
       <div
-        className="relative w-full h-80 bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-40 bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url('../images/3rd-Home-main.png')` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
