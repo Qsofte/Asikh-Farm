@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import heroVideo from '../video/vdo.mp4';
 import ProductSlider from '../Components/ProductSlider';
 import TestimonialSlider from '../Components/TestimonialSlider';
@@ -9,6 +10,7 @@ import NewZealandFlag from '../images/New Zealand-Flag.jfif';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Scroll to top when component mounts
@@ -41,24 +43,20 @@ const Home = () => {
         {/* Hero content */}
         <div className="z-20 text-center text-white max-w-4xl px-4 md:px-8">
           <h1 className="text-4xl md:text-6xl font-lobster mb-6 animate-[fadeInDown_1s_ease-out]">
-            Asikh Farms
+            {t('hero.title')}
           </h1>
           <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-6">
-            Only the finest. Premium fruits and vegetables, grown with love and
-            harvested at their peak. Every bite tells a story of care,
-            freshness, and the pure goodness of nature.
+            {t('hero.promise')}
           </p>
           <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-10 animate-[fadeInUp_1s_ease-out_0.5s] opacity-0 animation-fill-forwards">
-            At Asikh Farm, we are dedicated to positioning Bihar as a global
-            leader in mango and fresh produce exports, transforming its rich
-            agricultural potential into economic growth and farmer prosperity.
+            {t('hero.subtitle')}
           </p>
           <button
             onClick={handleExplore}
             className="hero-btn animate-[fadeInUp_1s_ease-out_1s] opacity-0 animation-fill-forwards"
             aria-label="Explore more about our products and services"
           >
-            Explore More
+            {t('hero.explore')}
           </button>
         </div>
       </section>
@@ -68,36 +66,36 @@ const Home = () => {
         {/* Our Products */}
         <div className="md:w-1/2 mb-8 md:mb-0">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4 text-center">
-            Our Products
+            {t('productsSection.title')}
           </h2>
           <p className="text-lg font-gilroy-light text-primary-dark text-center max-w-2xl mx-auto mb-6">
-            Fresh, Organic and Eco-Friendly from us to you.
+            {t('productsSection.description')}
           </p>
           <ProductSlider />
         </div>
         {/* Customer Testimonials */}
         <div className="md:w-1/2">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4 text-center">
-            Customer Testimonials
+            {t('testimonialsSection.title')}
           </h2>
           <TestimonialSlider />
         </div>
       </section>
 
       {/* Export Countries Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-8 bg-gray-100 w-1/4 mx-auto">
         <div className="text-center px-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
-            Countries Where We Export
+            {t('exportSection.title')}
           </h2>
           <p className="text-lg font-gilroy-light text-primary-dark max-w-2xl mx-auto">
-            From India With Love
+            {t('exportSection.description')}
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-16 gap-y-10 max-w-5xl mx-auto px-4">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-5 max-w-5xl mx-auto px-2">
           <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-40 h-24 md:w-48 md:h-28 mb-4 mx-auto relative overflow-hidden rounded-lg shadow-md">
+            <div className="w-20 h-12 md:w-24 md:h-14 mb-2 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={EnglandFlag}
                 alt="England Flag"
@@ -105,13 +103,13 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-lg font-gilroy-medium text-primary-dark">
+            <p className="text-base font-gilroy-medium text-primary-dark">
               England
             </p>
           </div>
 
           <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-40 h-24 md:w-48 md:h-28 mb-4 mx-auto relative overflow-hidden rounded-lg shadow-md">
+            <div className="w-20 h-12 md:w-24 md:h-14 mb-2 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={GermanyFlag}
                 alt="Germany Flag"
@@ -119,13 +117,13 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-lg font-gilroy-medium text-primary-dark">
+            <p className="text-base font-gilroy-medium text-primary-dark">
               Germany
             </p>
           </div>
 
           <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-40 h-24 md:w-48 md:h-28 mb-4 mx-auto relative overflow-hidden rounded-lg shadow-md">
+            <div className="w-20 h-12 md:w-24 md:h-14 mb-2 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={NewZealandFlag}
                 alt="New Zealand Flag"
@@ -133,7 +131,7 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-lg font-gilroy-medium text-primary-dark">
+            <p className="text-base font-gilroy-medium text-primary-dark">
               New Zealand
             </p>
           </div>

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import logo from '../images/logo.png';
 
 const Footer = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -13,27 +15,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary-dark text-primary-light pt-16 pb-8">
-      <div className="container mx-auto px-4 lg:px-24">
-        <div className="flex flex-col md:flex-row justify-between gap-10">
+    <footer className="bg-primary-dark text-primary-light pt-2 pb-1">
+      <div className="container mx-auto px-0 lg:px-3">
+        <div className="flex flex-col md:flex-row justify-between gap-1">
           {/* About Section */}
           <div className="md:w-1/2 lg:w-5/12">
-            <img src={logo} alt="Asikh Farms Logo" className="h-16 mb-4" />
-            <h2 className="font-gilroy-medium text-2xl mb-4">Asikh Farms</h2>
-            <p className="text-secondary-gray mb-4 font-gilroy-regular">
-              Discover the essence of Asikh Farms, where we cultivate nature's
-              bounty with care and passion. Here, every seed is planted with
-              intention, and every harvest is a celebration of the earth's
-              generosity.
-            </p>
-            <p className="text-secondary-gray font-gilroy-regular">
-              Our dedicated team works tirelessly to ensure that each crop is
-              nurtured in harmony with the environment, allowing us to bring you
-              the freshest produce.
-            </p>
+            <img src={logo} alt={t('footer.logoAlt')} className="h-6 mb-0" />
+            <h2 className="font-gilroy-medium text-lg mb-1">{t('footer.name')}</h2>
 
             {/* Social Media Icons */}
-            <div className="flex space-x-4 mt-6">
+            <div className="flex space-x-1 mt-1">
               <a
                 href="#"
                 className="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-primary-green hover:-translate-y-1"
@@ -97,22 +88,14 @@ const Footer = () => {
           <div className="flex justify-between md:w-1/2 lg:w-6/12">
             {/* Links Section */}
             <div className="w-1/2 lg:w-auto pr-4">
-              <h3 className="font-gilroy-semibold text-xl mb-6">Links</h3>
-              <ul className="space-y-3">
+              <h3 className="font-gilroy-semibold text-sm mb-0">{t('footer.linksTitle')}</h3>
+              <ul className="space-y-0">
                 <li>
                   <a
                     onClick={() => handleNavigate('/')}
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    onClick={() => handleNavigate('/products')}
-                    className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
-                  >
-                    Products
+                    {t('header.home')}
                   </a>
                 </li>
                 <li>
@@ -120,7 +103,7 @@ const Footer = () => {
                     onClick={() => handleNavigate('/contact')}
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
-                    Contact Us
+                    {t('header.contact')}
                   </a>
                 </li>
               </ul>
@@ -128,22 +111,14 @@ const Footer = () => {
 
             {/* Help Section */}
             <div className="w-1/2 lg:w-auto">
-              <h3 className="font-gilroy-semibold text-xl mb-6">Help</h3>
-              <ul className="space-y-3">
+              <h3 className="font-gilroy-semibold text-sm mb-0">{t('footer.helpTitle')}</h3>
+              <ul className="space-y-0">
                 <li>
                   <a
                     onClick={() => handleNavigate('/privacy')}
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    onClick={() => handleNavigate('/contact')}
-                    className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
-                  >
-                    Contact Us
+                    {t('footer.privacyPolicy')}
                   </a>
                 </li>
                 <li>
@@ -151,7 +126,7 @@ const Footer = () => {
                     href="mailto:support@asikhfarms.in"
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
-                    Email Support
+                    {t('footer.emailSupport')}
                   </a>
                 </li>
               </ul>
@@ -160,9 +135,9 @@ const Footer = () => {
         </div>
 
         {/* Copyright Section */}
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+        <div className="border-t border-gray-800 mt-1 pt-1 text-center">
           <p className="text-secondary-gray text-sm font-gilroy-regular">
-            &copy; {currentYear} Asikh Farms LLC. All rights reserved.
+            {t('footer.copyright', { year: currentYear })}
           </p>
         </div>
       </div>
