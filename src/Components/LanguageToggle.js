@@ -17,12 +17,33 @@ const LanguageToggle = () => {
 
   return (
     <label className="relative inline-flex items-center cursor-pointer">
-      <input type="checkbox" className="sr-only" checked={isHindi} onChange={toggleLanguage} />
+      <input
+        type="checkbox"
+        className="sr-only"
+        checked={isHindi}
+        onChange={toggleLanguage}
+      />
       <div className="flex items-center justify-between w-16 h-7 bg-gray-300 rounded-full p-1">
-        <span className={`text-xs font-bold ${!isHindi ? 'text-white' : 'text-gray-700'}`}>ENG</span>
-        <span className={`text-xs font-bold ${isHindi ? 'text-white' : 'text-gray-700'}`}>हिंदी</span>
+        <span
+          className={`text-xs font-bold ${
+            !isHindi ? 'text-white' : 'text-gray-700'
+          }`}
+        >
+          ENG
+        </span>
+        <span
+          className={`text-xs font-bold ${
+            isHindi ? 'text-white' : 'text-gray-700'
+          }`}
+        >
+          हिंदी
+        </span>
       </div>
-      <div className={`absolute left-1 top-1 w-6 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out ${isHindi ? 'translate-x-8' : ''}`}></div>
+      <div
+        className={`absolute left-1 top-1 w-6 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out ${
+          isHindi ? 'translate-x-8' : ''
+        }`}
+      ></div>
     </label>
   );
 };

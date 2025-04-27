@@ -11,6 +11,11 @@
     "subtitle": "At Asikh Farm, we are dedicated to positioning Bihar as a global leader in mango and fresh produce exports, transforming its rich agricultural potential into economic growth and farmer prosperity.",
     "explore": "Explore More"
   },
+  "knowMore": "Know More",
+  "languageToggle": {
+    "en": "ENG",
+    "hi": "हिंदी"
+  },
   "productsSection": {
     "title": "Our Products",
     "description": "Fresh, Organic and Eco-Friendly from us to you.",
@@ -21,7 +26,19 @@
     }
   },
   "testimonialsSection": {
-    "title": "Customer Testimonials"
+    "title": "Customer Testimonials",
+    "testimonials": {
+      "1": {
+        "name": "Sananda (Sandy) Chatterjee",
+        "location": "Auckland, New Zealand",
+        "message": "Amazing quality and taste! The mangoes from Asikh Farms are the best I've ever had. The natural sweetness and aroma transport me back to the orchards of Bihar."
+      },
+      "2": {
+        "name": "Hamish King",
+        "location": "Auckland, New Zealand",
+        "message": "I love the organic products from Asikh Farms. Everything is super fresh, healthy, and you can taste the care that goes into growing their produce. Truly farm-to-table quality."
+      }
+    }
   },
   "exportSection": {
     "title": "Countries Where We Export",
