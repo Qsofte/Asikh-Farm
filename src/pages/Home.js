@@ -83,8 +83,8 @@ const Home = () => {
       </section>
 
       {/* Export Countries Section */}
-      <section className="py-8 bg-gray-100 w-1/4 mx-auto">
-        <div className="text-center px-4 mb-12">
+      <section style={{ height: '30%' }} className="py-4 bg-gray-100 w-full mx-auto">
+        <div className="text-center px-2 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
             {t('exportSection.title')}
           </h2>
@@ -93,9 +93,9 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-5 max-w-5xl mx-auto px-2">
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-5xl mx-auto px-2">
           <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-2 mx-auto relative overflow-hidden rounded shadow-sm">
+            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={EnglandFlag}
                 alt="England Flag"
@@ -109,7 +109,7 @@ const Home = () => {
           </div>
 
           <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-2 mx-auto relative overflow-hidden rounded shadow-sm">
+            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={GermanyFlag}
                 alt="Germany Flag"
@@ -123,7 +123,7 @@ const Home = () => {
           </div>
 
           <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-2 mx-auto relative overflow-hidden rounded shadow-sm">
+            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={NewZealandFlag}
                 alt="New Zealand Flag"
