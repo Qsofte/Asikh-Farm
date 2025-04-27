@@ -1,31 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import mangocut from '../images/Mango_cut.jpeg';
 import ClientImage from '../images/imgl.png';
 import backgroundImageclient from '../images/abh.jfif';
 import ClientImage2 from '../images/HamishKing.jfif';
 
 const testimonials = [
-  {
-    id: 1,
-    name: 'Sananda (Sandy) Chatterjee',
-    location: 'Auckland, New Zealand',
-    backgroundImage: mangocut,
-    clientImage: ClientImage,
-    message:
-      "Amazing quality and taste! The mangoes from Asikh Farms are the best I've ever had. The natural sweetness and aroma transport me back to the orchards of Bihar.",
-  },
-  {
-    id: 2,
-    name: 'Hamish King',
-    location: 'Auckland, New Zealand',
-    backgroundImage: backgroundImageclient,
-    clientImage: ClientImage2,
-    message:
-      'I love the organic products from Asikh Farms. Everything is super fresh, healthy, and you can taste the care that goes into growing their produce. Truly farm-to-table quality.',
-  },
+  { id: 1, backgroundImage: mangocut, clientImage: ClientImage },
+  { id: 2, backgroundImage: backgroundImageclient, clientImage: ClientImage2 },
 ];
 
 const TestimonialSlider = () => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -85,20 +71,20 @@ const TestimonialSlider = () => {
             <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
               <img
                 src={testimonial.clientImage}
-                alt={testimonial.name}
+                alt={t(`testimonialsSection.testimonials.${testimonial.id}.name`)}
                 className="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover"
                 loading="lazy"
               />
             </div>
             <div className="mt-10 text-center">
               <p className="text-gray-800 italic mb-4 font-gilroy-medium">
-                "{testimonial.message}"
+                "{t(`testimonialsSection.testimonials.${testimonial.id}.message`)}"
               </p>
               <h3 className="text-gray-900 font-gilroy-semibold text-lg">
-                {testimonial.name}
+                {t(`testimonialsSection.testimonials.${testimonial.id}.name`)}
               </h3>
               <p className="text-gray-600 text-sm font-gilroy-regular">
-                {testimonial.location}
+                {t(`testimonialsSection.testimonials.${testimonial.id}.location`)}
               </p>
             </div>
           </div>

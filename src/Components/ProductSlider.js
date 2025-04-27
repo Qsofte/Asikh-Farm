@@ -108,7 +108,7 @@ const ProductSlider = () => {
           className="bg-accent-yellow text-primary-dark px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-amber-400"
           aria-label="Learn more about our products"
         >
-          Know More
+          {t('knowMore')}
         </button>
       </div>
     </div>
