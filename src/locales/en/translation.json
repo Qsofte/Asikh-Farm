@@ -13,7 +13,12 @@
   },
   "productsSection": {
     "title": "Our Products",
-    "description": "Fresh, Organic and Eco-Friendly from us to you."
+    "description": "Fresh, Organic and Eco-Friendly from us to you.",
+    "products": {
+      "1": "Organic Beetroot",
+      "2": "Jardalu & Safed Maldah Mango",
+      "3": "Organic Carrots"
+    }
   },
   "testimonialsSection": {
     "title": "Customer Testimonials"

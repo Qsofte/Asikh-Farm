@@ -9,25 +9,23 @@ import 'swiper/css/effect-fade';
 import beetrootImage from '../images/Beetroot.png';
 import mangoImage from '../images/mangogreen.jpeg';
 import carrotImage from '../images/Carrot.png';
+import { useTranslation } from 'react-i18next';
 
 const products = [
   {
     id: 1,
-    name: 'Organic Beetroot',
     image: beetrootImage,
     description:
       'Fresh and organic beetroot sourced from our farms with sustainable farming practices.',
   },
   {
     id: 2,
-    name: 'Jardalu & Safed Maldah Mango',
     image: mangoImage,
     description:
       "Sweet and juicy mangoes with a rich aroma, grown naturally in Bihar's fertile soil.",
   },
   {
     id: 3,
-    name: 'Organic Carrots',
     image: carrotImage,
     description:
       'Crunchy and nutritious organic carrots, packed with vitamins and antioxidants.',
@@ -36,6 +34,7 @@ const products = [
 
 const ProductSlider = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [slidesPerView, setSlidesPerView] = useState(3);
 
   // Responsive setup based on window size
@@ -88,13 +87,13 @@ const ProductSlider = () => {
               <div className="relative h-full overflow-hidden">
                 <img
                   src={product.image}
-                  alt={product.name}
+                  alt={t(`productsSection.products.${product.id}`)}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6 text-center">
                   <h2 className="text-white text-lg md:text-xl font-gilroy-semibold text-center">
-                    {product.name}
+                    {t(`productsSection.products.${product.id}`)}
                   </h2>
                 </div>
               </div>
