@@ -80,6 +80,8 @@ const ProductSlider = () => {
             pauseOnMouseEnter: true,
           }}
           speed={800}
+          touchStartPreventDefault={false}
+          touchMoveStopPropagation={false}
           className="h-full py-5 px-4"
         >
           {products.map((product) => (
