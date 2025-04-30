@@ -107,7 +107,7 @@ const ProductSlider = () => {
       <div className="flex justify-center mt-4">
         <button
           onClick={handleKnowMore}
-          className="bg-accent-yellow text-primary-dark px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-amber-400"
+          className="bg-primary-green text-white px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-green-700"
           aria-label="Learn more about our products"
         >
           {t('knowMore')}
