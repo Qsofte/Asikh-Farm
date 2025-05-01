@@ -12,6 +12,10 @@
     "explore": "Explore More"
   },
   "knowMore": "Know More",
+  "order": {
+    "title": "Order Now",
+    "heading": "Pick your favorite products and buy directly"
+  },
   "languageToggle": {
     "en": "ENG",
     "hi": "हिंदी"
