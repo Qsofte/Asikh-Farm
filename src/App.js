@@ -7,6 +7,7 @@ import Products from './pages/Products';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
+import OrderNow from './pages/OrderNow';
 import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             {FEATURE_PRODUCTS && <Route path="/products" element={<Products />} />}
             {FEATURE_ABOUT && <Route path="/about" element={<About />} />}
+            <Route path="/order-now" element={<OrderNow />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
           </Routes>
