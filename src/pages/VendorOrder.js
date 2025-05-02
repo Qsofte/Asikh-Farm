@@ -41,7 +41,8 @@ const VendorOrder = () => {
       setVendorData({
         vendor: data.vendor,
         contactName: data.contactName,
-        phone: data.phone
+        phone: data.phone,
+        email: data.email
       });
       setVerified(true);
     } catch (err) {
@@ -98,7 +99,8 @@ const VendorOrder = () => {
           deliveryDate: order.deliveryDate,
           address: order.address,
           vendor: vendorData.vendor,
-          contactName: vendorData.contactName
+          contactName: vendorData.contactName,
+          email: vendorData.email
         })
       });
 
@@ -168,6 +170,7 @@ const VendorOrder = () => {
           <div className="vendor-info">
             <p><strong>Vendor:</strong> {vendorData.vendor}</p>
             <p><strong>Contact:</strong> {vendorData.contactName}</p>
+            <p><strong>Email:</strong> {vendorData.email}</p>
           </div>
         </div>
         

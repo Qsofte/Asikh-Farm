@@ -132,55 +132,35 @@ app.post('/api/vendor/verify', (req, res) => {
 // Create Shopify Order and Send Notification
 app.post('/api/vendor/orders', async (req, res) => {
   try {
-    const { variantId, quantity, deliveryDate, address, vendor, contactName } = req.body;
+    const { variantId, quantity, deliveryDate, address, vendor, contactName, email } = req.body;
 
-    if (!variantId || !quantity || !deliveryDate || !address) {
+    // Extract numeric variant ID from GraphQL global ID
+    const variantParts = variantId.toString().split('/');
+    const variantIdNumeric = parseInt(variantParts[variantParts.length - 1], 10);
+    if (isNaN(variantIdNumeric)) {
+      return res.status(400).json({ error: 'Invalid variant ID' });
+    }
+
+    if (!variantId || !quantity || !deliveryDate || !address || !email) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // Create draft order mutation
-    const orderMutation = `
-      mutation draftOrderCreate($input: DraftOrderInput!) {
-        draftOrderCreate(input: $input) {
-          draftOrder {
-            id
-            name
-          }
-          userErrors {
-            field
-            message
-          }
-        }
-      }
-    `;
-
-    // Prepare variables for the mutation
-    const variables = {
-      input: {
-        lineItems: [{
-          variantId,
-          quantity: parseInt(quantity)
-        }],
-        shippingAddress: {
-          address1: address,
-          city: 'Mumbai',
-          province: 'Maharashtra',
-          country: 'India'
-        },
-        customAttributes: [
-          { key: 'Vendor', value: vendor },
-          { key: 'Contact Name', value: contactName },
-          { key: 'Delivery Date', value: deliveryDate }
-        ]
-      }
-    };
-
-    // Send mutation to Shopify
-    const shopifyResponse = await axios.post(
-      `https://${shopifyStoreDomain}/admin/api/2023-04/graphql.json`,
+    // Create order via REST Admin API
+    const shopifyOrderResponse = await axios.post(
+      `https://${shopifyStoreDomain}/admin/api/2023-04/orders.json`,
       {
-        query: orderMutation,
-        variables
+        order: {
+          email,
+          line_items: [{ variant_id: variantIdNumeric, quantity: parseInt(quantity) }],
+          shipping_address: {
+            address1: address,
+            city: 'Mumbai',
+            province: 'Maharashtra',
+            country: 'India'
+          },
+          note: `Vendor: ${vendor}, Contact: ${contactName}, Delivery Date: ${deliveryDate}`,
+          financial_status: 'pending'
+        }
       },
       {
         headers: {
@@ -189,14 +169,10 @@ app.post('/api/vendor/orders', async (req, res) => {
         }
       }
     );
-
-    const { data } = shopifyResponse.data;
-    
-    if (data.draftOrderCreate.userErrors.length > 0) {
-      throw new Error(data.draftOrderCreate.userErrors[0].message);
-    }
-
-    const orderName = data.draftOrderCreate.draftOrder.name;
+    const orderData = shopifyOrderResponse.data.order;
+    const shopifyOrderId = orderData.id;
+    const orderNumber = orderData.order_number.toString();
+    const orderName = orderNumber;
 
     // Send WhatsApp notification
     const message = `New Bulk Order #${orderName}
@@ -214,13 +190,14 @@ Address: ${address}`;
     await client.messages.create({
       body: message,
       from: `whatsapp:${process.env.TWILIO_PHONE_NUMBER}`,
-      to: `whatsapp:${process.env.ADMIN_PHONE_NUMBER}`
+      to: `whatsapp:${process.env.VENDOR_PHONE_NUMBER}`
     });
 
     res.json({ 
       success: true, 
+      id: shopifyOrderId,
       orderName,
-      message: 'Order created successfully' 
+      orderNumber
     });
 
   } catch (error) {
