@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import OrderNow from './pages/OrderNow';
+import VendorOrder from './pages/VendorOrder';
 import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="/order-now" element={<OrderNow />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/vendor-order" element={<VendorOrder />} />
           </Routes>
         </main>
         <Footer />
