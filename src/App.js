@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './pages/Home';
@@ -9,11 +9,20 @@ import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import OrderNow from './pages/OrderNow';
 import VendorOrder from './pages/VendorOrder';
+import VendorOrderStandalone from './pages/VendorOrderStandalone';
 import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
   const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
+
+  // Debug environment variables
+  console.log('App.js ENV Values:', {
+    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
+    FEATURE_PRODUCTS,
+    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
+    FEATURE_ABOUT
+  });
 
   // Add preloading for key assets like fonts, logo, etc.
   useEffect(() => {
@@ -42,12 +51,13 @@ const App = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            {FEATURE_PRODUCTS && <Route path="/products" element={<Products />} />}
-            {FEATURE_ABOUT && <Route path="/about" element={<About />} />}
+            <Route path="/products" element={FEATURE_PRODUCTS ? <Products /> : <Navigate to="/" />} />
+            <Route path="/about" element={FEATURE_ABOUT ? <About /> : <Navigate to="/" />} />
             <Route path="/order-now" element={<OrderNow />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/vendor-order" element={<VendorOrder />} />
+            <Route path="/bulk-order" element={<VendorOrderStandalone />} />
           </Routes>
         </main>
         <Footer />

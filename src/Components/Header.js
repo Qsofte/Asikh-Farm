@@ -15,6 +15,14 @@ const Header = () => {
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
   const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
 
+  // Debug feature flags
+  console.log('ENV Values:', {
+    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
+    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
+    FEATURE_PRODUCTS,
+    FEATURE_ABOUT
+  });
+
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
