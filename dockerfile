@@ -1,29 +1,29 @@
-
 #!/bin/bash
 # Use an official Node.js LTS runtime as the base image
 
-FROM  node:20-alpine
+FROM node:20-alpine
 
 # Set the working directory in the container
 WORKDIR /AsikhFarm
 
-# Copy the package.json and package-lock.json files to the working directory
+# Copy package files first for better caching
 COPY package*.json ./
 
-# Install the app dependencies
-RUN npm install
+# Install dependencies
+RUN npm install && npm install -g serve
 
-# Install `serve` globally to serve the built application
-RUN npm install -g serve
-
-# Copy the rest of the app source code to the working directory
+# Copy source code
 COPY . .
 
-# Build the app
-RUN npm run build
+# Copy the encryption/decryption scripts (these will be created by the user)
+COPY encrypt-env.js decrypt-env.js ./
 
-# Expose the port your app will be running on
+# Make the entrypoint script executable
+COPY docker-entrypoint.sh ./
+RUN chmod +x docker-entrypoint.sh
+
+# Expose port
 EXPOSE 5000
 
-# Serve the app using `serve`. Adjust the port to match the EXPOSE command above
-CMD ["serve", "-s", "build", "-l", "5000"]
+# Set the entrypoint script
+ENTRYPOINT ["./docker-entrypoint.sh"]
