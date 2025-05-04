@@ -8,8 +8,8 @@ function decryptEnv() {
     // Get password from environment
     const password = process.env.ENCRYPTION_KEY || 'default-dev-password';
     
-    // Read the encrypted file
-    const encryptedPath = path.resolve(__dirname, '.env.encrypted');
+    // Read the encrypted file from secrets folder
+    const encryptedPath = path.resolve(__dirname, 'secrets', '.env.encrypted');
     const encryptedData = fs.readFileSync(encryptedPath, 'utf8');
     
     // Split IV and content
@@ -24,10 +24,11 @@ function decryptEnv() {
     let decrypted = decipher.update(encryptedHex, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
     
-    // Write to .env file for React build process
-    fs.writeFileSync(path.resolve(__dirname, '.env'), decrypted);
+    // Write the decrypted content to .env file in secrets folder
+    const outputPath = path.resolve(__dirname, 'secrets', '.env');
+    fs.writeFileSync(outputPath, decrypted);
+    console.log('Environment variables decrypted successfully to secrets/.env');
     
-    console.log('Successfully decrypted environment variables');
     return true;
   } catch (error) {
     console.error('Error decrypting environment:', error.message);

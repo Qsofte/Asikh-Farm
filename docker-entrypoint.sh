@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
 
-# Decrypt environment variables if .env.encrypted exists
-if [ -f ".env.encrypted" ]; then
-  echo "Decrypting environment variables..."
+# Decrypt environment variables if .env.encrypted exists in secrets folder
+if [ -f "secrets/.env.encrypted" ]; then
+  echo "Decrypting environment variables from secrets folder..."
   node decrypt-env.js
   
   # Check if decryption was successful

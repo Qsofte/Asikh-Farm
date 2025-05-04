@@ -2,7 +2,7 @@
 const express = require('express');
 // fetch removed; using axios for HTTP calls
 const axios = require('axios');
-require('dotenv').config();
+require('dotenv').config({ path: './secrets/.env' });
 // Import Twilio with explicit require to avoid any loading issues
 let twilioClient;
 try {
