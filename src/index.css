@@ -59,12 +59,3 @@ code {
     @apply bg-accent-gold text-primary-dark px-6 py-3 rounded-full text-lg font-bold uppercase cursor-pointer transition-default hover:bg-amber-400 hover:shadow-lg hover:-translate-y-1;
   }
 }
-
-@layer utilities {
-  /* Enable full-page scrolling on mobile */
-  html, body, #root {
-    height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}

@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[50vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
+      <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden md:block"
           autoPlay

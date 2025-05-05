@@ -38,8 +38,6 @@ const OrderNow = () => {
   }, []);
 
   const handleBuy = async (productId, variantId) => {
-    // Debug: log buy action and set processing state
-    console.log('🛒 handleBuy called', { productId, variantId, qty: quantities[productId] });
     setProcessingId(variantId);
     try {
       const qty = parseInt(quantities[productId], 10) || 1;

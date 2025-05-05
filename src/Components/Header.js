@@ -15,14 +15,6 @@ const Header = () => {
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
   const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
 
-  // Debug feature flags
-  console.log('ENV Values:', {
-    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
-    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
-    FEATURE_PRODUCTS,
-    FEATURE_ABOUT
-  });
-
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
@@ -41,8 +33,6 @@ const Header = () => {
   }, []);
 
   const handleNavigate = (path) => {
-    setIsMenuOpen(false); // Always close menu on navigation
-    document.body.style.overflow = 'auto'; // Restore scroll
     if (location.pathname === path) {
       window.scrollTo({
         top: 0,
@@ -88,19 +78,19 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isScrolled ? 'bg-primary-dark' : 'bg-white'
+              } ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             ></span>
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? 'opacity-0' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isScrolled ? 'bg-primary-dark' : 'bg-white'
+              } ${isMenuOpen ? 'opacity-0' : ''}`}
             ></span>
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isScrolled ? 'bg-primary-dark' : 'bg-white'
+              } ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             ></span>
           </div>
 
