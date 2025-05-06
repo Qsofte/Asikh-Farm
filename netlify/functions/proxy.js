@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const Client = require('shopify-buy');
 
 exports.handler = async function(event, context) {
   console.log('Starting proxy function...');
@@ -39,72 +39,31 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    // Use Storefront API to get products
-    const shopifyUrl = `https://${shopifyDomain}/api/2024-01/graphql.json`;
-    console.log('Making Shopify request to:', shopifyUrl);
-    
-    const query = `{
-      products(first: 10) {
-        edges {
-          node {
-            id
-            title
-            description
-            images(first: 1) {
-              edges {
-                node {
-                  transformedSrc
-                }
-              }
-            }
-            variants(first: 10) {
-              edges {
-                node {
-                  id
-                  title
-                  priceV2 {
-                    amount
-                    currencyCode
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }`;
-
-    const response = await fetch(shopifyUrl, {
-      method: 'POST',
-      headers: {
-        'X-Shopify-Storefront-Access-Token': shopifyToken,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ query })
+    // Initialize Shopify client
+    const client = Client.buildClient({
+      domain: shopifyDomain,
+      storefrontAccessToken: shopifyToken
     });
 
-    console.log('Shopify response status:', response.status);
-    const responseText = await response.text();
-    console.log('Raw response:', responseText);
+    console.log('Fetching products from Shopify...');
+    const products = await client.product.fetchAll();
+    console.log('Fetched products:', products);
 
-    if (!response.ok) {
-      throw new Error(`Shopify API error: ${response.status} ${responseText}`);
-    }
-
-    const data = JSON.parse(responseText);
-    
-    // Transform GraphQL response to match frontend expectations
-    const transformedProducts = data.data.products.edges.map(({ node: product }) => ({
-      id: product.id.split('/').pop(),
+    // Transform products to match frontend expectations
+    const transformedProducts = products.map(product => ({
+      id: product.id,
       title: product.title,
       description: product.description,
-      images: product.images.edges.map(({ node: image }) => ({
-        src: image.transformedSrc
+      images: product.images.map(image => ({
+        src: image.src
       })),
-      variants: product.variants.edges.map(({ node: variant }) => ({
-        id: variant.id.split('/').pop(),
+      variants: product.variants.map(variant => ({
+        id: variant.id,
         title: variant.title,
-        priceV2: variant.priceV2
+        priceV2: {
+          amount: variant.price,
+          currencyCode: 'INR'
+        }
       }))
     }));
 
