@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-// Initialize Shopify client with env vars (set these in .env)
-// import Client from 'shopify-buy';
-// import Client from 'shopify-buy'; replaced by server proxy
+import { fetchProducts, createCheckout } from '../utils/api';
 
 const OrderNow = () => {
   const [products, setProducts] = useState([]);
@@ -17,16 +14,10 @@ const OrderNow = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const getProducts = async () => {
       setError('');
       try {
-        const res = await fetch('/api/products');
-        if (!res.ok) {
-          setError(`Error fetching products: ${res.status} ${res.statusText}`);
-          setLoading(false);
-          return;
-        }
-        const data = await res.json();
+        const data = await fetchProducts();
         setProducts(data);
         setLoading(false);
       } catch (err) {
@@ -34,30 +25,19 @@ const OrderNow = () => {
         setLoading(false);
       }
     };
-    fetchProducts();
+    getProducts();
   }, []);
 
   const handleBuy = async (productId, variantId) => {
     setProcessingId(variantId);
     try {
       const qty = parseInt(quantities[productId], 10) || 1;
-      const resp = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify({ variantId, quantity: qty }),
-      });
-      if (!resp.ok) {
-        console.error('Checkout error:', resp.status, resp.statusText);
-        setProcessingId(null);
-        return;
-      }
-      const { webUrl } = await resp.json().catch(e => {
-        console.error('Invalid JSON in checkout response:', e);
-        return {};
-      });
-      if (webUrl) window.location.href = webUrl;
+      const checkoutData = await createCheckout(variantId, qty);
+      window.location.href = checkoutData.webUrl;
     } catch (err) {
-      console.error(err);
+      console.error('Checkout error:', err);
+      setError(err.message);
+    } finally {
       setProcessingId(null);
     }
   };
