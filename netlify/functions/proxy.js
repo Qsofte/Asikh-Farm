@@ -5,9 +5,17 @@ exports.handler = async function(event, context) {
   console.log('Incoming request:', {
     path: event.path,
     httpMethod: event.httpMethod,
-    headers: event.headers,
-    body: event.body
+    headers: event.headers
   });
+
+  if (event.body) {
+    try {
+      const parsedBody = JSON.parse(event.body);
+      console.log('Request body:', parsedBody);
+    } catch (e) {
+      console.log('Raw request body:', event.body);
+    }
+  }
 
   const shopifyDomain = process.env.SHOPIFY_STORE_DOMAIN;
   const shopifyToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
@@ -15,7 +23,8 @@ exports.handler = async function(event, context) {
   // Log environment variables (without sensitive data)
   console.log('Environment check:', {
     hasDomain: !!shopifyDomain,
-    hasToken: !!shopifyToken
+    hasToken: !!shopifyToken,
+    domain: shopifyDomain // Adding this for debugging
   });
 
   if (!shopifyDomain || !shopifyToken) {
@@ -46,15 +55,50 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    console.log('Making Shopify request to:', `https://${shopifyDomain}/api/2024-01/graphql.json`);
+    // Construct GraphQL query for products
+    const query = `
+      query {
+        products(first: 50) {
+          edges {
+            node {
+              id
+              title
+              description
+              images(first: 1) {
+                edges {
+                  node {
+                    src
+                  }
+                }
+              }
+              variants(first: 10) {
+                edges {
+                  node {
+                    id
+                    title
+                    priceV2 {
+                      amount
+                      currencyCode
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const shopifyUrl = `https://${shopifyDomain}/api/2024-01/graphql.json`;
+    console.log('Making Shopify request to:', shopifyUrl);
     
-    const response = await fetch(`https://${shopifyDomain}/api/2024-01/graphql.json`, {
+    const response = await fetch(shopifyUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-Shopify-Storefront-Access-Token': shopifyToken
       },
-      body: event.body
+      body: JSON.stringify({ query })
     });
 
     console.log('Shopify response status:', response.status);
