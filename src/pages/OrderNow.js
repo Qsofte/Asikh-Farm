@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { fetchProducts, createCheckout } from '../utils/api';
+import { fetchProducts } from '../utils/api';
 
 const OrderNow = () => {
   const [products, setProducts] = useState([]);
@@ -18,9 +18,11 @@ const OrderNow = () => {
       setError('');
       try {
         const data = await fetchProducts();
-        setProducts(data);
+        console.log('Fetched products:', data);
+        setProducts(data || []);
         setLoading(false);
       } catch (err) {
+        console.error('Error fetching products:', err);
         setError(err.message);
         setLoading(false);
       }
@@ -32,8 +34,12 @@ const OrderNow = () => {
     setProcessingId(variantId);
     try {
       const qty = parseInt(quantities[productId], 10) || 1;
-      const checkoutData = await createCheckout(variantId, qty);
-      window.location.href = checkoutData.webUrl;
+      console.log('Attempting checkout with:', { variantId, qty });
+      // For testing, just log the checkout attempt
+      console.log('Checkout initiated');
+      // Uncomment when ready to test actual checkout
+      // const checkoutData = await createCheckout(variantId, qty);
+      // window.location.href = checkoutData.webUrl;
     } catch (err) {
       console.error('Checkout error:', err);
       setError(err.message);
@@ -70,12 +76,14 @@ const OrderNow = () => {
         {loading && <p className="text-center mb-4">Loading products...</p>}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {products.map((product) => {
-            const selId =
-              selectedVariants[product.id] || product.variants[0].id;
-            const variant = product.variants.find((v) => v.id === selId);
+            const variants = product.variants || [];
+            const selId = selectedVariants[product.id] || (variants[0] && variants[0].id);
+            const variant = variants.find((v) => v.id === selId) || variants[0];
             const qty = parseInt(quantities[product.id], 10) || 1;
-            const unitPrice = parseFloat(variant.priceV2?.amount) || 0;
+            const unitPrice = parseFloat(variant?.priceV2?.amount) || 0;
             const totalPrice = (unitPrice * qty).toFixed(2);
+            const images = product.images || [];
+            
             return (
               <div
                 key={product.id}
@@ -83,7 +91,7 @@ const OrderNow = () => {
               >
                 <div className="bg-gray-100 w-full h-40 flex items-center justify-center">
                   <img
-                    src={product.images[0]?.src}
+                    src={images[0]?.src || 'https://via.placeholder.com/300'}
                     alt={product.title}
                     className="max-h-full max-w-full object-contain"
                   />
@@ -95,51 +103,63 @@ const OrderNow = () => {
                   </div>
                   <div className="mb-4 flex items-center space-x-4">
                     <div className="flex-1">
-                      <label htmlFor={`variant-select-${product.id}`} className="block font-gilroy-semibold mb-1">Option:</label>
+                      <label htmlFor={`variant-select-${product.id}`} className="block font-gilroy-semibold mb-1">
+                        Option:
+                      </label>
                       <select
                         id={`variant-select-${product.id}`}
-                        value={selId}
+                        value={selId || ''}
                         onChange={(e) =>
                           setSelectedVariants({
                             ...selectedVariants,
                             [product.id]: e.target.value,
                           })
                         }
-                        className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-green"
+                        className="w-full p-2 border rounded"
                       >
-                        {product.variants.map((v) => (
+                        {variants.map((v) => (
                           <option key={v.id} value={v.id}>
                             {v.title}
                           </option>
                         ))}
                       </select>
                     </div>
-                    <div className="w-20 flex-shrink-0">
-                      <label htmlFor={`quantity-${product.id}`} className="block font-gilroy-semibold mb-1">Qty:</label>
+                    <div>
+                      <label
+                        htmlFor={`quantity-input-${product.id}`}
+                        className="block font-gilroy-semibold mb-1"
+                      >
+                        Qty:
+                      </label>
                       <input
+                        id={`quantity-input-${product.id}`}
                         type="number"
-                        id={`quantity-${product.id}`}
                         min="1"
-                        value={quantities[product.id] ?? ''}
-                        placeholder="1"
+                        value={quantities[product.id] || 1}
                         onChange={(e) =>
                           setQuantities({
                             ...quantities,
                             [product.id]: e.target.value,
                           })
                         }
-                        className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary-green"
+                        className="w-20 p-2 border rounded"
                       />
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-4">
-                    <p className="text-lg font-bold">{totalPrice} {variant.priceV2?.currencyCode}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="text-lg font-semibold">
+                      ₹{totalPrice}
+                    </div>
                     <button
-                      onClick={() => handleBuy(product.id, variant.id)}
-                      disabled={processingId === variant.id}
-                      className="bg-primary-green text-white px-3 py-2 rounded hover:bg-green-700 transition-colors disabled:opacity-50"
+                      onClick={() => handleBuy(product.id, selId)}
+                      disabled={processingId === selId}
+                      className={`px-4 py-2 rounded ${
+                        processingId === selId
+                          ? 'bg-gray-400'
+                          : 'bg-primary-green hover:bg-primary-green-dark'
+                      } text-white transition-colors`}
                     >
-                      {processingId === variant.id ? 'Processing...' : 'Buy Now'}
+                      {processingId === selId ? 'Processing...' : 'Buy Now'}
                     </button>
                   </div>
                 </div>
