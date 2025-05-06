@@ -2,7 +2,7 @@ const getApiUrl = () => {
   const isDev = process.env.NODE_ENV === 'development';
   const url = isDev 
     ? 'http://localhost:8888/.netlify/functions/proxy' 
-    : '/.netlify/functions/proxy';
+    : '/api/proxy';
   console.log('API URL:', url, 'Environment:', process.env.NODE_ENV);
   return url;
 };

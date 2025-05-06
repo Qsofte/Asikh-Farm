@@ -8,7 +8,7 @@
   NPM_VERSION = "9.x"
 
 [[redirects]]
-  from = "/.netlify/functions/*"
+  from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 

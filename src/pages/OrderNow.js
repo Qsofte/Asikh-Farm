@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { fetchProducts } from '../utils/api';
+import Client from 'shopify-buy';
 
 const OrderNow = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +14,12 @@ const OrderNow = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // Initialize Shopify client for checkout
+  const client = Client.buildClient({
+    domain: process.env.REACT_APP_SHOPIFY_STORE_DOMAIN || '',
+    storefrontAccessToken: process.env.REACT_APP_SHOPIFY_STOREFRONT_ACCESS_TOKEN || ''
+  });
+
   useEffect(() => {
     const getProducts = async () => {
       setError('');
@@ -20,6 +27,16 @@ const OrderNow = () => {
         const data = await fetchProducts();
         console.log('Fetched products:', data);
         setProducts(data || []);
+        
+        // Initialize selected variants with first variant of each product
+        const initialSelectedVariants = {};
+        data.forEach(product => {
+          if (product.variants && product.variants.length > 0) {
+            initialSelectedVariants[product.id] = product.variants[0].id;
+          }
+        });
+        setSelectedVariants(initialSelectedVariants);
+        
         setLoading(false);
       } catch (err) {
         console.error('Error fetching products:', err);
@@ -30,20 +47,60 @@ const OrderNow = () => {
     getProducts();
   }, []);
 
+  const createCheckout = async (variantId, quantity) => {
+    try {
+      // Create a checkout
+      const checkout = await client.checkout.create();
+      
+      // Add items to the checkout
+      const lineItemsToAdd = [
+        {
+          variantId,
+          quantity
+        }
+      ];
+      
+      const updatedCheckout = await client.checkout.addLineItems(
+        checkout.id,
+        lineItemsToAdd
+      );
+      
+      return updatedCheckout;
+    } catch (error) {
+      console.error('Error creating checkout:', error);
+      throw error;
+    }
+  };
+
   const handleBuy = async (productId, variantId) => {
     setProcessingId(variantId);
     try {
       const qty = parseInt(quantities[productId], 10) || 1;
       console.log('Attempting checkout with:', { variantId, qty });
-      // For testing, just log the checkout attempt
-      console.log('Checkout initiated');
-      // Uncomment when ready to test actual checkout
-      // const checkoutData = await createCheckout(variantId, qty);
-      // window.location.href = checkoutData.webUrl;
+      
+      // In development, just log the checkout attempt
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Development mode - checkout simulation');
+        setTimeout(() => {
+          alert('Checkout successful in development mode');
+          setProcessingId(null);
+        }, 1000);
+        return;
+      }
+      
+      // In production, create a real checkout
+      const checkoutData = await createCheckout(variantId, qty);
+      console.log('Checkout created:', checkoutData);
+      
+      // Redirect to checkout URL
+      if (checkoutData.webUrl) {
+        window.location.href = checkoutData.webUrl;
+      } else {
+        throw new Error('No checkout URL returned');
+      }
     } catch (err) {
       console.error('Checkout error:', err);
       setError(err.message);
-    } finally {
       setProcessingId(null);
     }
   };
@@ -74,13 +131,28 @@ const OrderNow = () => {
       <div className="container mx-auto px-4 mb-20">
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         {loading && <p className="text-center mb-4">Loading products...</p>}
+        {!loading && products.length === 0 && (
+          <p className="text-center mb-4">No products available at this time.</p>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {products.map((product) => {
+            if (!product) return null;
+            
             const variants = product.variants || [];
             const selId = selectedVariants[product.id] || (variants[0] && variants[0].id);
             const variant = variants.find((v) => v.id === selId) || variants[0];
             const qty = parseInt(quantities[product.id], 10) || 1;
-            const unitPrice = parseFloat(variant?.priceV2?.amount) || 0;
+            
+            // Extract price safely
+            let unitPrice = 0;
+            try {
+              if (variant && variant.priceV2 && variant.priceV2.amount) {
+                unitPrice = parseFloat(variant.priceV2.amount);
+              }
+            } catch (e) {
+              console.error('Error parsing price:', e);
+            }
+            
             const totalPrice = (unitPrice * qty).toFixed(2);
             const images = product.images || [];
             

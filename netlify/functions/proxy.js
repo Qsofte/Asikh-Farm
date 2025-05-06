@@ -47,25 +47,53 @@ exports.handler = async function(event, context) {
 
     console.log('Fetching products from Shopify...');
     const products = await client.product.fetchAll();
-    console.log('Fetched products:', products);
+    console.log('Fetched products count:', products.length);
 
     // Transform products to match frontend expectations
-    const transformedProducts = products.map(product => ({
-      id: product.id,
-      title: product.title,
-      description: product.description,
-      images: product.images.map(image => ({
-        src: image.src
-      })),
-      variants: product.variants.map(variant => ({
-        id: variant.id,
-        title: variant.title,
-        priceV2: {
-          amount: variant.price,
-          currencyCode: 'INR'
-        }
-      }))
-    }));
+    const transformedProducts = products.map(product => {
+      // Extract the raw product data
+      const rawProduct = product;
+      
+      return {
+        id: rawProduct.id,
+        title: rawProduct.title,
+        description: rawProduct.description,
+        images: rawProduct.images.map(image => ({
+          src: image.src
+        })),
+        variants: rawProduct.variants.map(variant => {
+          // Handle different price formats
+          let price;
+          let currencyCode = 'INR';
+          
+          // Check if price is already a string
+          if (typeof variant.price === 'string') {
+            price = variant.price;
+          } 
+          // Handle object with amount property (like in the test output)
+          else if (variant.price && variant.price.amount && typeof variant.price.amount === 'object') {
+            price = variant.price.amount.amount;
+            currencyCode = variant.price.amount.currencyCode || 'INR';
+          }
+          // Handle price object directly
+          else if (variant.price && variant.price.amount) {
+            price = variant.price.amount;
+            currencyCode = variant.price.currencyCode || 'INR';
+          } else {
+            price = '0.00';
+          }
+          
+          return {
+            id: variant.id,
+            title: variant.title,
+            priceV2: {
+              amount: price,
+              currencyCode: currencyCode
+            }
+          };
+        })
+      };
+    });
 
     return {
       statusCode: 200,
