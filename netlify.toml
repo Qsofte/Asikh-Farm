@@ -6,8 +6,8 @@
     CI = "false"
 
 [[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
+  from = "/api/*"
+  to = "/.netlify/functions/proxy/:splat"
   status = 200
 
 [[redirects]]
