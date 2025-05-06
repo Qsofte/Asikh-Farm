@@ -89,24 +89,49 @@ exports.handler = async function(event, context) {
       }
     `;
 
-    const shopifyUrl = `https://${shopifyDomain}/api/2024-01/graphql.json`;
+    const shopifyUrl = `https://${shopifyDomain}/api/2023-10/graphql.json`;
     console.log('Making Shopify request to:', shopifyUrl);
     
     const response = await fetch(shopifyUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': shopifyToken
+        'X-Shopify-Storefront-Access-Token': shopifyToken,
+        'Accept': 'application/json'
       },
       body: JSON.stringify({ query })
     });
 
     console.log('Shopify response status:', response.status);
-    const data = await response.json();
+    const responseText = await response.text();
+    console.log('Raw response:', responseText);
+
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      console.error('Failed to parse JSON response:', e);
+      throw new Error('Invalid JSON response from Shopify');
+    }
+
     console.log('Shopify response data:', JSON.stringify(data).substring(0, 200) + '...');
 
+    if (data.errors) {
+      console.error('GraphQL errors:', data.errors);
+      return {
+        statusCode: 400,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+        },
+        body: JSON.stringify({ errors: data.errors })
+      };
+    }
+
     return {
-      statusCode: response.status,
+      statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
