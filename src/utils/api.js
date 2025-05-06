@@ -1,32 +1,22 @@
-const getApiUrl = (endpoint) => {
-  // Check if we're in production (Netlify)
-  const isProduction = process.env.NODE_ENV === 'production';
-  
-  // In production, use Netlify function URL
-  if (isProduction) {
-    return `/.netlify/functions/proxy${endpoint}`;
-  }
-  
-  // In development, use local proxy
-  return endpoint;
-}
-
-export const fetchProducts = async () => {
-  const response = await fetch(getApiUrl('/api/products'));
-  if (!response.ok) {
-    throw new Error(`Error fetching products: ${response.status}`);
-  }
-  return response.json();
+const getApiUrl = () => {
+  const isDev = process.env.NODE_ENV === 'development';
+  return isDev ? 'http://localhost:5001/.netlify/functions/proxy' : '/.netlify/functions/proxy';
 };
 
-export const createCheckout = async (variantId, quantity) => {
-  const response = await fetch(getApiUrl('/api/checkout'), {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ variantId, quantity }),
-  });
-  if (!response.ok) {
-    throw new Error(`Checkout error: ${response.status}`);
+export const fetchProducts = async () => {
+  try {
+    console.log('Fetching products from:', getApiUrl());
+    const response = await fetch(getApiUrl());
+    if (!response.ok) {
+      const text = await response.text();
+      console.error('Error response:', text);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('Response data:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
   }
-  return response.json();
 };
