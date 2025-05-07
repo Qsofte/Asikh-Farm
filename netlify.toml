@@ -1,9 +1,36 @@
 [build]
   command = "npm run build"
   publish = "build"
+  functions = "functions"
   [build.environment]
     CI = "false"
 
+# Production context: all deploys from the Production branch set in your site's
+# deploy contexts will inherit these settings.
+[context.production]
+  command = "npm run build"
+  publish = "build"
+  # Production environment variables are set in the Netlify UI
+  [context.production.environment]
+    NODE_ENV = "production"
+    # Disable React DevTools
+    REACT_APP_DISABLE_DEVTOOLS = "true"
+
+[dev]
+  framework = "#auto"
+  targetPort = 3002
+  port = 8888
+  functionsPort = 8889
+  autoLaunch = true
+
+# Redirect API requests to Netlify Functions proxy
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/proxy/:splat"
+  status = 200
+  force = true
+
+# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
