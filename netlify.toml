@@ -5,17 +5,6 @@
   [build.environment]
     CI = "false"
 
-# Production context: all deploys from the Production branch set in your site's
-# deploy contexts will inherit these settings.
-[context.production]
-  command = "npm run build"
-  publish = "build"
-  # Production environment variables are set in the Netlify UI
-  [context.production.environment]
-    NODE_ENV = "production"
-    # Disable React DevTools
-    REACT_APP_DISABLE_DEVTOOLS = "true"
-
 [dev]
   framework = "#auto"
   targetPort = 3002
