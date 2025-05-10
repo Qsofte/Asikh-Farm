@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from '../images/Logo_re.png';
 import LanguageToggle from './LanguageToggle';
 import { useTranslation } from 'react-i18next';
 
