@@ -9,6 +9,7 @@ import 'swiper/css/effect-fade';
 import beetrootImage from '../images/Beetroot.png';
 import mangoImage from '../images/mangogreen.jpeg';
 import carrotImage from '../images/Carrot.png';
+import bananaImage from '../images/Banana.jpg';
 import { useTranslation } from 'react-i18next';
 
 const products = [
@@ -22,11 +23,18 @@ const products = [
     id: 2,
     image: mangoImage,
     description:
-      "Sweet and juicy mangoes with a rich aroma, grown naturally in Bihar's fertile soil.",
+      "Sweet and juicy mangoes with a rich aroma, grown naturally in Bihar's ferti/////le soil.",
   },
   {
     id: 3,
     image: carrotImage,
+    description:
+      'Crunchy and nutritious organic carrots, packed with vitamins and antioxidants.',
+  },
+
+  {
+    id: 4,
+    image: bananaImage,
     description:
       'Crunchy and nutritious organic carrots, packed with vitamins and antioxidants.',
   },
@@ -35,7 +43,7 @@ const products = [
 const ProductSlider = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  const [slidesPerView, setSlidesPerView] = useState(4);
 
   // Responsive setup based on window size
   useEffect(() => {
