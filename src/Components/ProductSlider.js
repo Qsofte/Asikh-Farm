@@ -55,9 +55,9 @@ const ProductSlider = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Function to navigate to Contact Us page
+  // Function to navigate to Order Now page
   const handleKnowMore = () => {
-    navigate('/contact');
+    navigate('/order-now');
     window.scrollTo(0, 0);
   };
 

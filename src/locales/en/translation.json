@@ -3,7 +3,8 @@
     "home": "HOME",
     "products": "PRODUCTS",
     "about": "ABOUT US",
-    "contact": "CONTACT US"
+    "contact": "CONTACT US",
+    "orderNow": "ORDER NOW"
   },
   "hero": {
     "title": "Asikh Farms",
@@ -11,7 +12,7 @@
     "subtitle": "At Asikh Farm, we are dedicated to positioning Bihar as a global leader in mango and fresh produce exports, transforming its rich agricultural potential into economic growth and farmer prosperity.",
     "explore": "Explore More"
   },
-  "knowMore": "Know More",
+  "knowMore": "Order Now",
   "order": {
     "title": "Order Now",
     "heading": "Pick your favorite products and buy directly"

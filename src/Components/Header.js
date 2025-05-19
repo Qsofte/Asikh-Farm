@@ -14,6 +14,7 @@ const Header = () => {
   // Feature flags for navigation
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
   const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
+  const FEATURE_ORDER_NOW = true;
 
   // Debug feature flags
   console.log('ENV Values:', {
@@ -132,6 +133,15 @@ const Header = () => {
                   </a>
                 </li>
               )}
+              {FEATURE_ORDER_NOW && (
+                <li>
+                  <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className={`cursor-pointer font-gilroy-medium text-lg font-extrabold transition-all duration-300 hover:opacity-100 px-4 py-2 rounded-full ${
+                    isScrolled ? 'bg-primary-green text-white' : 'bg-primary-light text-primary-green'
+                  } hover:bg-accent-yellow hover:text-primary-dark`} aria-label={t('header.orderNow')}>
+                    {t('header.orderNow')}
+                  </a>
+                </li>
+              )}
               <li>
                 <a href="/contact" onClick={(e) => { e.preventDefault(); handleNavigate('/contact'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
                   isScrolled ? 'text-primary-dark' : 'text-primary-light'
@@ -170,6 +180,13 @@ const Header = () => {
               <li>
                 <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
                   {t('header.about')}
+                </a>
+              </li>
+            )}
+            {FEATURE_ORDER_NOW && (
+              <li className="mb-4">
+                <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className="font-gilroy-medium font-extrabold text-2xl bg-primary-green text-white px-6 py-2 rounded-full hover:bg-accent-yellow hover:text-primary-dark cursor-pointer">
+                  {t('header.orderNow')}
                 </a>
               </li>
             )}
