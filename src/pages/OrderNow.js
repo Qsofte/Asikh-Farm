@@ -113,7 +113,6 @@ const OrderNow = () => {
                 <div className="p-3 flex-1 flex flex-col justify-between">
                   <div>
                     <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
                   </div>
                   <div className="mb-4 flex items-center space-x-4">
                     <div className="flex-1">
@@ -163,6 +162,27 @@ const OrderNow = () => {
                     >
                       {processingId === variant.id ? 'Processing...' : 'Buy Now'}
                     </button>
+                  </div>
+                  
+                  {/* Product Information Link */}
+                  <div className="mt-3 border-t pt-2">
+                    <a
+                      href={`https://asikhfarms.myshopify.com/products/${product.handle || product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary-green flex items-center w-full justify-between font-medium hover:underline"
+                    >
+                      Product Information
+                      <svg 
+                        className="w-4 h-4"
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>

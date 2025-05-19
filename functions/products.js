@@ -54,7 +54,7 @@ exports.handler = async (event, context) => {
       products(first: 50) {
         edges {
           node {
-            id title description
+            id title description handle
             images(first: 1) { edges { node { src } } }
             variants(first: 10) { edges { node { id title priceV2 { amount currencyCode } } } }
           }
@@ -84,6 +84,7 @@ exports.handler = async (event, context) => {
       id: node.id,
       title: node.title,
       description: node.description,
+      handle: node.handle,
       images: node.images.edges.map((e) => ({ src: e.node.src })),
       variants: node.variants.edges.map((e) => ({
         id: e.node.id,
