@@ -55,8 +55,19 @@ exports.handler = async (event, context) => {
         edges {
           node {
             id title description handle
+            availableForSale
             images(first: 1) { edges { node { src } } }
-            variants(first: 10) { edges { node { id title priceV2 { amount currencyCode } } } }
+            variants(first: 10) { 
+              edges { 
+                node { 
+                  id 
+                  title 
+                  priceV2 { amount currencyCode }
+                  availableForSale
+                  quantityAvailable
+                } 
+              } 
+            }
           }
         }
       }
@@ -80,18 +91,30 @@ exports.handler = async (event, context) => {
     const json = shopifyResponse.data;
     console.log('Shopify response JSON:', JSON.stringify(json, null, 2));
 
-    const products = json.data.products.edges.map(({ node }) => ({
+    // Map products and include availability information
+    const allProducts = json.data.products.edges.map(({ node }) => ({
       id: node.id,
       title: node.title,
       description: node.description,
       handle: node.handle,
+      availableForSale: node.availableForSale,
       images: node.images.edges.map((e) => ({ src: e.node.src })),
-      variants: node.variants.edges.map((e) => ({
-        id: e.node.id,
-        title: e.node.title,
-        priceV2: e.node.priceV2,
-      })),
+      variants: node.variants.edges
+        // Only include variants that are available for sale
+        .filter((e) => e.node.availableForSale && (e.node.quantityAvailable === null || e.node.quantityAvailable > 0))
+        .map((e) => ({
+          id: e.node.id,
+          title: e.node.title,
+          priceV2: e.node.priceV2,
+          availableForSale: e.node.availableForSale,
+          quantityAvailable: e.node.quantityAvailable,
+        })),
     }));
+    
+    // Filter out products that have no available variants or are not available for sale
+    const products = allProducts.filter(product => 
+      product.availableForSale && product.variants.length > 0
+    );
 
     return {
       statusCode: 200,
