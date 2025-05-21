@@ -77,7 +77,7 @@ const Contact = () => {
       </h2>
 
       {/* Content Section */}
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 mb-20">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-start justify-center gap-8 mb-20">
         {/* Form Section */}
         <div className="md:w-7/12 lg:w-2/3">
           {formSubmitted && (
@@ -175,6 +175,22 @@ const Contact = () => {
             </button>
             <div className="clear-both"></div>
           </form>
+        </div>
+
+        {/* Business Contact Details */}
+        <div className="md:w-5/12 lg:w-1/3 bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-gilroy-semibold text-primary-dark mb-4">
+            Contact Details
+          </h3>
+          <p className="mb-2">
+            <strong>Address:</strong> KH. 314, Plot I-IA, Jaffarpur Extn., Najafgarh, South West Delhi, Delhi, 110073, India
+          </p>
+          <p className="mb-2">
+            <strong>Email:</strong> Mayank@asikhfarms.in
+          </p>
+          <p className="mb-2">
+            <strong>Phone:</strong> +91-9999714807
+          </p>
         </div>
       </div>
     </div>
