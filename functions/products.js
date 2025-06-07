@@ -63,6 +63,7 @@ exports.handler = async (event, context) => {
                   id 
                   title 
                   priceV2 { amount currencyCode }
+                  compareAtPriceV2 { amount currencyCode }
                   availableForSale
                   quantityAvailable
                 } 
@@ -106,6 +107,7 @@ exports.handler = async (event, context) => {
           id: e.node.id,
           title: e.node.title,
           priceV2: e.node.priceV2,
+          compareAtPriceV2: e.node.compareAtPriceV2,
           availableForSale: e.node.availableForSale,
           quantityAvailable: e.node.quantityAvailable,
         })),

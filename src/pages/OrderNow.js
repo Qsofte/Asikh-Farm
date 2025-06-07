@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { debounce } from 'lodash';
 
 // Initialize Shopify client with env vars (set these in .env)
 // import Client from 'shopify-buy';
@@ -13,6 +14,8 @@ const OrderNow = () => {
   const [quantities, setQuantities] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [discountInfo, setDiscountInfo] = useState({});
+  const [loadingDiscounts, setLoadingDiscounts] = useState({});
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -53,6 +56,72 @@ const OrderNow = () => {
     fetchProducts();
   }, []);
 
+  // Function to calculate discounts for a variant
+  const calculateDiscount = useCallback(async (variantId, quantity) => {
+    try {
+      const res = await fetch('/api/calculate-discount', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          variantId,
+          quantity
+        }),
+      });
+
+      if (!res.ok) {
+        console.error('Error calculating discount:', res.status);
+        return null;
+      }
+
+      const data = await res.json();
+      return data.discountInfo;
+    } catch (err) {
+      console.error('Error calculating discount:', err);
+      return null;
+    }
+  }, []);
+
+  // Debounced function to update discounts
+  const updateDiscounts = useCallback(() => {
+    const debouncedFunction = debounce(async () => {
+      const newDiscountInfo = { ...discountInfo };
+      const newLoadingDiscounts = { ...loadingDiscounts };
+      
+      for (const productId in selectedVariants) {
+        const variantId = selectedVariants[productId];
+        const quantity = parseInt(quantities[productId], 10) || 1;
+        
+        // Set loading state for this variant
+        newLoadingDiscounts[variantId] = true;
+        setLoadingDiscounts(newLoadingDiscounts);
+        
+        const discountData = await calculateDiscount(variantId, quantity);
+        
+        // Update discount info and loading state
+        newLoadingDiscounts[variantId] = false;
+        if (discountData) {
+          newDiscountInfo[variantId] = discountData;
+        }
+      }
+      
+      setDiscountInfo(newDiscountInfo);
+      setLoadingDiscounts(newLoadingDiscounts);
+    }, 500);
+    
+    debouncedFunction();
+  }, [discountInfo, selectedVariants, quantities, loadingDiscounts, calculateDiscount]);
+
+
+  // Effect to update discounts when selections change - DISABLED to prevent 404 errors
+  useEffect(() => {
+    // Disabled API calls to prevent 404 errors
+    // if (Object.keys(selectedVariants).length > 0) {
+    //   updateDiscounts();
+    // }
+  }, [selectedVariants, quantities, updateDiscounts]);
+  
   // State for checkout error messages
   const [checkoutError, setCheckoutError] = useState({});
 
@@ -197,6 +266,13 @@ const OrderNow = () => {
             const unitPrice = parseFloat(variant.priceV2?.amount) || 0;
             const totalPrice = (unitPrice * qty).toFixed(2);
             
+            // Get discount info for this variant if available
+            const variantDiscountInfo = discountInfo[variant.id];
+            const isLoadingDiscount = loadingDiscounts[variant.id];
+            
+            // Debug log to see variant titles
+            console.log('Variant title:', variant.title);
+            
             // Display stock information if available
             const stockInfo = variant.quantityAvailable !== undefined && variant.quantityAvailable !== null
               ? variant.quantityAvailable > 10 
@@ -267,7 +343,96 @@ const OrderNow = () => {
                   </div>
                   <div className="flex flex-col mt-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-lg font-bold">{totalPrice} {variant.priceV2?.currencyCode}</p>
+                      <div className="flex flex-col">
+                        {/* Special cases for Jardalu and Safed Malda variants with hardcoded discounts */}
+                        {variant.title === "Safed Malda- 1 Kg Box" ? (
+                          <>
+                            <p className="text-lg font-bold text-primary-green">
+                              ₹250.00
+                              <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
+                                44% OFF
+                              </span>
+                            </p>
+                            <p className="text-sm text-gray-500 line-through">
+                              ₹450.00
+                            </p>
+                            <p className="text-xs text-primary-green mt-1">Limited Time Offer!</p>
+                          </>
+                        ) : variant.title === "Safed Malda- 3 Kg Box" ? (
+                          <>
+                            <p className="text-lg font-bold text-primary-green">
+                              ₹749.00
+                              <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
+                                38% OFF
+                              </span>
+                            </p>
+                            <p className="text-sm text-gray-500 line-through">
+                              ₹1,199.00
+                            </p>
+                            <p className="text-xs text-primary-green mt-1">Limited Time Offer!</p>
+                          </>
+                        ) : variant.title === "Jardalu- 1 Kg Box" ? (
+                          <>
+                            <p className="text-lg font-bold text-primary-green">
+                              ₹250.00
+                              <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
+                                44% OFF
+                              </span>
+                            </p>
+                            <p className="text-sm text-gray-500 line-through">
+                              ₹450.00
+                            </p>
+                            <p className="text-xs text-primary-green mt-1">Limited Time Offer!</p>
+                          </>
+                        ) : variant.title === "Jardalu- 3 Kg Box" ? (
+                          <>
+                            <p className="text-lg font-bold text-primary-green">
+                              ₹749.00
+                              <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
+                                38% OFF
+                              </span>
+                            </p>
+                            <p className="text-sm text-gray-500 line-through">
+                              ₹1,199.00
+                            </p>
+                            <p className="text-xs text-primary-green mt-1">Limited Time Offer!</p>
+                          </>
+                        ) : isLoadingDiscount ? (
+                          <div className="flex items-center">
+                            <p className="text-lg font-bold">{totalPrice} {variant.priceV2?.currencyCode}</p>
+                            <div className="ml-2 w-4 h-4 border-t-2 border-primary-green rounded-full animate-spin"></div>
+                          </div>
+                        ) : variantDiscountInfo ? (
+                          <>
+                            <p className="text-lg font-bold text-primary-green">
+                              {variantDiscountInfo.finalPrice} {variantDiscountInfo.currencyCode}
+                              <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
+                                {variantDiscountInfo.discountPercent}% OFF
+                              </span>
+                            </p>
+                            <p className="text-sm text-gray-500 line-through">
+                              {variantDiscountInfo.originalPrice} {variantDiscountInfo.currencyCode}
+                            </p>
+                            {variantDiscountInfo.discountTitle && (
+                              <p className="text-xs text-primary-green mt-1">{variantDiscountInfo.discountTitle}</p>
+                            )}
+                          </>
+                        ) : variant.compareAtPriceV2 && parseFloat(variant.compareAtPriceV2.amount) > parseFloat(variant.priceV2.amount) ? (
+                          <>
+                            <p className="text-lg font-bold text-primary-green">
+                              {totalPrice} {variant.priceV2?.currencyCode}
+                              <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
+                                {Math.round((1 - parseFloat(variant.priceV2.amount) / parseFloat(variant.compareAtPriceV2.amount)) * 100)}% OFF
+                              </span>
+                            </p>
+                            <p className="text-sm text-gray-500 line-through">
+                              {(parseFloat(variant.compareAtPriceV2.amount) * qty).toFixed(2)} {variant.compareAtPriceV2?.currencyCode}
+                            </p>
+                          </>
+                        ) : (
+                          <p className="text-lg font-bold">{totalPrice} {variant.priceV2?.currencyCode}</p>
+                        )}
+                      </div>
                       <button
                         onClick={() => handleBuy(product.id, variant.id)}
                         disabled={processingId === variant.id || 
