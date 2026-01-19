@@ -187,8 +187,11 @@ const Contact = () => {
 HAJIPUR, Vaishali, Bihar-844101
           </p>
           <p className="mb-2">
-            <strong>Email:</strong> hr@asikhfarms.in/abhijeet@asikhfarms.in<br />/
-ashutosh@asikhfarms.in
+            <strong>Email:</strong> <ul>
+  <li>hr@asikhfarms.in</li>
+  <li>abhijeet@asikhfarms.in</li>
+  <li>ashutosh@asikhfarms.in</li>
+</ul>
           </p>
           <p className="mb-2">
             <strong>Phone:</strong> +91 9811942958/+91 8092242251
