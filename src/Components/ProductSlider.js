@@ -7,6 +7,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import beetrootImage from '../images/Beetroot.png';
+import KatarniChura from '../images/KatarniChura.jpg';
+import Gur from '../images/Gur.webp';
+import Haldi from '../images/Haldi.jpg';
 import mangoImage from '../images/mangogreen.jpeg';
 import carrotImage from '../images/Carrot.png';
 import { useTranslation } from 'react-i18next';
@@ -29,6 +32,24 @@ const products = [
     image: carrotImage,
     description:
       'Crunchy and nutritious organic carrots, packed with vitamins and antioxidants.',
+  },
+  {
+    id: 4,
+    image: KatarniChura,
+    description:
+      'Bhagalpur Special Katarni Chura',
+  },
+  {
+    id: 5,
+    image: Haldi,
+    description:
+      'Freshly ground Haldi direct from farms',
+  },
+  {
+    id: 6,
+    image: Gur,
+    description:
+      'Pure sugarcane gur made naturally without chemicals.',
   },
 ];
 
