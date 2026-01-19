@@ -183,13 +183,15 @@ const Contact = () => {
             Contact Details
           </h3>
           <p className="mb-2">
-            <strong>Address:</strong> KH. 314, Plot I-IA, Jaffarpur Extn., Najafgarh, South West Delhi, Delhi, 110073, India
+            <strong>Address:</strong> CHINTA MANI MARKET RAMASHISH CHOUK
+HAJIPUR, Vaishali, Bihar-844101
           </p>
           <p className="mb-2">
-            <strong>Email:</strong> Mayank@asikhfarms.in
+            <strong>Email:</strong> hr@asikhfarms.in/abhijeet@asikhfarms.in<br />/
+ashutosh@asikhfarms.in
           </p>
           <p className="mb-2">
-            <strong>Phone:</strong> +91-9999714807
+            <strong>Phone:</strong> +91 9811942958/+91 8092242251
           </p>
         </div>
       </div>
