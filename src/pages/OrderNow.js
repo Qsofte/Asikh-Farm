@@ -274,24 +274,13 @@ const OrderNow = () => {
             console.log('Variant title:', variant.title);
             
             // Display stock information if available
-            const qtyAvailable = variant?.quantityAvailable ?? 0;
- 
-// agar availableForSale nahi aaye to qty se decide karo
-const availableForSale = variant?.availableForSale ?? (qtyAvailable > 0);
- 
-const isOutOfStock = !availableForSale || qtyAvailable === 0;
- 
-let stockInfo;
- 
-if (isOutOfStock) {
-  stockInfo = { text: 'Out of Stock', className: 'text-red-600' };
-}
-else if (qtyAvailable <= 10) {
-  stockInfo = { text: `Only ${qtyAvailable} left`, className: 'text-orange-600' };
-}
-else {
-  stockInfo = { text: 'In Stock', className: 'text-green-600' };
-}
+            const stockInfo = variant.quantityAvailable !== undefined && variant.quantityAvailable !== null
+              ? variant.quantityAvailable > 10
+                ? { text: 'In Stock', className: 'text-green-600' }
+                : variant.quantityAvailable > 0
+                  ? { text: `Only ${variant.quantityAvailable} left`, className: 'text-orange-600' }
+                  : { text: 'Out of Stock', className: 'text-red-600' }
+              : { text: 'In Stock', className: 'text-green-600' };
  
             return (
               <div
@@ -446,20 +435,16 @@ else {
                         )}
                       </div>
                       <button
-  onClick={() => handleBuy(product.id, variant.id)}
-  disabled={processingId === variant.id || isOutOfStock}
-  className={`px-3 py-2 rounded transition-colors ${
-    isOutOfStock
-      ? 'bg-gray-400 text-white cursor-not-allowed'
-      : 'bg-primary-green text-white hover:bg-green-700'
-  } disabled:opacity-50`}
->
-  {processingId === variant.id
-    ? 'Processing...'
-    : isOutOfStock
-    ? 'Out of Stock'
-    : 'Buy Now'}
-</button>
+                        onClick={() => handleBuy(product.id, variant.id)}
+                        disabled={processingId === variant.id ||
+                          (variant.quantityAvailable !== undefined && variant.quantityAvailable !== null && variant.quantityAvailable <= 0)}
+                        className={`px-3 py-2 rounded transition-colors ${variant.quantityAvailable === 0 ?
+                          'bg-gray-400 text-white cursor-not-allowed' :
+                          'bg-primary-green text-white hover:bg-green-700'} disabled:opacity-50`}
+                      >
+                        {processingId === variant.id ? 'Processing...' :
+                         variant.quantityAvailable === 0 ? 'Out of Stock' : 'Buy Now'}
+                      </button>
                     </div>
                     
                     {/* Checkout Error Message */}
