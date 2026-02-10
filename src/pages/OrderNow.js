@@ -280,7 +280,7 @@ const OrderNow = () => {
                 : variant.quantityAvailable > 0
                   ? { text: `Only ${variant.quantityAvailable} left`, className: 'text-orange-600' }
                   : { text: 'Out of Stock', className: 'text-red-600' }
-              : { text: 'Out of Stock', className: 'text-green-600' };
+              : { text: 'In Stock', className: 'text-green-600' };
  
             return (
               <div
@@ -443,7 +443,7 @@ const OrderNow = () => {
                           'bg-primary-green text-white hover:bg-green-700'} disabled:opacity-50`}
                       >
                         {processingId === variant.id ? 'Processing...' :
-                         !variant.quantityAvailable || variant.quantityAvailable <= 0 ? 'Out of Stock' : 'Buy Now'}
+                         variant.quantityAvailable === 0 ? 'Out of Stock' : 'Buy Now'}
                       </button>
                     </div>
                     
