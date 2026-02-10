@@ -275,7 +275,9 @@ const OrderNow = () => {
             
             // Display stock information if available
             const qtyAvailable = variant?.quantityAvailable ?? 0;
-const availableForSale = variant?.availableForSale ?? false;
+ 
+// agar availableForSale nahi aaye to qty se decide karo
+const availableForSale = variant?.availableForSale ?? (qtyAvailable > 0);
  
 const isOutOfStock = !availableForSale || qtyAvailable === 0;
  
