@@ -21,7 +21,10 @@ const Footer = () => {
           {/* About Section */}
           <div className="md:w-1/2 lg:w-5/12">
             <img src={logo} alt={t('footer.logoAlt')} className="h-6 mb-0" />
-            <h2 className="font-gilroy-medium text-lg mb-1 whitespace-nowrap">
+            {/* <h2 className="font-gilroy-medium text-lg mb-1 whitespace-nowrap">
+              {t('footer.name')}
+            </h2> */}
+            <h2 className="font-gilroy-medium text-lg mb-1 whitespace-pre-line leading-tight">
               {t('footer.name')}
             </h2>
             {/* Social Media Icons */}
