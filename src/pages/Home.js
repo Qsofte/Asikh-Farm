@@ -7,6 +7,12 @@ import TestimonialSlider from '../Components/TestimonialSlider';
 import EnglandFlag from '../images/EnglandFlag.jfif';
 import GermanyFlag from '../images/GermanyFlag.jfif';
 import NewZealandFlag from '../images/New Zealand-Flag.jfif';
+import safal from '../images/safal.png';
+import zomato from '../images/zomato.avif';
+import modern from '../images/modern.png';
+import Fiitjee from '../images/Fiitjee.jpg';
+import Carlsberg from '../images/Carlsberg.png';
+import Adyopant from '../images/Adyopant.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -137,6 +143,31 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Partners Section */}
+      <section className="py-8 bg-white w-full">
+        <div className="text-center px-4 mb-6">
+          <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
+            Trusted By
+          </h2>
+        </div>
+
+         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
+           {[safal, Adyopant, zomato, Fiitjee, Carlsberg, modern].map((logo, index) => (
+           <div
+            key={index}
+             className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
+            >
+        <img
+          src={logo}
+          alt={`Partner ${index + 1}`}
+          className="w-full h-auto"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+</section>
     </>
   );
 };
