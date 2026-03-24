@@ -15,12 +15,12 @@ import carrotImage from '../images/Carrot.png';
 import { useTranslation } from 'react-i18next';
 
 const products = [
-  {
-    id: 1,
-    image: beetrootImage,
-    description:
-      'Fresh and organic beetroot sourced from our farms with sustainable farming practices.',
-  },
+  // {
+  //   id: 1,
+  //   image: beetrootImage,
+  //   description:
+  //     'Fresh and organic beetroot sourced from our farms with sustainable farming practices.',
+  // },
   {
     id: 2,
     image: mangoImage,
