@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
-import beetrootImage from '../images/Beetroot.png';
+// import litchi from '../images/litchi.jpg';
 import KatarniChura from '../images/KatarniChura.jpg';
 import Gur from '../images/Gur.webp';
 import Haldi from '../images/Haldi.jpg';
@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 const products = [
   // {
   //   id: 1,
-  //   image: beetrootImage,
+  //   image: litchi,
   //   description:
   //     'Fresh and organic beetroot sourced from our farms with sustainable farming practices.',
   // },

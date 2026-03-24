@@ -7,6 +7,7 @@ import TestimonialSlider from '../Components/TestimonialSlider';
 import EnglandFlag from '../images/EnglandFlag.jfif';
 import GermanyFlag from '../images/GermanyFlag.jfif';
 import NewZealandFlag from '../images/New Zealand-Flag.jfif';
+import Singapore from '../images/Singapore.png';
 import safal from '../images/safal.png';
 import zomato from '../images/zomato.avif';
 import modern from '../images/modern.png';
@@ -100,9 +101,9 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-5xl mx-auto px-2">
-          <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+        <div className="flex md:flex-wrap justify-between md:justify-center gap-2 md:gap-x-4 max-w-5xl mx-auto px-2 overflow-x-auto md:overflow-visible">
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={EnglandFlag}
                 alt="England Flag"
@@ -110,13 +111,13 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-base font-gilroy-medium text-primary-dark">
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
               England
             </p>
           </div>
 
-          <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={GermanyFlag}
                 alt="Germany Flag"
@@ -124,13 +125,13 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-base font-gilroy-medium text-primary-dark">
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
               Germany
             </p>
           </div>
 
-          <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={NewZealandFlag}
                 alt="New Zealand Flag"
@@ -138,8 +139,22 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-base font-gilroy-medium text-primary-dark">
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
               New Zealand
+            </p>
+          </div>
+
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+              <img
+                src={Singapore}
+                alt="Germany Flag"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
+              Singapore
             </p>
           </div>
         </div>
