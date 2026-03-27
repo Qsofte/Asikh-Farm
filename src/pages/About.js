@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import mangoImg from "../images/mangogreen.jpeg"; 
 import farmImg from "../images/Farm.png";
 import img1 from "../images/Cus7.jpg";
 import img2 from "../images/Cus2.jpg";
@@ -47,7 +46,7 @@ const About = () => {
   <FaWhatsapp className="text-green-600 text-lg" />
   +91 8092242248
 </p>
-      <p>📞 +91 9811942958 / +91 8092242251</p>
+      <p>📞 +91 9811942958/+91 8092242251</p>
       <p>🌐 www.asikhfarms.in</p>
     </div>
 
