@@ -1,112 +1,234 @@
-import React from 'react';
-// import './About.css';
+import React, { useEffect } from "react";
+import mangoImg from "../images/mangogreen.jpeg"; 
+import farmImg from "../images/Farm.png";
+import img1 from "../images/Cus7.jpg";
+import img2 from "../images/Cus2.jpg";
+import img3 from "../images/Cus3.jpg";
+import img4 from "../images/Cus4.jpg";
+import img5 from "../images/Cus5.jpg";
+import img6 from "../images/Cus6.jpg";
+import img7 from "../images/Cus1.jpg";
+import heroImg from "../images/treeB.jpg";
+import qrCode from "../images/qr_web.png";
+import { FaWhatsapp } from "react-icons/fa";
+import mango from "../images/Jardalu.jpg";
+import gur from "../images/Gur.png";
+import chura from "../images/KatarniChura.jpg";
+import banana from "../images/Banana.jpg";
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="bg-white" style={{ marginTop: '20%' }}>
-      {/* Hero Section */}
-      <div
-        className="relative h-80 bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-image.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <h1 className="text-white text-4xl font-bold">About Us</h1>
+    <div className="bg-green-50">
+
+      {/* HERO SECTION */}
+      <section className="relative h-[90vh] w-full overflow-hidden">
+
+  {/* Background Image */}
+  <img
+    src={heroImg}
+    alt="Mango"
+    className="absolute w-full h-full object-cover"
+  />
+
+  {/* Gradient Overlay (like brochure) */}
+  <div className="absolute inset-0 bg-gradient-to-t from-blue-200/80 via-transparent to-yellow-300/40"></div>
+
+  {/* Content Wrapper */}
+  <div className="relative z-10 h-full flex flex-col justify-end px-6 pb-10">
+
+    {/* Contact Details */}
+    <div className="text-primary-dark text-sm md:text-base font-gilroy-medium space-y-1">
+      <p className="flex items-center gap-2">
+  <FaWhatsapp className="text-green-600 text-lg" />
+  +91 8092242248
+</p>
+      <p>📞 +91 9811942958 / +91 8092242251</p>
+      <p>🌐 www.asikhfarms.in</p>
+    </div>
+
+    {/* QR Code */}
+    <div className="absolute bottom-10 right-6 bg-white p-3 rounded-xl shadow-lg">
+      <img
+        src={qrCode}
+        alt="QR Code"
+        className="w-20 h-20 md:w-28 md:h-28 object-contain"
+      />
+    </div>
+
+  </div>
+</section>
+
+      {/* ROOTS SECTION */}
+      <section className="py-12 px-4">
+        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-6 md:p-10 shadow-md border-r-8 border-yellow-400">
+          
+          <h2 className="text-2xl md:text-3xl font-lobster text-primary-dark mb-4">
+            Our Roots, Our Flavour
+          </h2>
+
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+            At Asikh Farms, our story begins in the fertile soils of Bihar, India. 
+            Since 2019, we have been on a mission to share the authentic, unique 
+            flavors of our region—specifically our celebrated GI-tagged Jardalu 
+            and Safed Malda mangoes—with the world.
+          </p>
+
+          <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+            By collaborating directly with local farmers and introducing 
+            sustainable Good Agricultural Practices (GAP), we empower 
+            communities while delivering premium quality produce globally.
+          </p>
         </div>
+      </section>
+
+      {/* IMAGE SECTION */}
+      <section className="px-4 pb-12">
+        <div className="max-w-5xl mx-auto overflow-hidden rounded-[40px] border-l-8 border-yellow-400">
+          <img
+            src={farmImg}
+            alt="Farm"
+            className="w-full h-[400px] object-cover"
+          />
+        </div>
+      </section>
+
+      {/* PRODUCT SECTION */}
+      <section className="py-12 px-4 bg-green-100">
+        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-6 md:p-10 shadow-md border-r-8 border-yellow-400">
+          
+          <h2 className="text-2xl md:text-3xl font-lobster text-primary-dark mb-4">
+            G.I Tagged Jardalu
+          </h2>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Grown in Bhagalpur, Bihar, the Jardalu mango is known for its golden 
+            hue, intense aroma, and rich flavor. It has gained global recognition 
+            and is exported internationally.
+          </p>
+
+          <ul className="list-disc pl-5 text-gray-700 space-y-2">
+            <li>GI-Certified Origin – Bhagalpur, Bihar</li>
+            <li>Exquisite sweet flavor with rich aroma</li>
+            <li>Handpicked and carefully graded</li>
+            <li>Premium seasonal availability</li>
+          </ul>
+
+        </div>
+      </section>
+
+      {/* SECOND PRODUCT */}
+      <section className="py-12 px-4">
+        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-6 md:p-10 shadow-md border-r-8 border-yellow-400">
+          
+          <h2 className="text-2xl md:text-3xl font-lobster text-primary-dark mb-4">
+            Safed Malda
+          </h2>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Known for its creamy texture and sweetness, Safed Malda mango is 
+            a premium variety from Bihar, loved for its rich pulp and smooth taste.
+          </p>
+
+          <ul className="list-disc pl-5 text-gray-700 space-y-2">
+            <li>Greenish-yellow skin turning golden</li>
+            <li>Sweet, creamy texture</li>
+            <li>Medium to large size fruits</li>
+            <li>Available June to August</li>
+          </ul>
+
+        </div>
+      </section>
+
+      {/* CUSTOMER FEEDBACK */}
+      <section className="py-12 px-4 bg-green-100">
+        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-6 md:p-10 shadow-md border-r-8 border-yellow-400">
+          
+          <h2 className="text-2xl md:text-3xl font-lobster text-primary-dark mb-6">
+            Customer Feedback
+          </h2>
+
+          <p className="text-gray-700 mb-4">
+            "Everything is super fresh, healthy, and full of flavor. Truly farm-to-table quality."
+          </p>
+
+          <p className="text-gray-700 mb-6">
+            "The mangoes are the best I've ever had. The sweetness and aroma are unmatched."
+          </p>
+
+          {/* Image Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[img1, img2, img3, img4, img5, img6].map((img, index) => (
+    <div className="overflow-hidden rounded-lg h-32 md:h-40">
+  <img
+    src={img}
+    alt={`Customer ${index + 1}`}
+    className="w-full h-half object-cover hover:scale-105 transition duration-300"
+  />
+</div>
+  ))}
+          </div>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-0 max-w-5xl mx-auto overflow-hidden rounded-[40px] border-l-8 border-yellow-400">
+          <img
+            src={img7}
+            alt="Customer"
+            className="object-cover"
+          />
+        </div>
+        </div>
+      </section>
+
+      {/* PRODUCTS LIST */}
+      <section className="py-12 px-4">
+        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-6 md:p-10 shadow-md border-r-8 border-yellow-400">
+          
+          <h2 className="text-2xl md:text-3xl font-lobster text-primary-dark mb-6">
+            Premium Agri Products
+          </h2>
+
+          <div className="space-y-4">
+            <div className="space-y-6">
+
+  {[
+    { name: "Jardalu / Safed Maldah Aam", img: mango },
+    { name: "Chemical Free Gur (Jaggery)", img: gur },
+    { name: "Katarni Dhaan Ka Chura", img: chura },
+    { name: "Banana (Chiniya/Kela)", img: banana }
+  ].map((item, index) => (
+    
+    <div
+      key={index}
+      className="flex items-center bg-[#9BB67A] rounded-full p-2 md:p-3 shadow-sm"
+    >
+      
+      {/* Image */}
+      <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0">
+        <img
+          src={item.img}
+          alt={item.name}
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      {/* Content Sections */}
-      <div className="max-w-6xl mx-auto py-10 px-5">
-        {/* Our Story */}
-        <div className="md:flex md:items-center md:space-x-8 mb-10">
-          <img
-            src="/story-image.jpg"
-            alt="Our Story"
-            className="w-48 h-48 rounded-full mx-auto md:mx-0"
-          />
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Our Story</h2>
-            <p className="text-gray-600">
-              Fruits from his farms—sent as a token of blessings, good wishes,
-              and gratitude—to loved ones abroad and the local community that
-              cares for them in foreign lands. A simple act of kindness, rooted
-              in tradition, carried across borders. What began as a heartfelt
-              gesture soon grew into a larger vision—one that sought to bridge
-              the gap between the farmers of Bihar and fork holders in faraway
-              lands. A dream nurtured by the desire to connect those who
-              cultivate with those who consume, ensuring that the essence of
-              home reaches distant tables. This vision found life through the
-              dedication of his son, Dr. Maurya Vijay Chandra, whose relentless
-              efforts, along with the unwavering support of many well-wishers,
-              turned aspiration into reality. A journey of connection,
-              gratitude, and shared prosperity continues to unfold.
-            </p>
+      {/* Text */}
+      <p className="ml-4 text-sm md:text-lg font-gilroy-medium text-primary-dark">
+        {item.name}
+      </p>
+
+    </div>
+
+  ))}
+
+</div>
           </div>
-        </div>
 
-        {/* Our Mission */}
-        <div className="md:flex md:items-center md:space-x-8 mb-10 flex-row-reverse">
-          <img
-            src="/mission-image.jpg"
-            alt="Our Mission"
-            className="w-48 h-48 rounded-full mx-auto md:mx-0"
-          />
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Our Mission</h2>
-            <p className="text-gray-600">
-               At Ashik Farm, we are committed to making Bihar a global leader
-              in organic mango exports, ensuring fresh, naturally grown mangoes
-              reach premium markets. Over the past six years, we have built a
-              seamless farm-to-fork logistics system, helping farmers meet
-              global organic export standards while enhancing their skills. Our
-              vision includes developing organic-certified packhouses and
-              ripening chambers, strengthening cold chain infrastructure and
-              eco-friendly packaging, expanding mechanized loading and export
-              facilities, and simplifying custom clearance and documentation to
-              boost Bihar’s mango trade. Despite producing 30% of India’s
-              mangoes, Bihar’s exports remain low. In 2023, India exported
-              27,330 tonnes, while Bihar contributed only 1,200 tonnes, mainly
-              to neighboring countries. Our goal is to increase Bihar’s exports
-              to 9,110 tonnes annually, positioning it as a global hub for
-              premium organic mangoes. By investing in critical infrastructure
-              and sustainable practices, we aim to unlock Bihar’s true potential
-              and drive prosperity for local farmers.
-            </p>
-          </div>
         </div>
+      </section>
 
-        {/* Our Vision */}
-        <div className="md:flex md:items-center md:space-x-8 mb-10">
-          <img
-            src="/vision-image.jpg"
-            alt="Our Vision"
-            className="w-48 h-48 rounded-full mx-auto md:mx-0"
-          />
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Our Vision</h2>
-            <p className="text-gray-600">
-              We aim to expand globally while maintaining top quality...
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Countries Section */}
-      <div className="bg-gray-100 py-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">From India to the World</h2>
-        <div className="flex justify-center space-x-6">
-          <img src="/uk-flag.png" alt="UK" className="w-16 h-10" />
-          <img src="/germany-flag.png" alt="Germany" className="w-16 h-10" />
-          <img src="/nz-flag.png" alt="New Zealand" className="w-16 h-10" />
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white text-center py-6 mt-10">
-        <div className="mb-4">
-          <img src="/logo.png" alt="Logo" className="mx-auto w-16" />
-        </div>
-        <p>&copy; 2025 YourCompany LLC. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

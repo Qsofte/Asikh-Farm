@@ -13,7 +13,6 @@ const Header = () => {
 
   // Feature flags for navigation
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
-  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
   const FEATURE_ORDER_NOW = true;
 
   // Debug feature flags
@@ -21,7 +20,7 @@ const Header = () => {
     REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
     REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
     FEATURE_PRODUCTS,
-    FEATURE_ABOUT
+    // FEATURE_ABOUT
   });
 
   // Close menu when route changes
@@ -124,15 +123,17 @@ const Header = () => {
                   </a>
                 </li>
               )}
-              {FEATURE_ABOUT && (
-                <li>
-                  <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                  } hover:text-primary-green`} aria-label={t('header.about')}>
+              <li>
+                  <a
+                    href="/about"
+                    onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }}
+                    className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 ${
+                      isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                    } hover:text-primary-green`}
+                  >
                     {t('header.about')}
                   </a>
                 </li>
-              )}
               {FEATURE_ORDER_NOW && (
                 <li>
                   <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className={`cursor-pointer font-gilroy-medium text-lg font-extrabold transition-all duration-300 hover:opacity-100 px-4 py-2 rounded-full ${
@@ -176,13 +177,16 @@ const Header = () => {
                 </a>
               </li>
             )}
-            {FEATURE_ABOUT && (
-              <li>
-                <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
+            <li>
+                <a
+                  href="/about"
+                  onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }}
+                  className="font-gilroy-medium text-2xl text-primary-green cursor-pointer"
+                >
                   {t('header.about')}
                 </a>
               </li>
-            )}
+            
             {FEATURE_ORDER_NOW && (
               <li className="mb-4">
                 <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className="font-gilroy-medium font-extrabold text-2xl bg-primary-green text-white px-6 py-2 rounded-full hover:bg-accent-yellow hover:text-primary-dark cursor-pointer">

@@ -52,7 +52,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={FEATURE_PRODUCTS ? <Products /> : <Navigate to="/" />} />
-            <Route path="/about" element={FEATURE_ABOUT ? <About /> : <Navigate to="/" />} />
+            {/* <Route path="/about" element={FEATURE_ABOUT ? <About /> : <Navigate to="/" />} /> */}
+            <Route path="/about" element={<About />} />
             <Route path="/order-now" element={<OrderNow />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />

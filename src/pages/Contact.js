@@ -77,7 +77,7 @@ const Contact = () => {
       </h2>
 
       {/* Content Section */}
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-start justify-center gap-8 mb-20">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 mb-20">
         {/* Form Section */}
         <div className="md:w-7/12 lg:w-2/3">
           {formSubmitted && (
