@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -14,9 +14,6 @@ import VendorOrderStandalone from './pages/VendorOrderStandalone';
 import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
-  const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
-  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
-
   // Add preloading for key assets like fonts, logo, etc.
   useEffect(() => {
     // Function to preload images
@@ -45,8 +42,7 @@ const App = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={FEATURE_PRODUCTS ? <Products /> : <Navigate to="/" />} />
-            {/* <Route path="/about" element={FEATURE_ABOUT ? <About /> : <Navigate to="/" />} /> */}
+            <Route path="/products" element={<Products />} />
             <Route path="/about" element={<About />} />
             <Route path="/order-now" element={<OrderNow />} />
             <Route path="/contact" element={<Contact />} />

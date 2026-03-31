@@ -11,10 +11,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useTranslation();
 
-  // Feature flags for navigation
-  const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
-  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
-
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
@@ -104,24 +100,20 @@ const Header = () => {
                   {t('header.home')}
                 </a>
               </li>
-              {FEATURE_PRODUCTS && (
-                <li>
-                  <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('/products'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                  } hover:text-primary-green`} aria-label={t('header.products')}>
-                    {t('header.products')}
-                  </a>
-                </li>
-              )}
-              {FEATURE_ABOUT && (
-                <li>
-                  <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                  } hover:text-primary-green`} aria-label={t('header.about')}>
-                    {t('header.about')}
-                  </a>
-                </li>
-              )}
+              <li>
+                <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('/products'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                  isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                } hover:text-primary-green`} aria-label={t('header.products')}>
+                  {t('header.products')}
+                </a>
+              </li>
+              <li>
+                <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                  isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                } hover:text-primary-green`} aria-label={t('header.about')}>
+                  {t('header.about')}
+                </a>
+              </li>
               <li>
                 <a href="/contact" onClick={(e) => { e.preventDefault(); handleNavigate('/contact'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
                   isScrolled ? 'text-primary-dark' : 'text-primary-light'
@@ -149,20 +141,16 @@ const Header = () => {
                 {t('header.home')}
               </a>
             </li>
-            {FEATURE_PRODUCTS && (
-              <li>
-                <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('/products'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
-                  {t('header.products')}
-                </a>
-              </li>
-            )}
-            {FEATURE_ABOUT && (
-              <li>
-                <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
-                  {t('header.about')}
-                </a>
-              </li>
-            )}
+            <li>
+              <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('/products'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
+                {t('header.products')}
+              </a>
+            </li>
+            <li>
+              <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
+                {t('header.about')}
+              </a>
+            </li>
             <li>
               <a href="/contact" onClick={(e) => { e.preventDefault(); handleNavigate('/contact'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
                 {t('header.contact')}
