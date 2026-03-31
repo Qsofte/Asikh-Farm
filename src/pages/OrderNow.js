@@ -232,6 +232,14 @@ const OrderNow = () => {
         <meta name="twitter:title" content="Order Now — Asikh Farms" />
         <meta name="twitter:description" content="Order Jardalu mangoes and Shahi lychee online. Farm-fresh Bihar produce delivered to your door." />
         <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asikhfarms.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Order Now", "item": "https://asikhfarms.in/order-now" }
+          ]
+        })}</script>
       </Helmet>
     <div className="bg-primary-light pt-20 min-h-screen">
       {/* Header Section */}

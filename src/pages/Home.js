@@ -44,6 +44,35 @@ const Home = () => {
         <meta name="twitter:title" content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee" />
         <meta name="twitter:description" content="Farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar. Order online for delivery across India." />
         <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": ["Organization", "LocalBusiness"],
+          "name": "Asikh Farms",
+          "legalName": "RAMHAR AGRI PRIVATE LIMITED",
+          "url": "https://asikhfarms.in",
+          "logo": "https://asikhfarms.in/android-chrome-512x512.png",
+          "image": "https://asikhfarms.in/android-chrome-512x512.png",
+          "description": "Farm-fresh Jardalu mangoes, Shahi lychee and seasonal produce from Bihar, delivered across India.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "CHINTA MANI MARKET RAMASHISH CHOUK HAJIPUR",
+            "addressLocality": "Hajipur",
+            "addressRegion": "Bihar",
+            "postalCode": "844101",
+            "addressCountry": "IN"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+91-9811942958",
+              "contactType": "customer service",
+              "availableLanguage": ["English", "Hindi"]
+            }
+          ],
+          "sameAs": [],
+          "areaServed": "IN",
+          "priceRange": "₹₹"
+        })}</script>
       </Helmet>
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">

@@ -1,6 +1,7 @@
 {
-  "short_name": "Qsofte",
-  "name": "Qsofte Public Website",
+  "short_name": "Asikh Farms",
+  "name": "Asikh Farms — Premium Bihar Produce",
+  "description": "Farm-fresh Jardalu mangoes, Shahi lychee and seasonal produce from Bihar, delivered across India.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#2CA673",
   "background_color": "#ffffff"
 }
