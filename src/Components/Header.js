@@ -45,12 +45,20 @@ const Header = () => {
   }, []);
 
   const handleNavigate = (path) => {
+    // Close mobile menu if open
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      document.body.style.overflow = 'auto';
+    }
+
     if (location.pathname === path) {
+      // If already on the same page, scroll to top
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
     } else {
+      // Navigate to new page
       navigate(path);
     }
   };
@@ -100,17 +108,29 @@ const Header = () => {
           >
             <span
               className={`block h-0.5 w-full transition-all duration-300 ${
-                isScrolled ? 'bg-primary-dark' : 'bg-white'
+                isMenuOpen
+                  ? 'bg-primary-dark'
+                  : isScrolled
+                    ? 'bg-primary-dark'
+                    : 'bg-white'
               } ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             ></span>
             <span
               className={`block h-0.5 w-full transition-all duration-300 ${
-                isScrolled ? 'bg-primary-dark' : 'bg-white'
+                isMenuOpen
+                  ? 'bg-primary-dark'
+                  : isScrolled
+                    ? 'bg-primary-dark'
+                    : 'bg-white'
               } ${isMenuOpen ? 'opacity-0' : ''}`}
             ></span>
             <span
               className={`block h-0.5 w-full transition-all duration-300 ${
-                isScrolled ? 'bg-primary-dark' : 'bg-white'
+                isMenuOpen
+                  ? 'bg-primary-dark'
+                  : isScrolled
+                    ? 'bg-primary-dark'
+                    : 'bg-white'
               } ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             ></span>
           </div>
@@ -192,7 +212,31 @@ const Header = () => {
             isMenuOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
         >
-          <ul className="flex flex-col space-y-6 text-center">
+          {/* Close Button */}
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = 'auto';
+            }}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-primary-dark text-white flex items-center justify-center hover:bg-primary-green transition-colors"
+            aria-label="Close menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          <ul className="flex flex-col space-y-8 text-center">
             <li>
               <a
                 href="/"

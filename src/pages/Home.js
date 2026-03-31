@@ -34,45 +34,83 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar</title>
-        <meta name="description" content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee (litchi) direct from Bihar orchards. Order online for home delivery across India." />
+        <title>Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee</title>
+        <meta
+          name="description"
+          content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee (litchi) direct from Bihar orchards. Order online for home delivery across India."
+        />
         <link rel="canonical" href="https://asikhfarms.in/" />
         <meta property="og:url" content="https://asikhfarms.in/" />
-        <meta property="og:title" content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar" />
-        <meta property="og:description" content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar orchards. Order online for home delivery across India." />
-        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
-        <meta name="twitter:title" content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee" />
-        <meta name="twitter:description" content="Farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar. Order online for delivery across India." />
-        <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": ["Organization", "LocalBusiness"],
-          "name": "Asikh Farms",
-          "legalName": "RAMHAR AGRI PRIVATE LIMITED",
-          "url": "https://asikhfarms.in",
-          "logo": "https://asikhfarms.in/android-chrome-512x512.png",
-          "image": "https://asikhfarms.in/android-chrome-512x512.png",
-          "description": "Farm-fresh Jardalu mangoes, Shahi lychee and seasonal produce from Bihar, delivered across India.",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "CHINTA MANI MARKET RAMASHISH CHOUK HAJIPUR",
-            "addressLocality": "Hajipur",
-            "addressRegion": "Bihar",
-            "postalCode": "844101",
-            "addressCountry": "IN"
-          },
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "telephone": "+91-9811942958",
-              "contactType": "customer service",
-              "availableLanguage": ["English", "Hindi"]
-            }
-          ],
-          "sameAs": [],
-          "areaServed": "IN",
-          "priceRange": "₹₹"
-        })}</script>
+        <meta
+          property="og:title"
+          content="Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee"
+        />
+        <meta
+          property="og:description"
+          content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar orchards. Order online for home delivery across India."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Asikh Farms" />
+        <meta
+          property="og:image"
+          content="https://asikhfarms.in/og-image.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:image:alt"
+          content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar"
+        />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee"
+        />
+        <meta
+          name="twitter:description"
+          content="Farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar. Order online for delivery across India."
+        />
+        <meta
+          name="twitter:image"
+          content="https://asikhfarms.in/og-image.png"
+        />
+        <meta
+          name="twitter:image:alt"
+          content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': ['Organization', 'LocalBusiness'],
+            name: 'Asikh Farms',
+            legalName: 'RAMHAR AGRI PRIVATE LIMITED',
+            url: 'https://asikhfarms.in',
+            logo: 'https://asikhfarms.in/android-chrome-512x512.png',
+            image: 'https://asikhfarms.in/android-chrome-512x512.png',
+            description:
+              'Farm-fresh Jardalu mangoes, Shahi lychee and seasonal produce from Bihar, delivered across India.',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'CHINTA MANI MARKET RAMASHISH CHOUK HAJIPUR',
+              addressLocality: 'Hajipur',
+              addressRegion: 'Bihar',
+              postalCode: '844101',
+              addressCountry: 'IN',
+            },
+            contactPoint: [
+              {
+                '@type': 'ContactPoint',
+                telephone: '+91-9811942958',
+                contactType: 'customer service',
+                availableLanguage: ['English', 'Hindi'],
+              },
+            ],
+            sameAs: [],
+            areaServed: 'IN',
+            priceRange: '₹₹',
+          })}
+        </script>
       </Helmet>
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
@@ -133,7 +171,10 @@ const Home = () => {
       </section>
 
       {/* Export Countries Section */}
-      <section style={{ height: '30%' }} className="py-4 bg-gray-100 w-full mx-auto">
+      <section
+        style={{ height: '30%' }}
+        className="py-4 bg-gray-100 w-full mx-auto"
+      >
         <div className="text-center px-2 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
             {t('exportSection.title')}
@@ -210,22 +251,24 @@ const Home = () => {
           </h2>
         </div>
 
-         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
-           {[safal, Adyopant, zomato, Fiitjee, Carlsberg, modern, blinkit].map((logo, index) => (
-           <div
-            key={index}
-             className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
-            >
-        <img
-          src={logo}
-          alt={`Partner ${index + 1}`}
-          className="w-full h-auto"
-          loading="lazy"
-        />
-      </div>
-    ))}
-  </div>
-</section>
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
+          {[safal, Adyopant, zomato, Fiitjee, Carlsberg, modern, blinkit].map(
+            (logo, index) => (
+              <div
+                key={index}
+                className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
+              >
+                <img
+                  src={logo}
+                  alt={`Partner ${index + 1}`}
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            ),
+          )}
+        </div>
+      </section>
     </>
   );
 };

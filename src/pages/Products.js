@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import "./Products.css";
+import './Products.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -32,36 +32,83 @@ const Products = () => {
   const getPrice = (product) => {
     if (!product.variants || product.variants.length === 0) return null;
     const price = product.variants[0].priceV2;
-    return price ? `₹${parseFloat(price.amount).toLocaleString('en-IN')}` : null;
+    return price
+      ? `₹${parseFloat(price.amount).toLocaleString('en-IN')}`
+      : null;
   };
 
   return (
     <>
       <Helmet>
-        <title>Our Products — Jardalu Mangoes, Shahi Lychee &amp; More | Asikh Farms</title>
-        <meta name="description" content="Shop premium Bihar produce: Jardalu mangoes, Shahi lychee, beetroot, ginger, carrots and more. Farm-fresh, delivered to your door." />
+        <title>Products — Fresh Mangoes &amp; Lychee | Asikh Farms</title>
+        <meta
+          name="description"
+          content="Shop premium Bihar produce: Jardalu mangoes, Shahi lychee, beetroot, ginger, carrots and more. Farm-fresh, delivered to your door."
+        />
         <link rel="canonical" href="https://asikhfarms.in/products" />
         <meta property="og:url" content="https://asikhfarms.in/products" />
-        <meta property="og:title" content="Our Products — Jardalu Mangoes, Shahi Lychee &amp; More | Asikh Farms" />
-        <meta property="og:description" content="Shop premium Bihar produce: Jardalu mangoes, Shahi lychee, beetroot, ginger, carrots and more. Farm-fresh, delivered to your door." />
-        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
-        <meta name="twitter:title" content="Our Products — Asikh Farms" />
-        <meta name="twitter:description" content="Shop Jardalu mangoes, Shahi lychee and other premium Bihar produce, delivered fresh to your door." />
-        <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asikhfarms.in/" },
-            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://asikhfarms.in/products" }
-          ]
-        })}</script>
+        <meta
+          property="og:title"
+          content="Products — Fresh Mangoes &amp; Lychee | Asikh Farms"
+        />
+        <meta
+          property="og:description"
+          content="Shop premium Bihar produce: Jardalu mangoes, Shahi lychee, beetroot, ginger, carrots and more. Farm-fresh, delivered to your door."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Asikh Farms" />
+        <meta
+          property="og:image"
+          content="https://asikhfarms.in/og-image.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Our Products — Asikh Farms" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Products — Fresh Mangoes &amp; Lychee | Asikh Farms"
+        />
+        <meta
+          name="twitter:description"
+          content="Shop Jardalu mangoes, Shahi lychee and other premium Bihar produce, delivered fresh to your door."
+        />
+        <meta
+          name="twitter:image"
+          content="https://asikhfarms.in/og-image.png"
+        />
+        <meta name="robots" content="noindex, follow" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://asikhfarms.in/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Products',
+                item: 'https://asikhfarms.in/products',
+              },
+            ],
+          })}
+        </script>
       </Helmet>
 
       {loading && (
         <div className="product-grid" style={{ marginTop: '15%' }}>
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="product-card" style={{ minHeight: 280, background: '#f3f4f6' }} />
+            <div
+              key={i}
+              className="product-card"
+              style={{ minHeight: 280, background: '#f3f4f6' }}
+            />
           ))}
         </div>
       )}
@@ -69,7 +116,11 @@ const Products = () => {
       {error && (
         <div style={{ textAlign: 'center', marginTop: '20%', padding: '2rem' }}>
           <p style={{ color: '#666', fontSize: '1.1rem' }}>{error}</p>
-          <button className="add-to-cart" style={{ marginTop: '1rem' }} onClick={() => window.location.reload()}>
+          <button
+            className="add-to-cart"
+            style={{ marginTop: '1rem' }}
+            onClick={() => window.location.reload()}
+          >
             Retry
           </button>
         </div>
@@ -82,7 +133,16 @@ const Products = () => {
               {product.images && product.images.length > 0 ? (
                 <img src={product.images[0].src} alt={product.title} />
               ) : (
-                <div style={{ width: '100%', height: 200, background: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div
+                  style={{
+                    width: '100%',
+                    height: 200,
+                    background: '#e5e7eb',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
                   <span style={{ color: '#9ca3af' }}>No image</span>
                 </div>
               )}
