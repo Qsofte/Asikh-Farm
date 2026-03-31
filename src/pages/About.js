@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from 'react-helmet-async';
 import farmImg from "../images/Farm.png";
 import img1 from "../images/Cus7.jpg";
 import img2 from "../images/Cus2.jpg";
@@ -22,6 +23,16 @@ const About = () => {
   }, []);
 
   return (
+    <>
+      <Helmet>
+        <title>About Us — Asikh Farms | Bihar's Farm-Fresh Produce</title>
+        <meta name="description" content="Learn about Asikh Farms — a family-run farm in Bihar bringing you the finest Jardalu mangoes, Shahi lychee, and seasonal produce straight from the orchard." />
+        <link rel="canonical" href="https://asikhfarms.in/about" />
+        <meta property="og:url" content="https://asikhfarms.in/about" />
+        <meta property="og:title" content="About Us — Asikh Farms | Bihar's Farm-Fresh Produce" />
+        <meta property="og:description" content="Learn about Asikh Farms — a family-run farm in Bihar bringing you Jardalu mangoes, Shahi lychee, and seasonal produce straight from the orchard." />
+        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+      </Helmet>
     <div className="bg-green-50">
 
       {/* HERO SECTION */}
@@ -229,6 +240,7 @@ const About = () => {
       </section>
 
     </div>
+    </>
   );
 };
 

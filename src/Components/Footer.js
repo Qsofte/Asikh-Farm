@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import logo from '../images/logo.png';
+import logo from '../images/Logo_re.png';
 
 const Footer = () => {
   const navigate = useNavigate();

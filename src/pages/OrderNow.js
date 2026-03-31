@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { debounce } from 'lodash';
@@ -219,6 +220,19 @@ const OrderNow = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Order Now — Fresh Jardalu Mangoes &amp; Shahi Lychee | Asikh Farms</title>
+        <meta name="description" content="Order farm-fresh Jardalu mangoes, Shahi lychee, and seasonal Bihar produce online. Direct from orchard to your door." />
+        <link rel="canonical" href="https://asikhfarms.in/order-now" />
+        <meta property="og:url" content="https://asikhfarms.in/order-now" />
+        <meta property="og:title" content="Order Now — Fresh Jardalu Mangoes &amp; Shahi Lychee | Asikh Farms" />
+        <meta property="og:description" content="Order farm-fresh Jardalu mangoes, Shahi lychee, and seasonal Bihar produce online. Direct from orchard to your door." />
+        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <meta name="twitter:title" content="Order Now — Asikh Farms" />
+        <meta name="twitter:description" content="Order Jardalu mangoes and Shahi lychee online. Farm-fresh Bihar produce delivered to your door." />
+        <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+      </Helmet>
     <div className="bg-primary-light pt-20 min-h-screen">
       {/* Header Section */}
       <div
@@ -492,6 +506,7 @@ const OrderNow = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

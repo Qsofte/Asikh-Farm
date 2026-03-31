@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from '../images/Logo_re.png';
 import LanguageToggle from './LanguageToggle';
 import { useTranslation } from 'react-i18next';
 
@@ -13,15 +13,7 @@ const Header = () => {
 
   // Feature flags for navigation
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
-  const FEATURE_ORDER_NOW = true;
-
-  // Debug feature flags
-  console.log('ENV Values:', {
-    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
-    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
-    FEATURE_PRODUCTS,
-    // FEATURE_ABOUT
-  });
+  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
 
   // Close menu when route changes
   useEffect(() => {
@@ -41,8 +33,6 @@ const Header = () => {
   }, []);
 
   const handleNavigate = (path) => {
-    setIsMenuOpen(false); // Always close menu on navigation
-    document.body.style.overflow = 'auto'; // Restore scroll
     if (location.pathname === path) {
       window.scrollTo({
         top: 0,
@@ -88,19 +78,19 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isScrolled ? 'bg-primary-dark' : 'bg-white'
+              } ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             ></span>
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? 'opacity-0' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isScrolled ? 'bg-primary-dark' : 'bg-white'
+              } ${isMenuOpen ? 'opacity-0' : ''}`}
             ></span>
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isScrolled ? 'bg-primary-dark' : 'bg-white'
+              } ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             ></span>
           </div>
 
@@ -123,23 +113,12 @@ const Header = () => {
                   </a>
                 </li>
               )}
-              <li>
-                  <a
-                    href="/about"
-                    onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }}
-                    className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 ${
-                      isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                    } hover:text-primary-green`}
-                  >
-                    {t('header.about')}
-                  </a>
-                </li>
-              {FEATURE_ORDER_NOW && (
+              {FEATURE_ABOUT && (
                 <li>
-                  <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className={`cursor-pointer font-gilroy-medium text-lg font-extrabold transition-all duration-300 hover:opacity-100 px-4 py-2 rounded-full ${
-                    isScrolled ? 'bg-primary-green text-white' : 'bg-primary-light text-primary-green'
-                  } hover:bg-accent-yellow hover:text-primary-dark`} aria-label={t('header.orderNow')}>
-                    {t('header.orderNow')}
+                  <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                  } hover:text-primary-green`} aria-label={t('header.about')}>
+                    {t('header.about')}
                   </a>
                 </li>
               )}
@@ -177,20 +156,10 @@ const Header = () => {
                 </a>
               </li>
             )}
-            <li>
-                <a
-                  href="/about"
-                  onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }}
-                  className="font-gilroy-medium text-2xl text-primary-green cursor-pointer"
-                >
+            {FEATURE_ABOUT && (
+              <li>
+                <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
                   {t('header.about')}
-                </a>
-              </li>
-            
-            {FEATURE_ORDER_NOW && (
-              <li className="mb-4">
-                <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className="font-gilroy-medium font-extrabold text-2xl bg-primary-green text-white px-6 py-2 rounded-full hover:bg-accent-yellow hover:text-primary-dark cursor-pointer">
-                  {t('header.orderNow')}
                 </a>
               </li>
             )}

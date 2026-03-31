@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './pages/Home';
@@ -44,6 +45,7 @@ const App = () => {
   }, []);
 
   return (
+    <HelmetProvider>
     <Router>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
