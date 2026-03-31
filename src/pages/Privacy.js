@@ -1,10 +1,22 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 
 const Privacy = () => {
   const navigate = useNavigate();
 
   return (
+    <>
+      <Helmet>
+        <title>Privacy Policy &amp; Terms — Asikh Farms</title>
+        <meta name="description" content="Read Asikh Farms' privacy policy and terms of service. We are committed to protecting your personal information." />
+        <link rel="canonical" href="https://asikhfarms.in/privacy" />
+        <meta property="og:url" content="https://asikhfarms.in/privacy" />
+        <meta property="og:title" content="Privacy Policy &amp; Terms — Asikh Farms" />
+        <meta property="og:description" content="Read Asikh Farms' privacy policy and terms of service." />
+        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
     <div className="bg-primary-light pt-20 min-h-screen">
       {/* Header Section */}
       <div
@@ -290,6 +302,7 @@ Changes to this Privacy Policy- Please check our Privacy Policy periodically for
         </div>
       </div>
     </div>
+    </>
   );
 };
 

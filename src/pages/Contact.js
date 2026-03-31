@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -51,6 +52,16 @@ const Contact = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Contact Us — Asikh Farms</title>
+        <meta name="description" content="Get in touch with Asikh Farms to order Jardalu mangoes, Shahi lychee, or any other fresh produce. We deliver across India." />
+        <link rel="canonical" href="https://asikhfarms.in/contact" />
+        <meta property="og:url" content="https://asikhfarms.in/contact" />
+        <meta property="og:title" content="Contact Us — Asikh Farms" />
+        <meta property="og:description" content="Get in touch with Asikh Farms to order Jardalu mangoes, Shahi lychee, or other fresh produce. Delivery across India." />
+        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+      </Helmet>
     <div className="bg-primary-light pt-20 min-h-screen">
       {/* Header Section */}
       <div
@@ -178,6 +189,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

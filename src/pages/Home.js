@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import heroVideo from '../video/vdo.mp4';
@@ -24,6 +25,18 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar</title>
+        <meta name="description" content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee (litchi) direct from Bihar orchards. Order online for home delivery across India." />
+        <link rel="canonical" href="https://asikhfarms.in/" />
+        <meta property="og:url" content="https://asikhfarms.in/" />
+        <meta property="og:title" content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar" />
+        <meta property="og:description" content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar orchards. Order online for home delivery across India." />
+        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <meta name="twitter:title" content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee" />
+        <meta name="twitter:description" content="Farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar. Order online for delivery across India." />
+        <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
         <video
