@@ -17,14 +17,6 @@ const App = () => {
   const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
   const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
 
-  // Debug environment variables
-  console.log('App.js ENV Values:', {
-    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
-    FEATURE_PRODUCTS,
-    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
-    FEATURE_ABOUT
-  });
-
   // Add preloading for key assets like fonts, logo, etc.
   useEffect(() => {
     // Function to preload images
