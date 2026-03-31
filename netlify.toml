@@ -1,9 +1,13 @@
 [build]
-  command = "npm run build"
+  # Use npm install (not npm ci) so Netlify tolerates the react-snap entry
+  # in package.json that isn't yet in package-lock.json (install failed
+  # locally due to no Chromium network access in the sandbox).
+  command = "npm install && npm run build"
   publish = "build"
   functions = "functions"
   [build.environment]
     CI = "false"
+    # Allow puppeteer (react-snap dependency) to download Chromium on Netlify.
     PUPPETEER_SKIP_DOWNLOAD = "false"
 
 [dev]
@@ -20,10 +24,13 @@
   status = 200
   force = true
 
-# SPA fallback — use 404 so pre-rendered route snapshots (react-snap) are
-# served directly by Netlify's CDN before this rule is evaluated.
-# A 200 rewrite here would override every pre-rendered index.html.
+# SPA fallback for react-snap.
+# react-snap writes pre-rendered index.html into each route folder AND
+# creates build/200.html as the pure SPA shell fallback.
+# Netlify serves the pre-rendered file when it exists (files take priority
+# over non-forced redirect rules), then falls back to 200.html for any
+# route that wasn't pre-rendered.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 404
+  to = "/200.html"
+  status = 200
