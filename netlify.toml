@@ -4,6 +4,7 @@
   functions = "functions"
   [build.environment]
     CI = "false"
+    PUPPETEER_SKIP_DOWNLOAD = "false"
 
 [dev]
   framework = "#auto"
@@ -19,8 +20,10 @@
   status = 200
   force = true
 
-# SPA fallback
+# SPA fallback — use 404 so pre-rendered route snapshots (react-snap) are
+# served directly by Netlify's CDN before this rule is evaluated.
+# A 200 rewrite here would override every pre-rendered index.html.
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
