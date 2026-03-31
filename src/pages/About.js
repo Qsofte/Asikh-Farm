@@ -13,6 +13,14 @@ const About = () => {
         <meta property="og:title" content="About Us — Asikh Farms | Bihar's Farm-Fresh Produce" />
         <meta property="og:description" content="Learn about Asikh Farms — a family-run farm in Bihar bringing you Jardalu mangoes, Shahi lychee, and seasonal produce straight from the orchard." />
         <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asikhfarms.in/" },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://asikhfarms.in/about" }
+          ]
+        })}</script>
       </Helmet>
     <div className="bg-white" style={{ marginTop: '20%' }}>
       {/* Hero Section */}

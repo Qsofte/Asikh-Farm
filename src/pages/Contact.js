@@ -61,6 +61,14 @@ const Contact = () => {
         <meta property="og:title" content="Contact Us — Asikh Farms" />
         <meta property="og:description" content="Get in touch with Asikh Farms to order Jardalu mangoes, Shahi lychee, or other fresh produce. Delivery across India." />
         <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asikhfarms.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://asikhfarms.in/contact" }
+          ]
+        })}</script>
       </Helmet>
     <div className="bg-primary-light pt-20 min-h-screen">
       {/* Header Section */}

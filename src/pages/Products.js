@@ -28,6 +28,26 @@ const Products = () => {
         <meta name="twitter:title" content="Our Products — Asikh Farms" />
         <meta name="twitter:description" content="Shop Jardalu mangoes, Shahi lychee and other premium Bihar produce, delivered fresh to your door." />
         <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Asikh Farms Products",
+          "url": "https://asikhfarms.in/products",
+          "itemListElement": products.map((p, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": p.name,
+            "url": "https://asikhfarms.in/products"
+          }))
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asikhfarms.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://asikhfarms.in/products" }
+          ]
+        })}</script>
       </Helmet>
     <div className="product-grid">
       {products.map((product) => (
