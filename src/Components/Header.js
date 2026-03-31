@@ -14,7 +14,23 @@ const Header = () => {
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
+    // Reset body overflow when menu closes
+    document.body.style.overflow = 'auto';
   }, [location.pathname]);
+
+  // Cleanup body overflow on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
+  // Reset body overflow when menu state changes
+  useEffect(() => {
+    if (!isMenuOpen) {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isMenuOpen]);
 
   // Detect scroll position
   useEffect(() => {
