@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import "./Products.css";
 
-const products = [
-  { id: 1, name: "Beetroot", price: 2500, weight: "10kg", image: "/images/beetroot.jpg" },
-  { id: 2, name: "Ginger", price: 500, weight: "10kg", image: "/images/ginger.jpg" },
-  { id: 3, name: "Carrots", price: 2500, weight: "10kg", image: "/images/carrots.jpg" },
-  { id: 4, name: "Cauliflower", price: 750, weight: "10kg", image: "/images/cauliflower.jpg" },
-  { id: 5, name: "Tomato", price: 500, weight: "10kg", image: "/images/tomato.jpg" },
-  { id: 6, name: "Elephant Yam", price: 500, weight: "10kg", image: "/images/yam.jpg" },
-  { id: 7, name: "Jardalu Mangoes", price: 500, weight: "10kg", image: "/images/mango.jpg" },
-  { id: 8, name: "Shahi Litchi", price: 500, weight: "10kg", image: "/images/litchi.jpg" },
-  { id: 9, name: "Jackfruit", price: 500, weight: "10kg", image: "/images/jackfruit.jpg" }
-];
-
 const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('/api/products');
+        if (!res.ok) {
+          setError('Unable to load products. Please try again later.');
+          setLoading(false);
+          return;
+        }
+        const data = await res.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (err) {
+        setError('Unable to connect to our product service. Please try again.');
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const getPrice = (product) => {
+    if (!product.variants || product.variants.length === 0) return null;
+    const price = product.variants[0].priceV2;
+    return price ? `₹${parseFloat(price.amount).toLocaleString('en-IN')}` : null;
+  };
+
   return (
     <>
       <Helmet>
@@ -30,18 +50,6 @@ const Products = () => {
         <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ItemList",
-          "name": "Asikh Farms Products",
-          "url": "https://asikhfarms.in/products",
-          "itemListElement": products.map((p, i) => ({
-            "@type": "ListItem",
-            "position": i + 1,
-            "name": p.name,
-            "url": "https://asikhfarms.in/products"
-          }))
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asikhfarms.in/" },
@@ -49,18 +57,51 @@ const Products = () => {
           ]
         })}</script>
       </Helmet>
-    <div className="product-grid">
-      {products.map((product) => (
-        <div key={product.id} className="product-card">
-          <img src={product.image} alt={product.name} />
-          <div className="product-info">
-            <h3 className="product-name">{product.name}</h3>
-            <p className="product-price">₹{product.price} - {product.weight}</p>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
+
+      {loading && (
+        <div className="product-grid" style={{ marginTop: '15%' }}>
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="product-card" style={{ minHeight: 280, background: '#f3f4f6' }} />
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+
+      {error && (
+        <div style={{ textAlign: 'center', marginTop: '20%', padding: '2rem' }}>
+          <p style={{ color: '#666', fontSize: '1.1rem' }}>{error}</p>
+          <button className="add-to-cart" style={{ marginTop: '1rem' }} onClick={() => window.location.reload()}>
+            Retry
+          </button>
+        </div>
+      )}
+
+      {!loading && !error && (
+        <div className="product-grid">
+          {products.map((product) => (
+            <div key={product.id} className="product-card">
+              {product.images && product.images.length > 0 ? (
+                <img src={product.images[0].src} alt={product.title} />
+              ) : (
+                <div style={{ width: '100%', height: 200, background: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ color: '#9ca3af' }}>No image</span>
+                </div>
+              )}
+              <div className="product-info">
+                <h3 className="product-name">{product.title}</h3>
+                {getPrice(product) && (
+                  <p className="product-price">{getPrice(product)}</p>
+                )}
+                <button
+                  className="add-to-cart"
+                  onClick={() => navigate('/order-now')}
+                >
+                  Order Now
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
