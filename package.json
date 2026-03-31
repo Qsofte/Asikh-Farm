@@ -38,7 +38,7 @@
   "scripts": {
     "start": "cross-env react-scripts --max_old_space_size=8128 start",
     "build": "react-scripts --openssl-legacy-provider build",
-    "postbuild": "react-snap",
+    "postbuild": "react-snap || true",
     "test": "react-scripts --openssl-legacy-provider test",
     "eject": "react-scripts eject",
     "server": "node server.js",
@@ -48,13 +48,15 @@
   "reactSnap": {
     "include": [
       "/",
-      "/products",
       "/about",
       "/order-now",
       "/contact",
       "/privacy"
     ],
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "inlineCss": false,
     "minifyHtml": {
       "collapseWhitespace": false,

@@ -16,53 +16,21 @@ import ScrollToTop from './Components/ScrollToTop';
 const App = () => {
   const [appLoading, setAppLoading] = useState(true);
 
-  // Add preloading for key assets like fonts, logo, etc.
+  // Wait for fonts to be ready before rendering
   useEffect(() => {
-    // Function to preload images
-    const preloadImages = (srcArray) => {
-      return Promise.all(
-        srcArray.map((src) => {
-          return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = resolve;
-            img.src = src;
-          });
-        }),
-      );
-    };
+    const timeout = setTimeout(() => setAppLoading(false), 2000);
 
-    // Function to preload fonts
-    const preloadFonts = () => {
-      return Promise.all([
-        document.fonts.load('GilroyMedium'),
-        document.fonts.load('GilroyExtraBold'),
-        document.fonts.load('GilroyRegular'),
-        document.fonts.load('GilroySemiBold'),
-        document.fonts.load('GilroyLight'),
-      ]);
-    };
-
-    // Images to preload
-    const imagesToPreload = [
-      '/logo.png',
-      '/images/Logo_re.png',
-      '/images/3rd-Home-main.png',
-      '/video/vdo.mp4',
-    ];
-
-    // Preload all assets
-    Promise.all([
-      preloadImages(imagesToPreload),
-      preloadFonts(),
-      // Wait for fonts to be ready
-      document.fonts.ready,
-    ]).then(() => {
-      // Small delay to ensure everything is loaded
-      setTimeout(() => {
+    document.fonts.ready
+      .then(() => {
+        clearTimeout(timeout);
         setAppLoading(false);
-      }, 100);
-    });
+      })
+      .catch(() => {
+        clearTimeout(timeout);
+        setAppLoading(false);
+      });
+
+    return () => clearTimeout(timeout);
   }, []);
 
   if (appLoading) {
