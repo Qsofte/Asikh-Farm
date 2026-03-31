@@ -10,7 +10,7 @@ test.describe('Contact Us Page', () => {
       });
     });
     // Navigate to Contact page
-    await page.goto('/contact', { waitUntil: 'networkidle' });
+    await page.goto('/contact', { waitUntil: 'domcontentloaded' });
   });
 
   test('Form fields and submit button are visible', async ({ page }) => {
@@ -18,7 +18,8 @@ test.describe('Contact Us Page', () => {
     await expect(page.getByLabel(/surname/i)).toBeVisible();
     await expect(page.getByLabel(/email/i)).toBeVisible();
     await expect(page.getByLabel(/message/i)).toBeVisible();
-    await expect(page.getByRole('button', { name: /submit/i })).toBeVisible();
+    // Button text is "Send Message" (from en/translation.json contact.form.submit)
+    await expect(page.getByRole('button', { name: /send message/i })).toBeVisible();
   });
 
   test('Submitting contact form shows success message', async ({ page }) => {
