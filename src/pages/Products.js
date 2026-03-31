@@ -1,4 +1,5 @@
-// import React, { useState } from "react";
+import React from "react";
+import { Helmet } from 'react-helmet-async';
 import "./Products.css";
 
 const products = [
@@ -15,6 +16,19 @@ const products = [
 
 const Products = () => {
   return (
+    <>
+      <Helmet>
+        <title>Our Products — Jardalu Mangoes, Shahi Lychee &amp; More | Asikh Farms</title>
+        <meta name="description" content="Shop premium Bihar produce: Jardalu mangoes, Shahi lychee, beetroot, ginger, carrots and more. Farm-fresh, delivered to your door." />
+        <link rel="canonical" href="https://asikhfarms.in/products" />
+        <meta property="og:url" content="https://asikhfarms.in/products" />
+        <meta property="og:title" content="Our Products — Jardalu Mangoes, Shahi Lychee &amp; More | Asikh Farms" />
+        <meta property="og:description" content="Shop premium Bihar produce: Jardalu mangoes, Shahi lychee, beetroot, ginger, carrots and more. Farm-fresh, delivered to your door." />
+        <meta property="og:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+        <meta name="twitter:title" content="Our Products — Asikh Farms" />
+        <meta name="twitter:description" content="Shop Jardalu mangoes, Shahi lychee and other premium Bihar produce, delivered fresh to your door." />
+        <meta name="twitter:image" content="https://asikhfarms.in/android-chrome-512x512.png" />
+      </Helmet>
     <div className="product-grid">
       {products.map((product) => (
         <div key={product.id} className="product-card">
@@ -27,6 +41,7 @@ const Products = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 
