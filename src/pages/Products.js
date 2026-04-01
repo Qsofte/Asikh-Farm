@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import './Products.css';
+import ProductCard from '../Components/ProductCard';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -102,11 +102,11 @@ const Products = () => {
       </Helmet>
 
       {loading && (
-        <div className="product-grid" style={{ marginTop: '15%' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-5 mt-20 items-stretch">
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="product-card"
+              className="border rounded-lg overflow-hidden shadow-md"
               style={{ minHeight: 280, background: '#f3f4f6' }}
             />
           ))}
@@ -114,11 +114,10 @@ const Products = () => {
       )}
 
       {error && (
-        <div style={{ textAlign: 'center', marginTop: '20%', padding: '2rem' }}>
-          <p style={{ color: '#666', fontSize: '1.1rem' }}>{error}</p>
+        <div className="text-center px-8 mt-20 py-8">
+          <p className="text-gray-500 text-lg">{error}</p>
           <button
-            className="add-to-cart"
-            style={{ marginTop: '1rem' }}
+            className="mt-4 px-4 py-2 bg-primary-green text-white rounded hover:bg-green-700 transition-colors"
             onClick={() => window.location.reload()}
           >
             Retry
@@ -127,38 +126,15 @@ const Products = () => {
       )}
 
       {!loading && !error && (
-        <div className="product-grid">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-5 mt-20 items-stretch">
           {products.map((product) => (
-            <div key={product.id} className="product-card">
-              {product.images && product.images.length > 0 ? (
-                <img src={product.images[0].src} alt={product.title} />
-              ) : (
-                <div
-                  style={{
-                    width: '100%',
-                    height: 200,
-                    background: '#e5e7eb',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <span style={{ color: '#9ca3af' }}>No image</span>
-                </div>
-              )}
-              <div className="product-info">
-                <h3 className="product-name">{product.title}</h3>
-                {getPrice(product) && (
-                  <p className="product-price">{getPrice(product)}</p>
-                )}
-                <button
-                  className="add-to-cart"
-                  onClick={() => navigate('/order-now')}
-                >
-                  Order Now
-                </button>
-              </div>
-            </div>
+            <ProductCard
+              key={product.id}
+              title={product.title}
+              image={product.images?.[0]?.src}
+              price={getPrice(product)}
+              onBuyNow={() => navigate('/order-now')}
+            />
           ))}
         </div>
       )}
