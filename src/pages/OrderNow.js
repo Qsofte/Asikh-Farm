@@ -3,10 +3,60 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { debounce } from 'lodash';
+import ProductCard from '../Components/ProductCard';
 
 // Initialize Shopify client with env vars (set these in .env)
 // import Client from 'shopify-buy';
 // import Client from 'shopify-buy'; replaced by server proxy
+
+const HARDCODED_DISCOUNTS = {
+  'Safed Malda- 1 Kg Box': { price: '₹250.00', original: '₹450.00', percent: 44, promo: 'Limited Time Offer!' },
+  'Safed Malda- 3 Kg Box': { price: '₹749.00', original: '₹1,199.00', percent: 38, promo: 'Limited Time Offer!' },
+  'Jardalu- 1 Kg Box':     { price: '₹250.00', original: '₹450.00', percent: 44, promo: 'Limited Time Offer!' },
+  'Jardalu- 3 Kg Box':     { price: '₹749.00', original: '₹1,199.00', percent: 38, promo: 'Limited Time Offer!' },
+};
+
+const getDisplayPrice = (variant, qty, variantDiscountInfo) => {
+  const hardcoded = HARDCODED_DISCOUNTS[variant.title];
+  if (hardcoded) {
+    return {
+      price: hardcoded.price,
+      originalPrice: hardcoded.original,
+      discountPercent: hardcoded.percent,
+      promoText: hardcoded.promo,
+    };
+  }
+  if (variantDiscountInfo) {
+    return {
+      price: `${variantDiscountInfo.finalPrice} ${variantDiscountInfo.currencyCode}`,
+      originalPrice: `${variantDiscountInfo.originalPrice} ${variantDiscountInfo.currencyCode}`,
+      discountPercent: variantDiscountInfo.discountPercent,
+      promoText: variantDiscountInfo.discountTitle || null,
+    };
+  }
+  const unitPrice = parseFloat(variant.priceV2?.amount) || 0;
+  const totalPrice = (unitPrice * qty).toFixed(2);
+  if (
+    variant.compareAtPriceV2 &&
+    parseFloat(variant.compareAtPriceV2.amount) > parseFloat(variant.priceV2.amount)
+  ) {
+    const discPct = Math.round(
+      (1 - parseFloat(variant.priceV2.amount) / parseFloat(variant.compareAtPriceV2.amount)) * 100,
+    );
+    return {
+      price: `${totalPrice} ${variant.priceV2?.currencyCode}`,
+      originalPrice: `${(parseFloat(variant.compareAtPriceV2.amount) * qty).toFixed(2)} ${variant.compareAtPriceV2?.currencyCode}`,
+      discountPercent: discPct,
+      promoText: null,
+    };
+  }
+  return {
+    price: `${totalPrice} ${variant.priceV2?.currencyCode}`,
+    originalPrice: null,
+    discountPercent: null,
+    promoText: null,
+  };
+};
 
 const OrderNow = () => {
   const [products, setProducts] = useState([]);
@@ -337,7 +387,7 @@ const OrderNow = () => {
         <div className="container mx-auto px-4 mb-20">
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           {loading && <p className="text-center mb-4">Loading products...</p>}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 items-stretch">
             {products.length === 0 && !loading && !error && (
               <div className="col-span-3 text-center py-10">
                 <p className="text-lg text-gray-600">
@@ -347,30 +397,18 @@ const OrderNow = () => {
             )}
 
             {products.map((product) => {
-              // Skip products with no variants (should be filtered on the server, but just in case)
               if (!product.variants || product.variants.length === 0)
                 return null;
 
-              // Get the selected variant or default to the first one
               const selId =
                 selectedVariants[product.id] || product.variants[0].id;
               const variant = product.variants.find((v) => v.id === selId);
 
-              // Skip rendering if no valid variant is found
               if (!variant) return null;
 
               const qty = parseInt(quantities[product.id], 10) || 1;
-              const unitPrice = parseFloat(variant.priceV2?.amount) || 0;
-              const totalPrice = (unitPrice * qty).toFixed(2);
-
-              // Get discount info for this variant if available
               const variantDiscountInfo = discountInfo[variant.id];
-              const isLoadingDiscount = loadingDiscounts[variant.id];
 
-              // Debug log to see variant titles
-              console.log('Variant title:', variant.title);
-
-              // Display stock information if available
               const stockInfo =
                 variant.quantityAvailable !== undefined &&
                 variant.quantityAvailable !== null
@@ -384,282 +422,39 @@ const OrderNow = () => {
                       : { text: 'Out of Stock', className: 'text-red-600' }
                   : { text: 'In Stock', className: 'text-green-600' };
 
+              const isOutOfStock =
+                variant.quantityAvailable !== undefined &&
+                variant.quantityAvailable !== null &&
+                variant.quantityAvailable <= 0;
+
+              const displayPrice = getDisplayPrice(variant, qty, variantDiscountInfo);
+
               return (
-                <div
+                <ProductCard
                   key={product.id}
-                  className="border rounded-lg overflow-hidden shadow-md max-w-sm mx-auto flex flex-col"
-                >
-                  <div className="bg-gray-100 w-full h-40 flex items-center justify-center">
-                    <img
-                      src={product.images[0]?.src}
-                      alt={product.title}
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                  <div className="p-3 flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-2">
-                        <h2 className="text-xl font-semibold">
-                          {product.title}
-                        </h2>
-                        <span
-                          className={`text-xs font-medium px-2 py-1 rounded-full ${stockInfo.className} bg-opacity-20`}
-                        >
-                          {stockInfo.text}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="mb-4 flex items-center space-x-4">
-                      <div className="flex-1">
-                        <label
-                          htmlFor={`variant-select-${product.id}`}
-                          className="block font-gilroy-semibold mb-1"
-                        >
-                          Option:
-                        </label>
-                        <select
-                          id={`variant-select-${product.id}`}
-                          value={selId}
-                          onChange={(e) =>
-                            setSelectedVariants({
-                              ...selectedVariants,
-                              [product.id]: e.target.value,
-                            })
-                          }
-                          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-green"
-                        >
-                          {product.variants.map((v) => (
-                            <option key={v.id} value={v.id}>
-                              {v.title}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="w-20 flex-shrink-0">
-                        <label
-                          htmlFor={`quantity-${product.id}`}
-                          className="block font-gilroy-semibold mb-1"
-                        >
-                          Qty:
-                        </label>
-                        <input
-                          type="number"
-                          id={`quantity-${product.id}`}
-                          min="1"
-                          value={quantities[product.id] ?? ''}
-                          placeholder="1"
-                          onChange={(e) =>
-                            setQuantities({
-                              ...quantities,
-                              [product.id]: e.target.value,
-                            })
-                          }
-                          className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary-green"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex flex-col mt-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex flex-col">
-                          {/* Special cases for Jardalu and Safed Malda variants with hardcoded discounts */}
-                          {variant.title === 'Safed Malda- 1 Kg Box' ? (
-                            <>
-                              <p className="text-lg font-bold text-primary-green">
-                                ₹250.00
-                                <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
-                                  44% OFF
-                                </span>
-                              </p>
-                              <p className="text-sm text-gray-500 line-through">
-                                ₹450.00
-                              </p>
-                              <p className="text-xs text-primary-green mt-1">
-                                Limited Time Offer!
-                              </p>
-                            </>
-                          ) : variant.title === 'Safed Malda- 3 Kg Box' ? (
-                            <>
-                              <p className="text-lg font-bold text-primary-green">
-                                ₹749.00
-                                <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
-                                  38% OFF
-                                </span>
-                              </p>
-                              <p className="text-sm text-gray-500 line-through">
-                                ₹1,199.00
-                              </p>
-                              <p className="text-xs text-primary-green mt-1">
-                                Limited Time Offer!
-                              </p>
-                            </>
-                          ) : variant.title === 'Jardalu- 1 Kg Box' ? (
-                            <>
-                              <p className="text-lg font-bold text-primary-green">
-                                ₹250.00
-                                <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
-                                  44% OFF
-                                </span>
-                              </p>
-                              <p className="text-sm text-gray-500 line-through">
-                                ₹450.00
-                              </p>
-                              <p className="text-xs text-primary-green mt-1">
-                                Limited Time Offer!
-                              </p>
-                            </>
-                          ) : variant.title === 'Jardalu- 3 Kg Box' ? (
-                            <>
-                              <p className="text-lg font-bold text-primary-green">
-                                ₹749.00
-                                <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
-                                  38% OFF
-                                </span>
-                              </p>
-                              <p className="text-sm text-gray-500 line-through">
-                                ₹1,199.00
-                              </p>
-                              <p className="text-xs text-primary-green mt-1">
-                                Limited Time Offer!
-                              </p>
-                            </>
-                          ) : isLoadingDiscount ? (
-                            <div className="flex items-center">
-                              <p className="text-lg font-bold">
-                                {totalPrice} {variant.priceV2?.currencyCode}
-                              </p>
-                              <div className="ml-2 w-4 h-4 border-t-2 border-primary-green rounded-full animate-spin"></div>
-                            </div>
-                          ) : variantDiscountInfo ? (
-                            <>
-                              <p className="text-lg font-bold text-primary-green">
-                                {variantDiscountInfo.finalPrice}{' '}
-                                {variantDiscountInfo.currencyCode}
-                                <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
-                                  {variantDiscountInfo.discountPercent}% OFF
-                                </span>
-                              </p>
-                              <p className="text-sm text-gray-500 line-through">
-                                {variantDiscountInfo.originalPrice}{' '}
-                                {variantDiscountInfo.currencyCode}
-                              </p>
-                              {variantDiscountInfo.discountTitle && (
-                                <p className="text-xs text-primary-green mt-1">
-                                  {variantDiscountInfo.discountTitle}
-                                </p>
-                              )}
-                            </>
-                          ) : variant.compareAtPriceV2 &&
-                            parseFloat(variant.compareAtPriceV2.amount) >
-                              parseFloat(variant.priceV2.amount) ? (
-                            <>
-                              <p className="text-lg font-bold text-primary-green">
-                                {totalPrice} {variant.priceV2?.currencyCode}
-                                <span className="ml-2 bg-accent-yellow text-primary-dark text-xs px-2 py-0.5 rounded-full">
-                                  {Math.round(
-                                    (1 -
-                                      parseFloat(variant.priceV2.amount) /
-                                        parseFloat(
-                                          variant.compareAtPriceV2.amount,
-                                        )) *
-                                      100,
-                                  )}
-                                  % OFF
-                                </span>
-                              </p>
-                              <p className="text-sm text-gray-500 line-through">
-                                {(
-                                  parseFloat(variant.compareAtPriceV2.amount) *
-                                  qty
-                                ).toFixed(2)}{' '}
-                                {variant.compareAtPriceV2?.currencyCode}
-                              </p>
-                            </>
-                          ) : (
-                            <p className="text-lg font-bold">
-                              {totalPrice} {variant.priceV2?.currencyCode}
-                            </p>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => handleBuy(product.id, variant.id)}
-                          disabled={
-                            processingId === variant.id ||
-                            (variant.quantityAvailable !== undefined &&
-                              variant.quantityAvailable !== null &&
-                              variant.quantityAvailable <= 0)
-                          }
-                          className={`px-3 py-2 rounded transition-colors ${
-                            variant.quantityAvailable === 0
-                              ? 'bg-gray-400 text-white cursor-not-allowed'
-                              : 'bg-primary-green text-white hover:bg-green-700'
-                          } disabled:opacity-50`}
-                        >
-                          {processingId === variant.id
-                            ? 'Processing...'
-                            : variant.quantityAvailable === 0
-                              ? 'Out of Stock'
-                              : 'Buy Now'}
-                        </button>
-                      </div>
-
-                      {/* Checkout Error Message */}
-                      {checkoutError[product.id] && (
-                        <div className="mt-2 text-red-600 text-sm bg-red-50 p-2 rounded border border-red-200">
-                          <div className="flex items-start">
-                            <svg
-                              className="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <div>
-                              <p>{checkoutError[product.id]}</p>
-                              <p className="mt-1 text-xs text-gray-700">
-                                Please click the{' '}
-                                <span className="font-medium text-primary-green">
-                                  Product Information
-                                </span>{' '}
-                                link below for more details and availability.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Product Information Link */}
-                    <div className="mt-3 border-t pt-2">
-                      <a
-                        href={`https://asikhfarms.myshopify.com/products/${product.handle || product.title.toLowerCase().replace(/\s+/g, '-')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary-green flex items-center w-full justify-between font-medium hover:underline"
-                      >
-                        Product Information
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          ></path>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                  title={product.title}
+                  image={product.images[0]?.src}
+                  stockText={stockInfo.text}
+                  stockClassName={stockInfo.className}
+                  options={product.variants.map((v) => ({ id: v.id, label: v.title }))}
+                  selectedOption={selId}
+                  price={displayPrice.price}
+                  originalPrice={displayPrice.originalPrice}
+                  discountPercent={displayPrice.discountPercent}
+                  promoText={displayPrice.promoText}
+                  quantity={quantities[product.id] ?? ''}
+                  onQuantityChange={(val) =>
+                    setQuantities({ ...quantities, [product.id]: val })
+                  }
+                  onOptionChange={(val) =>
+                    setSelectedVariants({ ...selectedVariants, [product.id]: val })
+                  }
+                  onBuyNow={() => handleBuy(product.id, variant.id)}
+                  onProductInfo={`https://asikhfarms.myshopify.com/products/${product.handle || product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  isProcessing={processingId === variant.id}
+                  isOutOfStock={isOutOfStock}
+                  checkoutError={checkoutError[product.id] || null}
+                />
               );
             })}
           </div>
