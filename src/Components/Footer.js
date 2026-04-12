@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import logo from '../images/logo.png';
+import logo from '../images/Logo_re.png';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -30,7 +30,9 @@ const Footer = () => {
             {/* Social Media Icons */}
             <div className="flex space-x-1 mt-1">
               <a
-                href="#"
+                href="https://www.instagram.com/asikhfarms"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-primary-green hover:-translate-y-1"
                 aria-label="Instagram"
               >
@@ -44,7 +46,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/asikhfarms"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-primary-green hover:-translate-y-1"
                 aria-label="LinkedIn"
               >
@@ -58,7 +62,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/asikhfarms"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-primary-green hover:-translate-y-1"
                 aria-label="Facebook"
               >
@@ -72,7 +78,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@asikhfarms"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-primary-green hover:-translate-y-1"
                 aria-label="YouTube"
               >
@@ -92,11 +100,17 @@ const Footer = () => {
           <div className="flex justify-between md:w-1/2 lg:w-6/12">
             {/* Links Section */}
             <div className="w-1/2 lg:w-auto pr-4">
-              <h3 className="font-gilroy-semibold text-sm mb-0">{t('footer.linksTitle')}</h3>
+              <h3 className="font-gilroy-semibold text-sm mb-0">
+                {t('footer.linksTitle')}
+              </h3>
               <ul className="space-y-0">
                 <li>
                   <a
-                    onClick={() => handleNavigate('/')}
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate('/');
+                    }}
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
                     {t('header.home')}
@@ -104,7 +118,11 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    onClick={() => handleNavigate('/contact')}
+                    href="/contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate('/contact');
+                    }}
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
                     {t('header.contact')}
@@ -115,11 +133,17 @@ const Footer = () => {
 
             {/* Help Section */}
             <div className="w-1/2 lg:w-auto">
-              <h3 className="font-gilroy-semibold text-sm mb-0">{t('footer.helpTitle')}</h3>
+              <h3 className="font-gilroy-semibold text-sm mb-0">
+                {t('footer.helpTitle')}
+              </h3>
               <ul className="space-y-0">
                 <li>
                   <a
-                    onClick={() => handleNavigate('/privacy')}
+                    href="/privacy"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate('/privacy');
+                    }}
                     className="text-secondary-gray hover:text-success cursor-pointer transition-all duration-300 hover:translate-x-1 inline-block font-gilroy-regular"
                   >
                     {t('footer.privacyPolicy')}

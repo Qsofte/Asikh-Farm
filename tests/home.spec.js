@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/', { waitUntil: 'networkidle' });
+    // 'domcontentloaded' avoids waiting for the autoplay hero video which
+    // keeps the network busy indefinitely and prevents 'networkidle' firing.
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
   });
 
   test('Hero section elements are visible', async ({ page }) => {

@@ -1,126 +1,125 @@
 @font-face {
-  font-family: "GilroyExtraBold";
-  src: url("../fonts/Gilroy-ExtraBold.ttf") format("truetype");
+  font-family: 'GilroyExtraBold';
+  src: url('../fonts/Gilroy-ExtraBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyExtraBoldItalic";
-  src: url("../fonts/Gilroy-ExtraBoldItalic.ttf") format("truetype");
+  font-family: 'GilroyExtraBoldItalic';
+  src: url('../fonts/Gilroy-ExtraBoldItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyHeavy";
-  src: url("../fonts/Gilroy-Heavy.ttf") format("truetype");
+  font-family: 'GilroyHeavy';
+  src: url('../fonts/Gilroy-Heavy.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyHeavyItalic";
-  src: url("../fonts/Gilroy-HeavyItalic.ttf") format("truetype");
+  font-family: 'GilroyHeavyItalic';
+  src: url('../fonts/Gilroy-HeavyItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyLight";
-  src: url("../fonts/Gilroy-Light.ttf") format("truetype");
+  font-family: 'GilroyLight';
+  src: url('../fonts/Gilroy-Light.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyLightItalic";
-  src: url("../fonts/Gilroy-LightItalic.ttf") format("truetype");
+  font-family: 'GilroyLightItalic';
+  src: url('../fonts/Gilroy-LightItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyMedium";
-  src: url("../fonts/Gilroy-Medium.ttf") format("truetype");
+  font-family: 'GilroyMedium';
+  src: url('../fonts/Gilroy-Medium.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyMediumItalic";
-  src: url("../fonts/Gilroy-MediumItalic.ttf") format("truetype");
+  font-family: 'GilroyMediumItalic';
+  src: url('../fonts/Gilroy-MediumItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyRegular";
-  src: url("../fonts/Gilroy-Regular.ttf") format("truetype");
+  font-family: 'GilroyRegular';
+  src: url('../fonts/Gilroy-Regular.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyRegularItalic";
-  src: url("../fonts/Gilroy-RegularItalic.ttf") format("truetype");
+  font-family: 'GilroyRegularItalic';
+  src: url('../fonts/Gilroy-RegularItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroySemiBold";
-  src: url("../fonts/Gilroy-SemiBold.ttf") format("truetype");
+  font-family: 'GilroySemiBold';
+  src: url('../fonts/Gilroy-SemiBold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroySemiBoldItalic";
-  src: url("../fonts/Gilroy-SemiBoldItalic.ttf") format("truetype");
+  font-family: 'GilroySemiBoldItalic';
+  src: url('../fonts/Gilroy-SemiBoldItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroySemiBoldItalic2";
-  src: url("../fonts/Gilroy-SemiBoldItalic\ \(1\).ttf") format("truetype");
+  font-family: 'GilroySemiBoldItalic2';
+  src: url('../fonts/Gilroy-SemiBoldItalic\ \(1\).ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyThin";
-  src: url("../fonts/Gilroy-Thin.ttf") format("truetype");
+  font-family: 'GilroyThin';
+  src: url('../fonts/Gilroy-Thin.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyThinItalic";
-  src: url("../fonts/Gilroy-ThinItalic.ttf") format("truetype");
+  font-family: 'GilroyThinItalic';
+  src: url('../fonts/Gilroy-ThinItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyUltraLight";
-  src: url("../fonts/Gilroy-UltraLight.ttf") format("truetype");
+  font-family: 'GilroyUltraLight';
+  src: url('../fonts/Gilroy-UltraLight.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "GilroyUltraLightItalic";
-  src: url("../fonts/Gilroy-UltraLightItalic.ttf") format("truetype");
+  font-family: 'GilroyUltraLightItalic';
+  src: url('../fonts/Gilroy-UltraLightItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
-body{
+body {
   background-color: #f5f5f5;
 }
-
 
 /* Hero Section */
 .hero-section {
@@ -133,6 +132,14 @@ body{
   text-align: center;
   overflow: hidden;
   color: white;
+  touch-action: pan-y;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section {
+    overflow: visible;
+    touch-action: auto;
+  }
 }
 
 /* Background Video */
@@ -148,7 +155,7 @@ body{
 
 /* Overlay Effect for Better Text Visibility */
 .hero-section::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -174,7 +181,7 @@ body{
 .hero-text {
   font-size: 24px;
   margin-bottom: 1em;
-  font-family: 'GilroyMedium'
+  font-family: 'GilroyMedium';
 }
 
 .hero-btn {
@@ -190,7 +197,9 @@ body{
 }
 
 .Home-para {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.296), rgba(0, 0, 0, 0.263)), url("../images/3rd-Home-main.png");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.296), rgba(0, 0, 0, 0.263)),
+    url('../images/3rd-Home-main.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -204,7 +213,7 @@ body{
 
 .Heading-fst {
   color: white;
-  font-size: 2.5rem; 
+  font-size: 2.5rem;
   text-align: center;
 }
 
@@ -217,7 +226,7 @@ body{
 
 .btn-fst {
   height: 49px;
-  background-color: #EAC66E;
+  background-color: #eac66e;
   width: 153px;
   border-radius: 15px;
   border: none;
@@ -225,16 +234,16 @@ body{
 
 /* Second Section */
 
-.txt-dsc{
+.txt-dsc {
   font-family: 'GilroySemiBold';
   font-size: 48px;
 }
-.txt-dscpara{
-  font-family:'GilroyLight';
+.txt-dscpara {
+  font-family: 'GilroyLight';
   font-size: 24px;
 }
 
-.txt-dsc-hm{
+.txt-dsc-hm {
   text-align: center;
   margin: 77px;
   line-height: 4px;
@@ -242,60 +251,60 @@ body{
 
 /* Third Section: */
 
-.txt-thrd{
+.txt-thrd {
   margin: 77px;
 }
 
-.txt-hding-home{
+.txt-hding-home {
   text-align: center;
   line-height: 4px;
   font-family: 'GilroySemiBold';
   font-size: 48px;
 }
 
-.hm-para{
-  font-family:'GilroyLight';
+.hm-para {
+  font-family: 'GilroyLight';
   font-size: 24px;
 }
 
 /* Fourth Section */
 
-.fourth-hm{
+.fourth-hm {
   background-color: #f5f5f5;
 }
 
-.Count-heading{
+.Count-heading {
   padding: 7px;
 }
 
-.Countries-head{
+.Countries-head {
   text-align: center;
   line-height: 4px;
 }
 
-.head-fourth{
+.head-fourth {
   font-family: 'GilroySemiBold';
   font-size: 48px;
 }
 
-.para-fourth{
-  font-family:'GilroyLight';
+.para-fourth {
+  font-family: 'GilroyLight';
   font-size: 24px;
   margin-bottom: 77px;
 }
 
-.Countries{
+.Countries {
   display: flex;
   justify-content: space-around;
   text-align: center;
 }
 
-.count-name{
-  font-family:'GilroyLight';
+.count-name {
+  font-family: 'GilroyLight';
   font-size: 24px;
 }
 
-.count-img{
+.count-img {
   width: 329px;
   height: 170px;
 }
@@ -303,7 +312,6 @@ body{
 /* Mobile-specific image for the first section */
 
 @media screen and (max-width: 768px) {
-
   .hero-content {
     width: 90%;
   }
@@ -322,15 +330,17 @@ body{
   }
 
   .Home-para {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.377), rgba(0, 0, 0, 0.41)), url("../images/mobileasikhfarm.png");
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.377), rgba(0, 0, 0, 0.41)),
+      url('../images/mobileasikhfarm.png');
   }
 
   .para-fst {
-    width: 90%; 
+    width: 90%;
     padding-bottom: 5%;
   }
 
-  .img-bx-dsc{
+  .img-bx-dsc {
     height: 50em;
     display: flex;
     flex-direction: column;
@@ -338,11 +348,11 @@ body{
     cursor: pointer;
   }
 
-  .txt-thdL{
+  .txt-thdL {
     text-align: center;
   }
 
-  .Home-thrd-img-sub{
+  .Home-thrd-img-sub {
     display: flex;
     justify-content: space-around;
     height: 15%;
@@ -351,8 +361,8 @@ body{
     background-color: #e3e1dc82;
   }
 
-  .img-sub-home{
-    background-image:url("../images/imgl.png");
+  .img-sub-home {
+    background-image: url('../images/imgl.png');
     background-size: cover;
     height: 200%;
     border: 2px solid rgb(171, 82, 82);
@@ -360,27 +370,29 @@ body{
     width: 64%;
   }
 
-  .Home-thrd-img{
+  .Home-thrd-img {
     display: flex;
     justify-content: center;
     align-items: end;
     height: 80%;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.296), rgba(0, 0, 0, 0.263)), url("../images/image (3).jpeg");
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.296), rgba(0, 0, 0, 0.263)),
+      url('../images/image (3).jpeg');
     border: 1px solid rgb(31, 29, 29);
-    background-size: cover; 
-    background-position: center; 
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
   }
 
   /* our products */
 
-  .txt-dsc{
+  .txt-dsc {
     font-size: 28px !important;
     margin-bottom: 3.5%;
   }
 
-  .txt-dscpara { 
+  .txt-dscpara {
     font-size: 18px !important; /* Adjust font size for smaller screens */
     width: 100%; /* Ensure it takes full width */
     max-width: 90%; /* Keep some margin */
@@ -388,41 +400,39 @@ body{
     word-wrap: break-word; /* Force text to break */
     line-height: 1rem; /* Improve readability */
     margin: auto; /* Center within its container */
-}
+  }
 
-.txt-dsc-hm{
-  margin: 40px;
-}
+  .txt-dsc-hm {
+    margin: 40px;
+  }
 
-  .count-img{
+  .count-img {
     width: 95.91px;
     height: 49.56px;
     margin-bottom: 25px;
   }
 
-  .count-name{
+  .count-name {
     display: none;
   }
 
-  .txt-thrd{
+  .txt-thrd {
     display: none;
   }
 
-  .Count-heading{
+  .Count-heading {
     margin-top: 40px;
   }
 
-  .head-fourth{
+  .head-fourth {
     font-family: 'GilroySemiBold';
     font-size: 28px;
     line-height: 1;
   }
-  
-  .para-fourth{
-    font-family:'GilroyLight';
+
+  .para-fourth {
+    font-family: 'GilroyLight';
     font-size: 18px;
     margin-bottom: 40px;
   }
-
-
 }

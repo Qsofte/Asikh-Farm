@@ -1,45 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="Qsofte - Software development and Technology Company"
-      content="This is Qsofte's Public Website, We work on custome point of sale solutions"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="theme-color" content="#2CA673" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Asikhfarm</title>
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- DNS prefetch for faster loading -->
+    <link rel="dns-prefetch" href="//asikhfarms.in" />
+    <link rel="dns-prefetch" href="//asikhfarms.myshopify.com" />
+
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      as="style"
+    />
+
+    <!-- Load fonts early -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Primary SEO meta tags (overridden per-page by react-helmet-async) -->
+    <title>Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee</title>
+    <meta
+      name="description"
+      content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee (litchi) direct from Bihar orchards. Order online for home delivery across India."
+    />
+    <meta
+      name="keywords"
+      content="Jardalu mango, Shahi lychee, Shahi litchi, Bihar mangoes, buy mangoes online, farm fresh fruits India, Asikh Farms"
+    />
+    <link rel="canonical" href="https://asikhfarms.in/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Asikh Farms" />
+    <meta property="og:url" content="https://asikhfarms.in/" />
+    <meta
+      property="og:title"
+      content="Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee"
+    />
+    <meta
+      property="og:description"
+      content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar orchards. Order online for home delivery across India."
+    />
+    <meta property="og:image" content="https://asikhfarms.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar"
+    />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee"
+    />
+    <meta
+      name="twitter:description"
+      content="Farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar. Order online for delivery across India."
+    />
+    <meta name="twitter:image" content="https://asikhfarms.in/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar"
+    />
+
+    <!-- Icons & PWA -->
+    <link rel="icon" href="%PUBLIC_URL%/logo.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- hreflang for EN/HI -->
+    <link rel="alternate" hreflang="en-in" href="https://asikhfarms.in/" />
+    <link rel="alternate" hreflang="hi" href="https://asikhfarms.in/?lng=hi" />
+    <link rel="alternate" hreflang="x-default" href="https://asikhfarms.in/" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

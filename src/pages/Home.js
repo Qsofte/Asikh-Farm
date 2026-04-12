@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import heroVideo from '../video/vdo.mp4';
@@ -7,6 +8,14 @@ import TestimonialSlider from '../Components/TestimonialSlider';
 import EnglandFlag from '../images/EnglandFlag.jfif';
 import GermanyFlag from '../images/GermanyFlag.jfif';
 import NewZealandFlag from '../images/New Zealand-Flag.jfif';
+import Singapore from '../images/Singapore.png';
+import safal from '../images/safal.png';
+import zomato from '../images/zomato.avif';
+import modern from '../images/modern.png';
+import Fiitjee from '../images/Fiitjee.jpg';
+import Carlsberg from '../images/Carlsberg.png';
+import Adyopant from '../images/Adyopant.png';
+import blinkit from '../images/blinkit.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,8 +33,87 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee</title>
+        <meta
+          name="description"
+          content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee (litchi) direct from Bihar orchards. Order online for home delivery across India."
+        />
+        <link rel="canonical" href="https://asikhfarms.in/" />
+        <meta property="og:url" content="https://asikhfarms.in/" />
+        <meta
+          property="og:title"
+          content="Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee"
+        />
+        <meta
+          property="og:description"
+          content="Asikh Farms delivers farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar orchards. Order online for home delivery across India."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Asikh Farms" />
+        <meta
+          property="og:image"
+          content="https://asikhfarms.in/og-image.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:image:alt"
+          content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar"
+        />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Asikh Farms — Fresh Jardalu Mangoes &amp; Shahi Lychee"
+        />
+        <meta
+          name="twitter:description"
+          content="Farm-fresh Jardalu mangoes and Shahi lychee direct from Bihar. Order online for delivery across India."
+        />
+        <meta
+          name="twitter:image"
+          content="https://asikhfarms.in/og-image.png"
+        />
+        <meta
+          name="twitter:image:alt"
+          content="Asikh Farms — Premium Jardalu Mangoes &amp; Shahi Lychee from Bihar"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': ['Organization', 'LocalBusiness'],
+            name: 'Asikh Farms',
+            legalName: 'RAMHAR AGRI PRIVATE LIMITED',
+            url: 'https://asikhfarms.in',
+            logo: 'https://asikhfarms.in/android-chrome-512x512.png',
+            image: 'https://asikhfarms.in/android-chrome-512x512.png',
+            description:
+              'Farm-fresh Jardalu mangoes, Shahi lychee and seasonal produce from Bihar, delivered across India.',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'CHINTA MANI MARKET RAMASHISH CHOUK HAJIPUR',
+              addressLocality: 'Hajipur',
+              addressRegion: 'Bihar',
+              postalCode: '844101',
+              addressCountry: 'IN',
+            },
+            contactPoint: [
+              {
+                '@type': 'ContactPoint',
+                telephone: '+91-9811942958',
+                contactType: 'customer service',
+                availableLanguage: ['English', 'Hindi'],
+              },
+            ],
+            sameAs: [],
+            areaServed: 'IN',
+            priceRange: '₹₹',
+          })}
+        </script>
+      </Helmet>
       {/* Hero Section */}
-      <section className="relative h-[50vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
+      <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden md:block"
           autoPlay
@@ -83,7 +171,10 @@ const Home = () => {
       </section>
 
       {/* Export Countries Section */}
-      <section style={{ height: '30%' }} className="py-4 bg-gray-100 w-full mx-auto">
+      <section
+        style={{ height: '30%' }}
+        className="py-4 bg-gray-100 w-full mx-auto"
+      >
         <div className="text-center px-2 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
             {t('exportSection.title')}
@@ -93,9 +184,9 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-5xl mx-auto px-2">
-          <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+        <div className="flex md:flex-wrap justify-between md:justify-center gap-2 md:gap-x-4 max-w-5xl mx-auto px-2 overflow-x-auto md:overflow-visible">
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={EnglandFlag}
                 alt="England Flag"
@@ -103,13 +194,13 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-base font-gilroy-medium text-primary-dark">
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
               England
             </p>
           </div>
 
-          <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={GermanyFlag}
                 alt="Germany Flag"
@@ -117,13 +208,13 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-base font-gilroy-medium text-primary-dark">
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
               Germany
             </p>
           </div>
 
-          <div className="text-center transition-transform duration-300 hover:-translate-y-2">
-            <div className="w-20 h-12 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={NewZealandFlag}
                 alt="New Zealand Flag"
@@ -131,10 +222,51 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
-            <p className="text-base font-gilroy-medium text-primary-dark">
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
               New Zealand
             </p>
           </div>
+
+          <div className="text-center flex-shrink-0 transition-transform duration-300 hover:-translate-y-2">
+            <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
+              <img
+                src={Singapore}
+                alt="Germany Flag"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-sm md:text-base font-gilroy-medium text-primary-dark">
+              Singapore
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-8 bg-white w-full">
+        <div className="text-center px-4 mb-6">
+          <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
+            Trusted By
+          </h2>
+        </div>
+
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
+          {[safal, Adyopant, zomato, Fiitjee, Carlsberg, modern, blinkit].map(
+            (logo, index) => (
+              <div
+                key={index}
+                className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
+              >
+                <img
+                  src={logo}
+                  alt={`Partner ${index + 1}`}
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            ),
+          )}
         </div>
       </section>
     </>

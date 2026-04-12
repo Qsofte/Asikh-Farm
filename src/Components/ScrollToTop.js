@@ -5,13 +5,12 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Scroll root container for SPA, fallback to window
-    const root = document.getElementById('root');
-    if (root) {
-      root.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Reset body overflow to ensure scrolling works
+    document.body.style.overflow = 'auto';
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [pathname]);
 
   return null;

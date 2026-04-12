@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './pages/Home';
@@ -13,56 +14,60 @@ import VendorOrderStandalone from './pages/VendorOrderStandalone';
 import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
-  const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
-  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
+  const [appLoading, setAppLoading] = useState(true);
 
-  // Debug environment variables
-  console.log('App.js ENV Values:', {
-    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
-    FEATURE_PRODUCTS,
-    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
-    FEATURE_ABOUT
-  });
-
-  // Add preloading for key assets like fonts, logo, etc.
+  // Wait for fonts to be ready before rendering
   useEffect(() => {
-    // Function to preload images
-    const preloadImages = (srcArray) => {
-      srcArray.forEach((src) => {
-        const img = new Image();
-        img.src = src;
+    const timeout = setTimeout(() => setAppLoading(false), 2000);
+
+    document.fonts.ready
+      .then(() => {
+        clearTimeout(timeout);
+        setAppLoading(false);
+      })
+      .catch(() => {
+        clearTimeout(timeout);
+        setAppLoading(false);
       });
-    };
 
-    // Images to preload (can add more as needed)
-    const imagesToPreload = [
-      // Add path to logo and other critical images
-      '/logo.png',
-    ];
-
-    preloadImages(imagesToPreload);
+    return () => clearTimeout(timeout);
   }, []);
 
-  return (
-    <Router>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={FEATURE_PRODUCTS ? <Products /> : <Navigate to="/" />} />
-            <Route path="/about" element={FEATURE_ABOUT ? <About /> : <Navigate to="/" />} />
-            <Route path="/order-now" element={<OrderNow />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/vendor-order" element={<VendorOrder />} />
-            <Route path="/bulk-order" element={<VendorOrderStandalone />} />
-          </Routes>
-        </main>
-        <Footer />
+  if (appLoading) {
+    return (
+      <div className="min-h-screen bg-primary-light flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-primary-green border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-primary-dark font-gilroy-medium">
+            Loading Asikh Farms...
+          </p>
+        </div>
       </div>
-    </Router>
+    );
+  }
+
+  return (
+    <HelmetProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/order-now" element={<OrderNow />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/vendor-order" element={<VendorOrder />} />
+              <Route path="/bulk-order" element={<VendorOrderStandalone />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 };
 

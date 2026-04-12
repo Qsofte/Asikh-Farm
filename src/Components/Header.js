@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from '../images/Logo_re.png';
 import LanguageToggle from './LanguageToggle';
 import { useTranslation } from 'react-i18next';
 
@@ -11,23 +11,26 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useTranslation();
 
-  // Feature flags for navigation
-  const FEATURE_PRODUCTS = process.env.REACT_APP_FEATURE_PRODUCTS === 'true';
-  const FEATURE_ABOUT = process.env.REACT_APP_FEATURE_ABOUT === 'true';
-  const FEATURE_ORDER_NOW = true;
-
-  // Debug feature flags
-  console.log('ENV Values:', {
-    REACT_APP_FEATURE_PRODUCTS: process.env.REACT_APP_FEATURE_PRODUCTS,
-    REACT_APP_FEATURE_ABOUT: process.env.REACT_APP_FEATURE_ABOUT,
-    FEATURE_PRODUCTS,
-    FEATURE_ABOUT
-  });
-
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
+    // Reset body overflow when menu closes
+    document.body.style.overflow = 'auto';
   }, [location.pathname]);
+
+  // Cleanup body overflow on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
+  // Reset body overflow when menu state changes
+  useEffect(() => {
+    if (!isMenuOpen) {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isMenuOpen]);
 
   // Detect scroll position
   useEffect(() => {
@@ -42,14 +45,20 @@ const Header = () => {
   }, []);
 
   const handleNavigate = (path) => {
-    setIsMenuOpen(false); // Always close menu on navigation
-    document.body.style.overflow = 'auto'; // Restore scroll
+    // Close mobile menu if open
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      document.body.style.overflow = 'auto';
+    }
+
     if (location.pathname === path) {
+      // If already on the same page, scroll to top
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
     } else {
+      // Navigate to new page
       navigate(path);
     }
   };
@@ -63,13 +72,22 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-primary-light shadow-md h-24 md:h-36' : 'bg-transparent h-32 md:h-48'
+        isScrolled
+          ? 'bg-primary-light shadow-md h-24 md:h-36'
+          : 'bg-transparent h-32 md:h-48'
       }`}
     >
       <div className="container mx-auto px-4 h-full flex items-center justify-start">
         {/* Logo */}
         <div className="flex items-center">
-          <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('/'); }} className="cursor-pointer">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigate('/');
+            }}
+            className="cursor-pointer"
+          >
             <img
               src={logo}
               alt="Asikh Farms Logo"
@@ -89,19 +107,31 @@ const Header = () => {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isMenuOpen
+                  ? 'bg-primary-dark'
+                  : isScrolled
+                    ? 'bg-primary-dark'
+                    : 'bg-white'
+              } ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             ></span>
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? 'opacity-0' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isMenuOpen
+                  ? 'bg-primary-dark'
+                  : isScrolled
+                    ? 'bg-primary-dark'
+                    : 'bg-white'
+              } ${isMenuOpen ? 'opacity-0' : ''}`}
             ></span>
             <span
-              className={`block h-0.5 w-full transition-all duration-300 bg-primary-dark ${
-                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full transition-all duration-300 ${
+                isMenuOpen
+                  ? 'bg-primary-dark'
+                  : isScrolled
+                    ? 'bg-primary-dark'
+                    : 'bg-white'
+              } ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             ></span>
           </div>
 
@@ -109,43 +139,62 @@ const Header = () => {
           <nav className="hidden lg:flex items-center">
             <ul className="flex space-x-8">
               <li>
-                <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('/'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                  isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                } hover:text-primary-green`} aria-label={t('header.home')}>
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate('/');
+                  }}
+                  className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                  } hover:text-primary-green`}
+                  aria-label={t('header.home')}
+                >
                   {t('header.home')}
                 </a>
               </li>
-              {FEATURE_PRODUCTS && (
-                <li>
-                  <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('/products'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                  } hover:text-primary-green`} aria-label={t('header.products')}>
-                    {t('header.products')}
-                  </a>
-                </li>
-              )}
-              {FEATURE_ABOUT && (
-                <li>
-                  <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                  } hover:text-primary-green`} aria-label={t('header.about')}>
-                    {t('header.about')}
-                  </a>
-                </li>
-              )}
-              {FEATURE_ORDER_NOW && (
-                <li>
-                  <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className={`cursor-pointer font-gilroy-medium text-lg font-extrabold transition-all duration-300 hover:opacity-100 px-4 py-2 rounded-full ${
-                    isScrolled ? 'bg-primary-green text-white' : 'bg-primary-light text-primary-green'
-                  } hover:bg-accent-yellow hover:text-primary-dark`} aria-label={t('header.orderNow')}>
-                    {t('header.orderNow')}
-                  </a>
-                </li>
-              )}
               <li>
-                <a href="/contact" onClick={(e) => { e.preventDefault(); handleNavigate('/contact'); }} className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
-                  isScrolled ? 'text-primary-dark' : 'text-primary-light'
-                } hover:text-primary-green`} aria-label={t('header.contact')}>
+                <a
+                  href="/order-now"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate('/order-now');
+                  }}
+                  className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                  } hover:text-primary-green`}
+                  aria-label={t('header.orderNow')}
+                >
+                  {t('header.orderNow') || 'Order Now'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate('/about');
+                  }}
+                  className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                  } hover:text-primary-green`}
+                  aria-label={t('header.about')}
+                >
+                  {t('header.about')}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate('/contact');
+                  }}
+                  className={`cursor-pointer font-gilroy-medium text-lg font-bold transition-all duration-300 hover:opacity-100 ${
+                    isScrolled ? 'text-primary-dark' : 'text-primary-light'
+                  } hover:text-primary-green`}
+                  aria-label={t('header.contact')}
+                >
                   {t('header.contact')}
                 </a>
               </li>
@@ -163,35 +212,76 @@ const Header = () => {
             isMenuOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
         >
-          <ul className="flex flex-col space-y-6 text-center">
+          {/* Close Button */}
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = 'auto';
+            }}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-primary-dark text-white flex items-center justify-center hover:bg-primary-green transition-colors"
+            aria-label="Close menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          <ul className="flex flex-col space-y-8 text-center">
             <li>
-              <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('/'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
+              <a
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate('/');
+                }}
+                className="font-gilroy-medium text-2xl text-primary-green cursor-pointer"
+              >
                 {t('header.home')}
               </a>
             </li>
-            {FEATURE_PRODUCTS && (
-              <li>
-                <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('/products'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
-                  {t('header.products')}
-                </a>
-              </li>
-            )}
-            {FEATURE_ABOUT && (
-              <li>
-                <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('/about'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
-                  {t('header.about')}
-                </a>
-              </li>
-            )}
-            {FEATURE_ORDER_NOW && (
-              <li className="mb-4">
-                <a href="/order-now" onClick={(e) => { e.preventDefault(); handleNavigate('/order-now'); }} className="font-gilroy-medium font-extrabold text-2xl bg-primary-green text-white px-6 py-2 rounded-full hover:bg-accent-yellow hover:text-primary-dark cursor-pointer">
-                  {t('header.orderNow')}
-                </a>
-              </li>
-            )}
             <li>
-              <a href="/contact" onClick={(e) => { e.preventDefault(); handleNavigate('/contact'); }} className="font-gilroy-medium text-2xl text-primary-green cursor-pointer">
+              <a
+                href="/order-now"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate('/order-now');
+                }}
+                className="font-gilroy-medium text-2xl text-primary-green cursor-pointer"
+              >
+                {t('header.orderNow') || 'Order Now'}
+              </a>
+            </li>
+            <li>
+              <a
+                href="/about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate('/about');
+                }}
+                className="font-gilroy-medium text-2xl text-primary-green cursor-pointer"
+              >
+                {t('header.about')}
+              </a>
+            </li>
+            <li>
+              <a
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate('/contact');
+                }}
+                className="font-gilroy-medium text-2xl text-primary-green cursor-pointer"
+              >
                 {t('header.contact')}
               </a>
             </li>
