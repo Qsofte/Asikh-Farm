@@ -7,6 +7,53 @@ import { debounce } from 'lodash';
 // import Client from 'shopify-buy';
 // import Client from 'shopify-buy'; replaced by server proxy
 
+const HARDCODED_DISCOUNTS = {
+  'Safed Malda- 1 Kg Box': { price: '₹250.00', original: '₹450.00', percent: 44, promo: 'Limited Time Offer!' },
+  'Safed Malda- 3 Kg Box': { price: '₹749.00', original: '₹1,199.00', percent: 38, promo: 'Limited Time Offer!' },
+};
+
+const getDisplayPrice = (variant, qty, variantDiscountInfo) => {
+  const hardcoded = HARDCODED_DISCOUNTS[variant.title];
+  if (hardcoded) {
+    return {
+      price: hardcoded.price,
+      originalPrice: hardcoded.original,
+      discountPercent: hardcoded.percent,
+      promoText: hardcoded.promo,
+    };
+  }
+  if (variantDiscountInfo) {
+    return {
+      price: `${variantDiscountInfo.finalPrice} ${variantDiscountInfo.currencyCode}`,
+      originalPrice: `${variantDiscountInfo.originalPrice} ${variantDiscountInfo.currencyCode}`,
+      discountPercent: variantDiscountInfo.discountPercent,
+      promoText: variantDiscountInfo.discountTitle || null,
+    };
+  }
+  const unitPrice = parseFloat(variant.priceV2?.amount) || 0;
+  const totalPrice = (unitPrice * qty).toFixed(2);
+  if (
+    variant.compareAtPriceV2 &&
+    parseFloat(variant.compareAtPriceV2.amount) > parseFloat(variant.priceV2.amount)
+  ) {
+    const discPct = Math.round(
+      (1 - parseFloat(variant.priceV2.amount) / parseFloat(variant.compareAtPriceV2.amount)) * 100,
+    );
+    return {
+      price: `${totalPrice} ${variant.priceV2?.currencyCode}`,
+      originalPrice: `${(parseFloat(variant.compareAtPriceV2.amount) * qty).toFixed(2)} ${variant.compareAtPriceV2?.currencyCode}`,
+      discountPercent: discPct,
+      promoText: null,
+    };
+  }
+  return {
+    price: `${totalPrice} ${variant.priceV2?.currencyCode}`,
+    originalPrice: null,
+    discountPercent: null,
+    promoText: null,
+  };
+};
+
 const OrderNow = () => {
   const [products, setProducts] = useState([]);
   const [processingId, setProcessingId] = useState(null);
