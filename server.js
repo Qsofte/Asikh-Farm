@@ -37,7 +37,7 @@ app.get('/api/products', async (req, res) => {
           node {
             id title description
             images(first: 1) { edges { node { src } } }
-            variants(first: 10) { edges { node { id title priceV2 { amount currencyCode } } } }
+            variants(first: 10) { edges { node { id title priceV2 { amount currencyCode } compareAtPriceV2 { amount currencyCode } quantityAvailable } } }
           }
         }
       }
@@ -58,7 +58,7 @@ app.get('/api/products', async (req, res) => {
       title: node.title,
       description: node.description,
       images: node.images.edges.map(e => ({ src: e.node.src })),
-      variants: node.variants.edges.map(e => ({ id: e.node.id, title: e.node.title, priceV2: e.node.priceV2 }))
+      variants: node.variants.edges.map(e => ({ id: e.node.id, title: e.node.title, priceV2: e.node.priceV2, compareAtPriceV2: e.node.compareAtPriceV2, quantityAvailable: e.node.quantityAvailable }))
     }));
     res.json(products);
   } catch (err) {

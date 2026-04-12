@@ -129,7 +129,7 @@ async function handleProducts(DOMAIN, STOREFRONT_TOKEN, headers) {
           node {
             id title description
             images(first: 1) { edges { node { src } } }
-            variants(first: 10) { edges { node { id title priceV2 { amount currencyCode } } } }
+            variants(first: 10) { edges { node { id title priceV2 { amount currencyCode } compareAtPriceV2 { amount currencyCode } quantityAvailable } } }
           }
         }
       }
@@ -158,6 +158,8 @@ async function handleProducts(DOMAIN, STOREFRONT_TOKEN, headers) {
         id: e.node.id,
         title: e.node.title,
         priceV2: e.node.priceV2,
+        compareAtPriceV2: e.node.compareAtPriceV2,
+        quantityAvailable: e.node.quantityAvailable,
       })),
     }));
     

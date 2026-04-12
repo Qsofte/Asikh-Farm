@@ -12,8 +12,6 @@ import ProductCard from '../Components/ProductCard';
 const HARDCODED_DISCOUNTS = {
   'Safed Malda- 1 Kg Box': { price: '₹250.00', original: '₹450.00', percent: 44, promo: 'Limited Time Offer!' },
   'Safed Malda- 3 Kg Box': { price: '₹749.00', original: '₹1,199.00', percent: 38, promo: 'Limited Time Offer!' },
-  'Jardalu- 1 Kg Box':     { price: '₹250.00', original: '₹450.00', percent: 44, promo: 'Limited Time Offer!' },
-  'Jardalu- 3 Kg Box':     { price: '₹749.00', original: '₹1,199.00', percent: 38, promo: 'Limited Time Offer!' },
 };
 
 const getDisplayPrice = (variant, qty, variantDiscountInfo) => {
