@@ -91,6 +91,8 @@ const Header = () => {
             <img
               src={logo}
               alt="Asikh Farms Logo"
+              width={485}
+              height={515}
               className={`transition-all duration-300 ${
                 isScrolled ? 'h-20 md:h-32' : 'h-32 md:h-40'
               }`}

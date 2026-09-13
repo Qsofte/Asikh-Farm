@@ -18,6 +18,25 @@ import Adyopant from '../images/Adyopant.png';
 import blinkit from '../images/blinkit.png';
 import flipkartMinutes from '../images/flipkart-minutes.png';
 
+// Intrinsic dimensions are declared so the browser can reserve space before
+// each logo loads (avoids layout shift on this below-the-fold row).
+const partners = [
+  { name: 'Safal', logo: safal, width: 361, height: 175 },
+  { name: 'Adyopant Legal', logo: Adyopant, width: 187, height: 72 },
+  { name: 'Zomato', logo: zomato, width: 627, height: 627 },
+  { name: 'FIITJEE', logo: Fiitjee, width: 554, height: 554 },
+  { name: 'Carlsberg', logo: Carlsberg, width: 657, height: 246 },
+  { name: 'Modern School', logo: modern, width: 476, height: 477 },
+  { name: 'Blinkit', logo: blinkit, width: 163, height: 148 },
+  { name: 'Flipkart Minutes', logo: flipkartMinutes, width: 660, height: 363 },
+];
+
+// Cap a logo's height at 1/sqrt(aspect) of its box so every logo occupies
+// roughly the same *area*. Sizing purely by height makes wide wordmarks
+// (Carlsberg) dwarf square badges (Zomato); sizing by width does the reverse.
+const logoMaxHeight = (width, height) =>
+  `${Math.min(100, 100 / Math.sqrt(width / height))}%`;
+
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -114,7 +133,7 @@ const Home = () => {
         </script>
       </Helmet>
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
+      <section className="relative min-h-[60vh] md:min-h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 pb-16 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden md:block"
           autoPlay
@@ -131,18 +150,18 @@ const Home = () => {
 
         {/* Hero content */}
         <div className="z-20 text-center text-white max-w-4xl px-4 md:px-8">
-          <h1 className="text-4xl md:text-6xl font-lobster mb-6 animate-[fadeInDown_1s_ease-out]">
+          <h1 className="text-4xl md:text-6xl font-lobster mb-6 animate-fade-in-down">
             {t('hero.title')}
           </h1>
           <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-6">
             {t('hero.promise')}
           </p>
-          <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-10 animate-[fadeInUp_1s_ease-out_0.5s] opacity-0 animation-fill-forwards">
+          <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-10 animate-fade-in-up-delay-500">
             {t('hero.subtitle')}
           </p>
           <button
             onClick={handleExplore}
-            className="hero-btn animate-[fadeInUp_1s_ease-out_1s] opacity-0 animation-fill-forwards"
+            className="hero-btn animate-fade-in-up-delay-1000"
             aria-label="Explore more about our products and services"
           >
             {t('hero.explore')}
@@ -172,10 +191,7 @@ const Home = () => {
       </section>
 
       {/* Export Countries Section */}
-      <section
-        style={{ height: '30%' }}
-        className="py-4 bg-gray-100 w-full mx-auto"
-      >
+      <section className="py-4 bg-gray-100 w-full mx-auto">
         <div className="text-center px-2 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
             {t('exportSection.title')}
@@ -191,6 +207,8 @@ const Home = () => {
               <img
                 src={EnglandFlag}
                 alt="England Flag"
+                width={736}
+                height={451}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -205,6 +223,8 @@ const Home = () => {
               <img
                 src={GermanyFlag}
                 alt="Germany Flag"
+                width={736}
+                height={460}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -219,6 +239,8 @@ const Home = () => {
               <img
                 src={NewZealandFlag}
                 alt="New Zealand Flag"
+                width={736}
+                height={451}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -232,7 +254,9 @@ const Home = () => {
             <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={Singapore}
-                alt="Germany Flag"
+                alt="Singapore Flag"
+                width={309}
+                height={163}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -248,29 +272,23 @@ const Home = () => {
       <section className="py-8 bg-white w-full">
         <div className="text-center px-4 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
-            Trusted By
+            {t('partnersSection.title')}
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
-          {[
-            safal,
-            Adyopant,
-            zomato,
-            Fiitjee,
-            Carlsberg,
-            modern,
-            blinkit,
-            flipkartMinutes,
-          ].map((logo, index) => (
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-5xl mx-auto px-4">
+          {partners.map(({ name, logo, width, height }) => (
             <div
-              key={index}
-              className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
+              key={name}
+              className="flex h-24 w-32 md:h-28 md:w-44 items-center justify-center rounded-lg bg-gray-50 p-3 md:p-4 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <img
                 src={logo}
-                alt={`Partner ${index + 1}`}
-                className="w-full h-auto"
+                alt={name}
+                width={width}
+                height={height}
+                style={{ maxHeight: logoMaxHeight(width, height) }}
+                className="max-w-full object-contain"
                 loading="lazy"
               />
             </div>

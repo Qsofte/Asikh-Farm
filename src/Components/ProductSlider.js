@@ -24,30 +24,40 @@ const products = [
   {
     id: 2,
     image: mangoImage,
+    width: 1132,
+    height: 741,
     description:
       "Sweet and juicy mangoes with a rich aroma, grown naturally in Bihar's fertile soil.",
   },
   {
     id: 3,
     image: carrotImage,
+    width: 800,
+    height: 1422,
     description:
       'Crunchy and nutritious organic carrots, packed with vitamins and antioxidants.',
   },
   {
     id: 4,
     image: KatarniChura,
+    width: 800,
+    height: 600,
     description:
       'Bhagalpur Special Katarni Chura',
   },
   {
     id: 5,
     image: Haldi,
+    width: 590,
+    height: 884,
     description:
       'Freshly ground Haldi direct from farms',
   },
   {
     id: 6,
     image: Gur,
+    width: 433,
+    height: 577,
     description:
       'Pure sugarcane gur made naturally without chemicals.',
   },
@@ -103,7 +113,7 @@ const ProductSlider = () => {
           speed={800}
           touchStartPreventDefault={false}
           touchMoveStopPropagation={false}
-          className="h-full py-5 px-4"
+          className="h-full py-5"
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
@@ -111,6 +121,8 @@ const ProductSlider = () => {
                 <img
                   src={product.image}
                   alt={t(`productsSection.products.${product.id}`)}
+                  width={product.width}
+                  height={product.height}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

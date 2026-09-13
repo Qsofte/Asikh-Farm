@@ -81,3 +81,15 @@ code {
     @apply bg-accent-gold text-primary-dark px-6 py-3 rounded-full text-lg font-bold uppercase cursor-pointer transition-default hover:bg-amber-400 hover:shadow-lg hover:-translate-y-1;
   }
 }
+
+/* Respect the OS "reduce motion" setting. The fade-in utilities use a `both`
+   fill mode, so disabling the animation leaves the element at its natural
+   (visible) state rather than hiding it. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-down,
+  .animate-fade-in-up,
+  .animate-fade-in-up-delay-500,
+  .animate-fade-in-up-delay-1000 {
+    animation: none;
+  }
+}

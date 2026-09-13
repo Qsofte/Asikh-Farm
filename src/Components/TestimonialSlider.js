@@ -72,6 +72,8 @@ const TestimonialSlider = () => {
               <img
                 src={testimonial.clientImage}
                 alt={t(`testimonialsSection.testimonials.${testimonial.id}.name`)}
+                width={400}
+                height={400}
                 className="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover"
                 loading="lazy"
               />
