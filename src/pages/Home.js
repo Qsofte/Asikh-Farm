@@ -114,7 +114,7 @@ const Home = () => {
         </script>
       </Helmet>
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
+      <section className="relative min-h-[60vh] md:min-h-[400px] w-full flex justify-center items-start pt-32 md:pt-40 pb-16 overflow-hidden bg-gradient-to-br from-primary-green to-accent-gold">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden md:block"
           autoPlay
@@ -131,18 +131,18 @@ const Home = () => {
 
         {/* Hero content */}
         <div className="z-20 text-center text-white max-w-4xl px-4 md:px-8">
-          <h1 className="text-4xl md:text-6xl font-lobster mb-6 animate-[fadeInDown_1s_ease-out]">
+          <h1 className="text-4xl md:text-6xl font-lobster mb-6 animate-fade-in-down">
             {t('hero.title')}
           </h1>
           <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-6">
             {t('hero.promise')}
           </p>
-          <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-10 animate-[fadeInUp_1s_ease-out_0.5s] opacity-0 animation-fill-forwards">
+          <p className="text-lg md:text-xl font-gilroy-medium leading-relaxed mb-10 animate-fade-in-up-delay-500">
             {t('hero.subtitle')}
           </p>
           <button
             onClick={handleExplore}
-            className="hero-btn animate-[fadeInUp_1s_ease-out_1s] opacity-0 animation-fill-forwards"
+            className="hero-btn animate-fade-in-up-delay-1000"
             aria-label="Explore more about our products and services"
           >
             {t('hero.explore')}

@@ -24,6 +24,24 @@ module.exports = {
       height: {
         128: '32rem',
       },
+      keyframes: {
+        fadeInDown: {
+          '0%': { opacity: '0', transform: 'translateY(-1.25rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(1.25rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        // `both` keeps the element hidden through the delay and holds the
+        // final frame afterwards, so no opacity-0 class is needed in markup.
+        'fade-in-down': 'fadeInDown 1s ease-out both',
+        'fade-in-up': 'fadeInUp 1s ease-out both',
+        'fade-in-up-delay-500': 'fadeInUp 1s ease-out 0.5s both',
+        'fade-in-up-delay-1000': 'fadeInUp 1s ease-out 1s both',
+      },
       screens: {
         xs: '475px',
       },
