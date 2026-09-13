@@ -16,6 +16,7 @@ import Fiitjee from '../images/Fiitjee.jpg';
 import Carlsberg from '../images/Carlsberg.png';
 import Adyopant from '../images/Adyopant.png';
 import blinkit from '../images/blinkit.png';
+import flipkartMinutes from '../images/flipkart-minutes.png';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -252,21 +253,28 @@ const Home = () => {
         </div>
 
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
-          {[safal, Adyopant, zomato, Fiitjee, Carlsberg, modern, blinkit].map(
-            (logo, index) => (
-              <div
-                key={index}
-                className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
-              >
-                <img
-                  src={logo}
-                  alt={`Partner ${index + 1}`}
-                  className="w-full h-auto"
-                  loading="lazy"
-                />
-              </div>
-            ),
-          )}
+          {[
+            safal,
+            Adyopant,
+            zomato,
+            Fiitjee,
+            Carlsberg,
+            modern,
+            blinkit,
+            flipkartMinutes,
+          ].map((logo, index) => (
+            <div
+              key={index}
+              className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
+            >
+              <img
+                src={logo}
+                alt={`Partner ${index + 1}`}
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </section>
     </>
