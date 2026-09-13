@@ -18,6 +18,25 @@ import Adyopant from '../images/Adyopant.png';
 import blinkit from '../images/blinkit.png';
 import flipkartMinutes from '../images/flipkart-minutes.png';
 
+// Intrinsic dimensions are declared so the browser can reserve space before
+// each logo loads (avoids layout shift on this below-the-fold row).
+const partners = [
+  { name: 'Safal', logo: safal, width: 361, height: 175 },
+  { name: 'Adyopant Legal', logo: Adyopant, width: 187, height: 72 },
+  { name: 'Zomato', logo: zomato, width: 627, height: 627 },
+  { name: 'FIITJEE', logo: Fiitjee, width: 554, height: 554 },
+  { name: 'Carlsberg', logo: Carlsberg, width: 657, height: 246 },
+  { name: 'Modern School', logo: modern, width: 476, height: 477 },
+  { name: 'Blinkit', logo: blinkit, width: 163, height: 148 },
+  { name: 'Flipkart Minutes', logo: flipkartMinutes, width: 660, height: 363 },
+];
+
+// Cap a logo's height at 1/sqrt(aspect) of its box so every logo occupies
+// roughly the same *area*. Sizing purely by height makes wide wordmarks
+// (Carlsberg) dwarf square badges (Zomato); sizing by width does the reverse.
+const logoMaxHeight = (width, height) =>
+  `${Math.min(100, 100 / Math.sqrt(width / height))}%`;
+
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -248,29 +267,23 @@ const Home = () => {
       <section className="py-8 bg-white w-full">
         <div className="text-center px-4 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
-            Trusted By
+            {t('partnersSection.title')}
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 max-w-5xl mx-auto px-4">
-          {[
-            safal,
-            Adyopant,
-            zomato,
-            Fiitjee,
-            Carlsberg,
-            modern,
-            blinkit,
-            flipkartMinutes,
-          ].map((logo, index) => (
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-5xl mx-auto px-4">
+          {partners.map(({ name, logo, width, height }) => (
             <div
-              key={index}
-              className="w-24 md:w-32 transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg"
+              key={name}
+              className="flex h-24 w-32 md:h-28 md:w-44 items-center justify-center rounded-lg bg-gray-50 p-3 md:p-4 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <img
                 src={logo}
-                alt={`Partner ${index + 1}`}
-                className="w-full h-auto"
+                alt={name}
+                width={width}
+                height={height}
+                style={{ maxHeight: logoMaxHeight(width, height) }}
+                className="max-w-full object-contain"
                 loading="lazy"
               />
             </div>
