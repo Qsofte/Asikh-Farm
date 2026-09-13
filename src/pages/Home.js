@@ -191,10 +191,7 @@ const Home = () => {
       </section>
 
       {/* Export Countries Section */}
-      <section
-        style={{ height: '30%' }}
-        className="py-4 bg-gray-100 w-full mx-auto"
-      >
+      <section className="py-4 bg-gray-100 w-full mx-auto">
         <div className="text-center px-2 mb-6">
           <h2 className="text-3xl md:text-4xl font-lobster text-primary-dark mb-4">
             {t('exportSection.title')}
@@ -210,6 +207,8 @@ const Home = () => {
               <img
                 src={EnglandFlag}
                 alt="England Flag"
+                width={736}
+                height={451}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -224,6 +223,8 @@ const Home = () => {
               <img
                 src={GermanyFlag}
                 alt="Germany Flag"
+                width={736}
+                height={460}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -238,6 +239,8 @@ const Home = () => {
               <img
                 src={NewZealandFlag}
                 alt="New Zealand Flag"
+                width={736}
+                height={451}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -251,7 +254,9 @@ const Home = () => {
             <div className="w-16 h-10 md:w-24 md:h-14 mb-1 mx-auto relative overflow-hidden rounded shadow-sm">
               <img
                 src={Singapore}
-                alt="Germany Flag"
+                alt="Singapore Flag"
+                width={309}
+                height={163}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
